@@ -1,0 +1,1985 @@
+fileFormatVersion: 2
+guid: bddb908bb067459479e429fe209d6b8b
+timeCreated: 1454182530
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: cat sprites full_0
+    21300002: cat sprites full_1
+    21300004: cat sprites full_2
+    21300006: cat sprites full_3
+    21300008: cat sprites full_4
+    21300010: cat sprites full_5
+    21300012: cat sprites full_6
+    21300014: cat sprites full_7
+    21300016: cat sprites full_8
+    21300018: cat sprites full_9
+    21300020: cat sprites full_10
+    21300022: cat sprites full_11
+    21300024: cat sprites full_12
+    21300026: cat sprites full_13
+    21300028: cat sprites full_14
+    21300030: cat sprites full_15
+    21300032: cat sprites full_16
+    21300034: cat sprites full_17
+    21300036: cat sprites full_18
+    21300038: cat sprites full_19
+    21300040: cat sprites full_20
+    21300042: cat sprites full_21
+    21300044: cat sprites full_22
+    21300046: cat sprites full_23
+    21300048: cat sprites full_24
+    21300050: cat sprites full_25
+    21300052: cat sprites full_26
+    21300054: cat sprites full_27
+    21300056: cat sprites full_28
+    21300058: cat sprites full_29
+    21300060: cat sprites full_30
+    21300062: cat sprites full_31
+    21300064: cat sprites full_32
+    21300066: cat sprites full_33
+    21300068: cat sprites full_34
+    21300070: cat sprites full_35
+    21300072: cat sprites full_36
+    21300074: cat sprites full_37
+    21300076: cat sprites full_38
+    21300078: cat sprites full_39
+    21300080: cat sprites full_40
+    21300082: cat sprites full_41
+    21300084: cat sprites full_42
+    21300086: cat sprites full_43
+    21300088: cat sprites full_44
+    21300090: cat sprites full_45
+    21300092: cat sprites full_46
+    21300094: cat sprites full_47
+    21300096: black_walk_1
+    21300098: black_idle
+    21300100: black_walk_2
+    21300102: cat sprites full_51
+    21300104: cat sprites full_52
+    21300106: cat sprites full_53
+    21300108: cat sprites full_54
+    21300110: cat sprites full_55
+    21300112: cat sprites full_56
+    21300114: cat sprites full_57
+    21300116: cat sprites full_58
+    21300118: cat sprites full_59
+    21300120: black_left_2
+    21300122: black_left_1
+    21300124: black_left_3
+    21300126: cat sprites full_63
+    21300128: cat sprites full_64
+    21300130: cat sprites full_65
+    21300132: cat sprites full_66
+    21300134: cat sprites full_67
+    21300136: cat sprites full_68
+    21300138: cat sprites full_69
+    21300140: cat sprites full_70
+    21300142: cat sprites full_71
+    21300144: black_right_2
+    21300146: black_right_1
+    21300148: black_right_3
+    21300150: cat sprites full_75
+    21300152: cat sprites full_76
+    21300154: cat sprites full_77
+    21300156: yellow_right_2
+    21300158: yellow_right_1
+    21300160: yellow_right_3
+    21300162: cat sprites full_81
+    21300164: cat sprites full_82
+    21300166: cat sprites full_83
+    21300168: cat sprites full_84
+    21300170: cat sprites full_85
+    21300172: cat sprites full_86
+    21300174: cat sprites full_87
+    21300176: cat sprites full_88
+    21300178: cat sprites full_89
+    21300180: cat sprites full_90
+    21300182: cat sprites full_91
+    21300184: cat sprites full_92
+    21300186: cat sprites full_93
+    21300188: cat sprites full_94
+    21300190: cat sprites full_95
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 30
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: cat sprites full_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: -10}
+        - {x: -7, y: -16}
+        - {x: 5, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 8}
+        - {x: 7, y: 15}
+        - {x: 5, y: 16}
+        - {x: -4, y: 16}
+        - {x: -9, y: 11}
+    - name: cat sprites full_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 16}
+        - {x: -9, y: 5}
+        - {x: -9, y: -12}
+        - {x: -5, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 1}
+        - {x: 6, y: 16}
+    - name: cat sprites full_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 15}
+        - {x: -8, y: 4}
+        - {x: -9, y: -4}
+        - {x: -9, y: -8}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -15}
+        - {x: 9, y: 14}
+        - {x: 7, y: 15}
+    - name: cat sprites full_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: -10}
+        - {x: -7, y: -16}
+        - {x: 5, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 8}
+        - {x: 7, y: 15}
+        - {x: 5, y: 16}
+        - {x: -4, y: 16}
+        - {x: -9, y: 11}
+    - name: cat sprites full_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 16}
+        - {x: -9, y: 5}
+        - {x: -9, y: -12}
+        - {x: -5, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 1}
+        - {x: 6, y: 16}
+    - name: cat sprites full_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 15}
+        - {x: -8, y: 4}
+        - {x: -9, y: -4}
+        - {x: -9, y: -8}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -15}
+        - {x: 9, y: 14}
+        - {x: 7, y: 15}
+    - name: cat sprites full_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: -10}
+        - {x: -7, y: -16}
+        - {x: 5, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 8}
+        - {x: 7, y: 15}
+        - {x: 5, y: 16}
+        - {x: -4, y: 16}
+        - {x: -9, y: 11}
+    - name: cat sprites full_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 16}
+        - {x: -9, y: 5}
+        - {x: -9, y: -12}
+        - {x: -5, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 1}
+        - {x: 6, y: 16}
+    - name: cat sprites full_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 15}
+        - {x: -8, y: 4}
+        - {x: -9, y: -4}
+        - {x: -9, y: -8}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -15}
+        - {x: 9, y: 14}
+        - {x: 7, y: 15}
+    - name: cat sprites full_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: -10}
+        - {x: -7, y: -16}
+        - {x: 5, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 8}
+        - {x: 7, y: 15}
+        - {x: 5, y: 16}
+        - {x: -4, y: 16}
+        - {x: -9, y: 11}
+    - name: cat sprites full_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 16}
+        - {x: -9, y: 5}
+        - {x: -9, y: -12}
+        - {x: -5, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 1}
+        - {x: 6, y: 16}
+    - name: cat sprites full_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 15}
+        - {x: -8, y: 4}
+        - {x: -9, y: -4}
+        - {x: -9, y: -8}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -15}
+        - {x: 9, y: 14}
+        - {x: 7, y: 15}
+    - name: cat sprites full_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 10}
+        - {x: 6, y: 7}
+        - {x: -4, y: 7}
+        - {x: -13, y: 6}
+        - {x: -16, y: 2}
+        - {x: -16, y: -14}
+        - {x: -12, y: -16}
+        - {x: 13, y: -16}
+        - {x: 13, y: 9}
+        - {x: 11, y: 10}
+    - name: cat sprites full_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11, y: 11}
+        - {x: 7, y: 11}
+        - {x: 6, y: 8}
+        - {x: -4, y: 8}
+        - {x: -13, y: 7}
+        - {x: -15, y: 3}
+        - {x: -16, y: -1}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -14}
+        - {x: 13, y: -4}
+        - {x: 13, y: 10}
+    - name: cat sprites full_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 9}
+        - {x: -14, y: 7}
+        - {x: -16, y: -3}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 14, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 9}
+    - name: cat sprites full_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 10}
+        - {x: 6, y: 7}
+        - {x: -4, y: 7}
+        - {x: -13, y: 6}
+        - {x: -16, y: 2}
+        - {x: -16, y: -14}
+        - {x: -12, y: -16}
+        - {x: 13, y: -16}
+        - {x: 13, y: 9}
+        - {x: 11, y: 10}
+    - name: cat sprites full_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11, y: 11}
+        - {x: 7, y: 11}
+        - {x: 6, y: 8}
+        - {x: -4, y: 8}
+        - {x: -13, y: 7}
+        - {x: -15, y: 3}
+        - {x: -16, y: -1}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -14}
+        - {x: 13, y: -4}
+        - {x: 13, y: 10}
+    - name: cat sprites full_17
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 9}
+        - {x: -14, y: 7}
+        - {x: -16, y: -3}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 14, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 9}
+    - name: cat sprites full_18
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 10}
+        - {x: 6, y: 7}
+        - {x: -4, y: 7}
+        - {x: -13, y: 6}
+        - {x: -16, y: 2}
+        - {x: -16, y: -14}
+        - {x: -12, y: -16}
+        - {x: 13, y: -16}
+        - {x: 13, y: 9}
+        - {x: 11, y: 10}
+    - name: cat sprites full_19
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11, y: 11}
+        - {x: 7, y: 11}
+        - {x: 6, y: 8}
+        - {x: -4, y: 8}
+        - {x: -13, y: 7}
+        - {x: -15, y: 3}
+        - {x: -16, y: -1}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -14}
+        - {x: 13, y: -4}
+        - {x: 13, y: 10}
+    - name: cat sprites full_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 9}
+        - {x: -14, y: 7}
+        - {x: -16, y: -3}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 14, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 9}
+    - name: cat sprites full_21
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 10}
+        - {x: 6, y: 7}
+        - {x: -4, y: 7}
+        - {x: -13, y: 6}
+        - {x: -16, y: 2}
+        - {x: -16, y: -14}
+        - {x: -12, y: -16}
+        - {x: 13, y: -16}
+        - {x: 13, y: 9}
+        - {x: 11, y: 10}
+    - name: cat sprites full_22
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11, y: 11}
+        - {x: 7, y: 11}
+        - {x: 6, y: 8}
+        - {x: -4, y: 8}
+        - {x: -13, y: 7}
+        - {x: -15, y: 3}
+        - {x: -16, y: -1}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -14}
+        - {x: 13, y: -4}
+        - {x: 13, y: 10}
+    - name: cat sprites full_23
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 9}
+        - {x: -14, y: 7}
+        - {x: -16, y: -3}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 14, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 9}
+    - name: cat sprites full_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 10}
+        - {x: -13, y: -15}
+        - {x: -10, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -8}
+        - {x: 16, y: 1}
+        - {x: 15, y: 10}
+    - name: cat sprites full_25
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 11}
+        - {x: -13, y: -16}
+        - {x: 12, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 6}
+        - {x: 5, y: 11}
+    - name: cat sprites full_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 9}
+        - {x: -16, y: -13}
+        - {x: -10, y: -16}
+        - {x: 8, y: -16}
+        - {x: 16, y: -11}
+        - {x: 16, y: 9}
+    - name: cat sprites full_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 10}
+        - {x: -13, y: -15}
+        - {x: -10, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -8}
+        - {x: 16, y: 1}
+        - {x: 15, y: 10}
+    - name: cat sprites full_28
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 11}
+        - {x: -13, y: -16}
+        - {x: 12, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 6}
+        - {x: 5, y: 11}
+    - name: cat sprites full_29
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 9}
+        - {x: -16, y: -13}
+        - {x: -10, y: -16}
+        - {x: 8, y: -16}
+        - {x: 16, y: -11}
+        - {x: 16, y: 9}
+    - name: cat sprites full_30
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 10}
+        - {x: -13, y: -15}
+        - {x: -10, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -8}
+        - {x: 16, y: 1}
+        - {x: 15, y: 10}
+    - name: cat sprites full_31
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 11}
+        - {x: -13, y: -16}
+        - {x: 12, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 6}
+        - {x: 5, y: 11}
+    - name: cat sprites full_32
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 9}
+        - {x: -16, y: -13}
+        - {x: -10, y: -16}
+        - {x: 8, y: -16}
+        - {x: 16, y: -11}
+        - {x: 16, y: 9}
+    - name: cat sprites full_33
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 10}
+        - {x: -13, y: -15}
+        - {x: -10, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -8}
+        - {x: 16, y: 1}
+        - {x: 15, y: 10}
+    - name: cat sprites full_34
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 11}
+        - {x: -13, y: -16}
+        - {x: 12, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 6}
+        - {x: 5, y: 11}
+    - name: cat sprites full_35
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 9}
+        - {x: -16, y: -13}
+        - {x: -10, y: -16}
+        - {x: 8, y: -16}
+        - {x: 16, y: -11}
+        - {x: 16, y: 9}
+    - name: cat sprites full_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 11}
+        - {x: -9, y: -13}
+        - {x: -4, y: -16}
+        - {x: 8, y: -16}
+        - {x: 9, y: -14}
+        - {x: 9, y: 11}
+    - name: cat sprites full_37
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 12}
+        - {x: -9, y: -13}
+        - {x: -6, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 12}
+    - name: cat sprites full_38
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 11}
+        - {x: -7, y: 11}
+        - {x: -9, y: 6}
+        - {x: -9, y: -10}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -10}
+        - {x: 9, y: 4}
+        - {x: 8, y: 9}
+    - name: cat sprites full_39
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 11}
+        - {x: -9, y: -13}
+        - {x: -4, y: -16}
+        - {x: 8, y: -16}
+        - {x: 9, y: -14}
+        - {x: 9, y: 11}
+    - name: cat sprites full_40
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 12}
+        - {x: -9, y: -13}
+        - {x: -6, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 12}
+    - name: cat sprites full_41
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 11}
+        - {x: -7, y: 11}
+        - {x: -9, y: 6}
+        - {x: -9, y: -10}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -10}
+        - {x: 9, y: 4}
+        - {x: 8, y: 9}
+    - name: cat sprites full_42
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 11}
+        - {x: -9, y: -13}
+        - {x: -4, y: -16}
+        - {x: 8, y: -16}
+        - {x: 9, y: -14}
+        - {x: 9, y: 11}
+    - name: cat sprites full_43
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 12}
+        - {x: -9, y: -13}
+        - {x: -6, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 12}
+    - name: cat sprites full_44
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 11}
+        - {x: -7, y: 11}
+        - {x: -9, y: 6}
+        - {x: -9, y: -10}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -10}
+        - {x: 9, y: 4}
+        - {x: 8, y: 9}
+    - name: cat sprites full_45
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 11}
+        - {x: -9, y: -13}
+        - {x: -4, y: -16}
+        - {x: 8, y: -16}
+        - {x: 9, y: -14}
+        - {x: 9, y: 11}
+    - name: cat sprites full_46
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 12}
+        - {x: -9, y: -13}
+        - {x: -6, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 12}
+    - name: cat sprites full_47
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 11}
+        - {x: -7, y: 11}
+        - {x: -9, y: 6}
+        - {x: -9, y: -10}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -10}
+        - {x: 9, y: 4}
+        - {x: 8, y: 9}
+    - name: black_walk_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: -10}
+        - {x: -7, y: -16}
+        - {x: 5, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 8}
+        - {x: 7, y: 15}
+        - {x: 5, y: 16}
+        - {x: -4, y: 16}
+        - {x: -9, y: 11}
+    - name: black_idle
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 16}
+        - {x: -9, y: 5}
+        - {x: -9, y: -12}
+        - {x: -5, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 1}
+        - {x: 6, y: 16}
+    - name: black_walk_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 15}
+        - {x: -8, y: 4}
+        - {x: -9, y: -4}
+        - {x: -9, y: -8}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -15}
+        - {x: 9, y: 14}
+        - {x: 7, y: 15}
+    - name: cat sprites full_51
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: -10}
+        - {x: -7, y: -16}
+        - {x: 5, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 8}
+        - {x: 7, y: 15}
+        - {x: 5, y: 16}
+        - {x: -4, y: 16}
+        - {x: -9, y: 11}
+    - name: cat sprites full_52
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 16}
+        - {x: -9, y: 5}
+        - {x: -9, y: -12}
+        - {x: -5, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 1}
+        - {x: 6, y: 16}
+    - name: cat sprites full_53
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 15}
+        - {x: -8, y: 4}
+        - {x: -9, y: -4}
+        - {x: -9, y: -8}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -15}
+        - {x: 9, y: 14}
+        - {x: 7, y: 15}
+    - name: cat sprites full_54
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: -10}
+        - {x: -7, y: -16}
+        - {x: 5, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 8}
+        - {x: 7, y: 15}
+        - {x: 5, y: 16}
+        - {x: -4, y: 16}
+        - {x: -9, y: 11}
+    - name: cat sprites full_55
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 16}
+        - {x: -9, y: 5}
+        - {x: -9, y: -12}
+        - {x: -5, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 1}
+        - {x: 6, y: 16}
+    - name: cat sprites full_56
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 15}
+        - {x: -8, y: 4}
+        - {x: -9, y: -4}
+        - {x: -9, y: -8}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -15}
+        - {x: 9, y: 14}
+        - {x: 7, y: 15}
+    - name: cat sprites full_57
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: -10}
+        - {x: -7, y: -16}
+        - {x: 5, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 8}
+        - {x: 7, y: 15}
+        - {x: 5, y: 16}
+        - {x: -4, y: 16}
+        - {x: -9, y: 11}
+    - name: cat sprites full_58
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 16}
+        - {x: -9, y: 5}
+        - {x: -9, y: -12}
+        - {x: -5, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -13}
+        - {x: 9, y: 1}
+        - {x: 6, y: 16}
+    - name: cat sprites full_59
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 15}
+        - {x: -8, y: 4}
+        - {x: -9, y: -4}
+        - {x: -9, y: -8}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -15}
+        - {x: 9, y: 14}
+        - {x: 7, y: 15}
+    - name: black_left_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 10}
+        - {x: 6, y: 7}
+        - {x: -4, y: 7}
+        - {x: -13, y: 6}
+        - {x: -16, y: 2}
+        - {x: -16, y: -14}
+        - {x: -12, y: -16}
+        - {x: 13, y: -16}
+        - {x: 13, y: 9}
+        - {x: 11, y: 10}
+    - name: black_left_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11, y: 11}
+        - {x: 7, y: 11}
+        - {x: 6, y: 8}
+        - {x: -4, y: 8}
+        - {x: -13, y: 7}
+        - {x: -15, y: 3}
+        - {x: -16, y: -1}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -14}
+        - {x: 13, y: -4}
+        - {x: 13, y: 10}
+    - name: black_left_3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 9}
+        - {x: -14, y: 7}
+        - {x: -16, y: -3}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 14, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 9}
+    - name: cat sprites full_63
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 10}
+        - {x: 6, y: 7}
+        - {x: -4, y: 7}
+        - {x: -13, y: 6}
+        - {x: -16, y: 2}
+        - {x: -16, y: -14}
+        - {x: -12, y: -16}
+        - {x: 13, y: -16}
+        - {x: 13, y: 9}
+        - {x: 11, y: 10}
+    - name: cat sprites full_64
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11, y: 11}
+        - {x: 7, y: 11}
+        - {x: 6, y: 8}
+        - {x: -4, y: 8}
+        - {x: -13, y: 7}
+        - {x: -15, y: 3}
+        - {x: -16, y: -1}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -14}
+        - {x: 13, y: -4}
+        - {x: 13, y: 10}
+    - name: cat sprites full_65
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 9}
+        - {x: -14, y: 7}
+        - {x: -16, y: -3}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 14, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 9}
+    - name: cat sprites full_66
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 10}
+        - {x: 6, y: 7}
+        - {x: -4, y: 7}
+        - {x: -13, y: 6}
+        - {x: -16, y: 2}
+        - {x: -16, y: -14}
+        - {x: -12, y: -16}
+        - {x: 13, y: -16}
+        - {x: 13, y: 9}
+        - {x: 11, y: 10}
+    - name: cat sprites full_67
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11, y: 11}
+        - {x: 7, y: 11}
+        - {x: 6, y: 8}
+        - {x: -4, y: 8}
+        - {x: -13, y: 7}
+        - {x: -15, y: 3}
+        - {x: -16, y: -1}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -14}
+        - {x: 13, y: -4}
+        - {x: 13, y: 10}
+    - name: cat sprites full_68
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 9}
+        - {x: -14, y: 7}
+        - {x: -16, y: -3}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 14, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 9}
+    - name: cat sprites full_69
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 10}
+        - {x: 6, y: 7}
+        - {x: -4, y: 7}
+        - {x: -13, y: 6}
+        - {x: -16, y: 2}
+        - {x: -16, y: -14}
+        - {x: -12, y: -16}
+        - {x: 13, y: -16}
+        - {x: 13, y: 9}
+        - {x: 11, y: 10}
+    - name: cat sprites full_70
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11, y: 11}
+        - {x: 7, y: 11}
+        - {x: 6, y: 8}
+        - {x: -4, y: 8}
+        - {x: -13, y: 7}
+        - {x: -15, y: 3}
+        - {x: -16, y: -1}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 10, y: -16}
+        - {x: 11, y: -14}
+        - {x: 13, y: -4}
+        - {x: 13, y: 10}
+    - name: cat sprites full_71
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 9}
+        - {x: -14, y: 7}
+        - {x: -16, y: -3}
+        - {x: -16, y: -8}
+        - {x: -12, y: -16}
+        - {x: 14, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 9}
+    - name: black_right_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 10}
+        - {x: -13, y: -15}
+        - {x: -10, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -8}
+        - {x: 16, y: 1}
+        - {x: 15, y: 10}
+    - name: black_right_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 11}
+        - {x: -13, y: -16}
+        - {x: 12, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 6}
+        - {x: 5, y: 11}
+    - name: black_right_3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 9}
+        - {x: -16, y: -13}
+        - {x: -10, y: -16}
+        - {x: 8, y: -16}
+        - {x: 16, y: -11}
+        - {x: 16, y: 9}
+    - name: cat sprites full_75
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 10}
+        - {x: -13, y: -15}
+        - {x: -10, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -8}
+        - {x: 16, y: 1}
+        - {x: 15, y: 10}
+    - name: cat sprites full_76
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 11}
+        - {x: -13, y: -16}
+        - {x: 12, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 6}
+        - {x: 5, y: 11}
+    - name: cat sprites full_77
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 9}
+        - {x: -16, y: -13}
+        - {x: -10, y: -16}
+        - {x: 8, y: -16}
+        - {x: 16, y: -11}
+        - {x: 16, y: 9}
+    - name: yellow_right_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 10}
+        - {x: -13, y: -15}
+        - {x: -10, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -8}
+        - {x: 16, y: 1}
+        - {x: 15, y: 10}
+    - name: yellow_right_1
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 11}
+        - {x: -13, y: -16}
+        - {x: 12, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 6}
+        - {x: 5, y: 11}
+    - name: yellow_right_3
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 9}
+        - {x: -16, y: -13}
+        - {x: -10, y: -16}
+        - {x: 8, y: -16}
+        - {x: 16, y: -11}
+        - {x: 16, y: 9}
+    - name: cat sprites full_81
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 10}
+        - {x: -13, y: -15}
+        - {x: -10, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -8}
+        - {x: 16, y: 1}
+        - {x: 15, y: 10}
+    - name: cat sprites full_82
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 11}
+        - {x: -13, y: -16}
+        - {x: 12, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 6}
+        - {x: 5, y: 11}
+    - name: cat sprites full_83
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 9}
+        - {x: -16, y: -13}
+        - {x: -10, y: -16}
+        - {x: 8, y: -16}
+        - {x: 16, y: -11}
+        - {x: 16, y: 9}
+    - name: cat sprites full_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 11}
+        - {x: -9, y: -13}
+        - {x: -4, y: -16}
+        - {x: 8, y: -16}
+        - {x: 9, y: -14}
+        - {x: 9, y: 11}
+    - name: cat sprites full_85
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 12}
+        - {x: -9, y: -14}
+        - {x: -7, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -15}
+        - {x: 9, y: 12}
+    - name: cat sprites full_86
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 11}
+        - {x: -7, y: 11}
+        - {x: -9, y: 6}
+        - {x: -9, y: -10}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -10}
+        - {x: 9, y: 4}
+        - {x: 8, y: 9}
+    - name: cat sprites full_87
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 11}
+        - {x: -9, y: -13}
+        - {x: -4, y: -16}
+        - {x: 8, y: -16}
+        - {x: 9, y: -14}
+        - {x: 9, y: 11}
+    - name: cat sprites full_88
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 12}
+        - {x: -9, y: -14}
+        - {x: -7, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -15}
+        - {x: 9, y: 12}
+    - name: cat sprites full_89
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 11}
+        - {x: -7, y: 11}
+        - {x: -9, y: 6}
+        - {x: -9, y: -10}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -10}
+        - {x: 9, y: 4}
+        - {x: 8, y: 9}
+    - name: cat sprites full_90
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 11}
+        - {x: -9, y: -13}
+        - {x: -4, y: -16}
+        - {x: 8, y: -16}
+        - {x: 9, y: -14}
+        - {x: 9, y: 11}
+    - name: cat sprites full_91
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 12}
+        - {x: -9, y: -14}
+        - {x: -7, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -15}
+        - {x: 9, y: 12}
+    - name: cat sprites full_92
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 11}
+        - {x: -7, y: 11}
+        - {x: -9, y: 6}
+        - {x: -9, y: -10}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -10}
+        - {x: 9, y: 4}
+        - {x: 8, y: 9}
+    - name: cat sprites full_93
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 11}
+        - {x: -9, y: -13}
+        - {x: -4, y: -16}
+        - {x: 8, y: -16}
+        - {x: 9, y: -14}
+        - {x: 9, y: 11}
+    - name: cat sprites full_94
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 12}
+        - {x: -9, y: -14}
+        - {x: -7, y: -16}
+        - {x: 6, y: -16}
+        - {x: 9, y: -15}
+        - {x: 9, y: 12}
+    - name: cat sprites full_95
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 11}
+        - {x: -7, y: 11}
+        - {x: -9, y: 6}
+        - {x: -9, y: -10}
+        - {x: -2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 9, y: -10}
+        - {x: 9, y: 4}
+        - {x: 8, y: 9}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
