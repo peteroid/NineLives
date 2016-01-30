@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
 
 public class TileSystem : MonoBehaviour {
 
@@ -114,7 +115,73 @@ public class TileSystem : MonoBehaviour {
 
         return false;
     }
-    
+
+    public void LoadMap(string lvlNum)
+    {
+        //TextAsset relativePath = Resources.Load("Levels\\level" + lvlNum + ".txt") as TextAsset; 
+        // Load data into the mapTile array - KTZ
+        System.IO.StreamReader file = new System.IO.StreamReader
+            ("C:\\Users\\Todandict\\Documents\\GitHub\\HumanWannabe\\Assets\\MapData\\level" + lvlNum + ".txt");
+
+        string parser = "";
+        StringBuilder number = new StringBuilder("");
+
+        // First line in text file are the dimensions of the map tile - KTZ
+        int counter = 0;
+        int[] dimensions = new int[2];
+        parser = file.ReadLine();
+        for (int i = 0; i < parser.Length; i++)
+        {
+            //Debug.Log(parser[i]);
+            if (parser[i] != ',' && parser[i] != ' ')
+            {
+                number.Append(parser[i]);
+                //Debug.Log(number.ToString());
+            }
+            else if (parser[i] == ',')
+            {
+                dimensions[counter] = int.Parse(number.ToString());
+                //Debug.Log(dimensions[counter]);
+                number.Length = 0;
+                counter++;
+            }
+        }
+
+        tileMap = new int[dimensions[0]][];
+        for (int i = 0; i < dimensions[0]; i++)
+            tileMap[i] = new int[dimensions[1]];
+        //Debug.Log(dimensions[0] + " " + dimensions[1]);
+
+        int x = 0;
+        int y = 0;
+        // The rest of the lines are the tile types separated by commas - KTZ
+        while (file.Peek() >= 0)
+        {
+            y = 0;
+            parser = file.ReadLine();
+
+            for (int i = 0; i < parser.Length; i++)
+            {
+                if (parser[i] != ',' && parser[i] != ' ')
+                {
+                    number.Append(parser[i]);
+                }
+                else if (parser[i] == ',')
+                {
+                    tileMap[x][y] = int.Parse(number.ToString());
+                    number.Length = 0;
+                    y++;
+                    Debug.Log("x :" + x + "  y: " + y + "\n");
+                }
+            }
+            x++;
+        }
+
+
+        // When the file is completely parsed, close it - KTZ
+        file.Close();
+
+    }
 
     public void GenerateCollision()
     { 
