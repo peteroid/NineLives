@@ -9,11 +9,16 @@ public class TileSystem : MonoBehaviour {
      * 1 - impassable
      * - KTZ
      */
+	static readonly int kPassable = 0;
+	static readonly int kImpassable = 1;
+
+	static readonly int kNavGridWidth = 10;
+	static readonly int kNavGridHeight = 10;
 
     public GameObject PassableTile;
     public GameObject WallTile;
     public bool passable;
-    public int[][] tileMapTest = new int[][]{ new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+	public int[][] tileMapTest = new int[][]{ new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                                               new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                                               new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                                               new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -26,21 +31,30 @@ public class TileSystem : MonoBehaviour {
 
     public void GenerateTileMap()
     { 
-        // Instantiate the tile types onto the game world, or placing them - KTZ
-        for(int i = 0; i < 10; i++)
-            for(int j = 0; j < 10; j++)
-            {
-                Vector2 tilePos = new Vector2(0.0f + i, 0.0f + j);
-                Quaternion tileRot = Quaternion.identity;
-                if (tileMapTest[i][j] == 1)
-                {
-                    Instantiate(WallTile, tilePos, tileRot);
-                }
-                else
-                {
-                    Instantiate(PassableTile, tilePos, tileRot);
-                }
-            }
+		// Instantiate the tile types onto the game world, or placing them - KTZ
+		float xDisplayOffset = (float)(kNavGridWidth) / 2;
+		float yDisplayOffset = (float)(kNavGridHeight) / 2;
+		for (int i = 0; i < kNavGridWidth; i++) {
+			
+			for (int j = 0; j < kNavGridHeight; j++) {
+
+				Vector2 tilePos = new Vector2 (i - xDisplayOffset, j - yDisplayOffset);
+				Quaternion tileRot = Quaternion.identity;
+
+				switch (tileMapTest [i] [j]) {
+				case kPassable:
+					Instantiate (PassableTile, tilePos, tileRot);
+					break;
+
+				case kImpassable:
+					Instantiate (WallTile, tilePos, tileRot);
+					break;
+
+				default:
+					break;
+				}
+			}
+		}
     }
 
     public void GenerateCollision()
