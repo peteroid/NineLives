@@ -9,8 +9,8 @@ public class TileSystem : MonoBehaviour {
      * 1 - impassable
      * - KTZ
      */
-	static readonly int kPassable = 0;
-	static readonly int kImpassable = 1;
+	const int kPassable = 0;
+	const int kImpassable = 1;
 
 	static readonly int kNavGridWidth = 10;
 	static readonly int kNavGridHeight = 10;
