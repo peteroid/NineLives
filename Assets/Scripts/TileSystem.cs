@@ -20,11 +20,8 @@ public class TileSystem : MonoBehaviour {
     public GameObject WallTile;
     public GameObject DoorTile;
     public bool passable;
-<<<<<<< HEAD
+
     public int[][] tileMapTest = new int[][]{ new int[]{1, 1, 1, 1, 2, 1, 1, 1, 1, 1},
-=======
-	public int[][] tileMapTest = new int[][]{ new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
->>>>>>> origin/master
                                               new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                                               new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                                               new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -36,13 +33,14 @@ public class TileSystem : MonoBehaviour {
                                               new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1} };
 
     public void GenerateTileMap()
-    { 
-<<<<<<< HEAD
+    {
+        float xDisplayOffset = (float)(kNavGridWidth) / 2;
+        float yDisplayOffset = (float)(kNavGridHeight) / 2;
         // Instantiate the tile types onto the game world, or placing them - KTZ
         for(int i = 0; i < 10; i++)
             for(int j = 0; j < 10; j++)
             {
-                Vector3 tilePos = new Vector3(0.0f + i, 0.0f + j, 0.0f);
+                Vector3 tilePos = new Vector3(i - xDisplayOffset, j - yDisplayOffset, 0.0f);
                 Quaternion tileRot = Quaternion.identity;
                 if (tileMapTest[i][j] == 1)
                 {
@@ -63,33 +61,11 @@ public class TileSystem : MonoBehaviour {
                 }
             }
         transform.Rotate(35.0f, 315.0f, 345.0f);
-=======
 		// Instantiate the tile types onto the game world, or placing them - KTZ
-		float xDisplayOffset = (float)(kNavGridWidth) / 2;
-		float yDisplayOffset = (float)(kNavGridHeight) / 2;
-		for (int i = 0; i < kNavGridWidth; i++) {
+		
 			
-			for (int j = 0; j < kNavGridHeight; j++) {
-
-				Vector2 tilePos = new Vector2 (i - xDisplayOffset, j - yDisplayOffset);
-				Quaternion tileRot = Quaternion.identity;
-
-				switch (tileMapTest [i] [j]) {
-				case kPassable:
-					Instantiate (PassableTile, tilePos, tileRot);
-					break;
-
-				case kImpassable:
-					Instantiate (WallTile, tilePos, tileRot);
-					break;
-
-				default:
-					break;
-				}
-			}
-		}
->>>>>>> origin/master
-    }
+	}
+    
 
     public void GenerateCollision()
     { 
