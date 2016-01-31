@@ -13,6 +13,7 @@ public class TileSystem : MonoBehaviour {
     public GameObject WallTile;
     public GameObject DoorTile;
     public GameObject EmptyTile;
+    public GameObject BlockOnlyTile;
     public GameObject PressureTile;
     public GameObject OmenDoor;
     public GameObject PushUpTile;
