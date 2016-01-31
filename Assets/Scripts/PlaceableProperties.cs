@@ -8,7 +8,7 @@ public class PlaceableProperties {
     public bool canBeWalkedOver = false;
     public int sticksInUpdateFor = 0;
 
-    public int inUpdateSequenceFor = 0;
+    public int inUpdateSequenceFor = -1;
 
     public bool isAttached = false;
     public ITilePlaceable attachedTo = null;

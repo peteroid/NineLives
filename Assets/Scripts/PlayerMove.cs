@@ -26,7 +26,7 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
 
     private void Move(int dirX, int dirY)
     {
-        if(mProperties.inUpdateSequenceFor > 0)
+        if(mProperties.inUpdateSequenceFor >= 0)
         {
             return;
         }
