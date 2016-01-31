@@ -103,6 +103,7 @@ public class Tile : ITile
                 obj.TryIncomingMove(interferingObj, dirX, dirY);
             }
 
+                   
             if(interferingObj.GetProperties().isPlayer)
             {
                 return false;

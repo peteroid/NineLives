@@ -15,5 +15,7 @@ public interface ITilePlaceable
 
     void SetVisualPosition(Vector3 position);
 
+    void Attach(ITilePlaceable obj);
+
     PlaceableProperties GetProperties();
 }

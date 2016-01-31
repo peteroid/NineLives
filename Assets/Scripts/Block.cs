@@ -6,7 +6,8 @@ public class Block : ITilePlaceable {
     public enum BlockType
     {
         kSimple = 1,
-        kRolling = 2
+        kRolling = 2,
+        kAttachable = 3
     }
 
     private int mX = 0;
@@ -16,6 +17,7 @@ public class Block : ITilePlaceable {
 
     public GameObject mBlockBaseObject;
     private GameObject mBlockObject;
+    private ArrayList Followers = new ArrayList();
 
     public Block(BlockType type, Tile tile)
     {
@@ -32,6 +34,11 @@ public class Block : ITilePlaceable {
             case BlockType.kRolling:
                 mBlockBaseObject = tile.mParentNavGrid.RollingBlock;
                 mProperties.keepsMoving = true;
+                break;
+            case BlockType.kAttachable:
+                mBlockBaseObject = tile.mParentNavGrid.AttachableBlock;
+                mProperties.attachable = true;
+                mProperties.canBePushed = false;
                 break;
 
             default: break;
@@ -51,6 +58,11 @@ public class Block : ITilePlaceable {
             return false;
         }
 
+        if(!mProperties.canBePushed)
+        {
+            return true;
+        }
+
         ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
         if(siblingTile == null)
         {
@@ -61,12 +73,23 @@ public class Block : ITilePlaceable {
 
     public void TryIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY)
     {
-        ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
-        siblingTile.TryIncomingMove(this, dirX, dirY);
-
-        if(mProperties.keepsMoving)
+        
+        if(mProperties.canBePushed)
         {
-            mOwningTile.mParentNavGrid.AddBlockToUpdateList(this, dirX, dirY);
+            ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
+            siblingTile.TryIncomingMove(this, dirX, dirY);
+
+            if (mProperties.keepsMoving)
+            {
+                mOwningTile.mParentNavGrid.AddBlockToUpdateList(this, dirX, dirY);
+            }
+
+        }
+
+        if(mProperties.attachable && !mProperties.isAttached)
+        {
+            incomingPlaceable.Attach(this);
+            mProperties.isAttached = true;
         }
     }
 
@@ -80,10 +103,37 @@ public class Block : ITilePlaceable {
         return siblingTile.AllowIncomingMove(this, dirX, dirY);
     }
 
+    public void Attach(ITilePlaceable follower)
+    {
+        
+        Followers.Add(follower);
+    }
+
+    public void Detach(ITilePlaceable follower)
+    {
+        Followers.Remove(follower);
+    }
+        
     public void TryMove(int dirX, int dirY)
     {
         ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
         siblingTile.TryIncomingMove(this, dirX, dirY);
+
+        if (Followers.Count > 0)
+        {
+            foreach(ITilePlaceable obj in Followers)
+            {
+                if (siblingTile.AllowIncomingMove(obj, dirX, dirY))
+                {
+                    siblingTile.TryIncomingMove(obj, dirX, dirY);
+                }
+                else
+                {
+                    Detach(obj);
+                }
+            }
+                
+        }
     }
 
     public int GetX()

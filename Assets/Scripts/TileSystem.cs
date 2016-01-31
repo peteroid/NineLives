@@ -15,6 +15,7 @@ public class TileSystem : MonoBehaviour {
 
     public GameObject SimpleBlock;
     public GameObject RollingBlock;
+    public GameObject AttachableBlock;
 
     public Vector3 mDisplayOffset = new Vector3(0.0f, 0.0f, 0.0f);
 
