@@ -10,8 +10,12 @@ public class TileSystem : MonoBehaviour {
      * 2 - door (impassable -> passable)
      * - KTZ
      */
-	const int kPassable = 0;
-	const int kImpassable = 1;
+    enum TerrainType
+    {
+        kPass = 0,
+        kWall = 1,
+        kDoor = 2
+    }
 
 	static readonly int kNavGridWidth = 10;
 	static readonly int kNavGridHeight = 10;
@@ -21,49 +25,53 @@ public class TileSystem : MonoBehaviour {
     public GameObject DoorTile;
     public bool passable;
 
-    public int[][] tileMapTest = new int[][]{ new int[]{1, 1, 1, 1, 2, 1, 1, 1, 1, 1},
-                                              new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                                              new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                                              new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                                              new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                                              new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                                              new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                                              new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                                              new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                                              new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1} };
+    public uint[][] tileMapTest = new uint[][]{ new uint[]{1, 1, 1, 1, 2, 1, 1, 1, 1, 1},
+                                                new uint[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                                                new uint[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                                                new uint[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                                                new uint[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                                                new uint[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                                                new uint[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                                                new uint[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                                                new uint[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                                                new uint[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1} };
 
     public void GenerateTileMap()
     {
         float xDisplayOffset = (float)(kNavGridWidth) / 2;
         float yDisplayOffset = (float)(kNavGridHeight) / 2;
         // Instantiate the tile types onto the game world, or placing them - KTZ
-        for(int i = 0; i < 10; i++)
-            for(int j = 0; j < 10; j++)
+        for (uint i = 0; i < kNavGridWidth; i++)
+        {
+            for (uint j = 0; j < kNavGridHeight; j++)
             {
                 Vector3 tilePos = new Vector3(i - xDisplayOffset, j - yDisplayOffset, 0.0f);
                 Quaternion tileRot = Quaternion.identity;
-                if (tileMapTest[i][j] == 1)
+
+                GameObject tileToMake = null;
+
+                switch ((TerrainType)tileMapTest[i][j])
                 {
-                    GameObject NewTile = Instantiate(WallTile, tilePos, tileRot) as GameObject;
-                    NewTile.transform.parent = gameObject.transform;
+                    case TerrainType.kPass:
+                        tileToMake = PassableTile;
+                        break;
+
+                    case TerrainType.kWall:
+                        tileToMake = WallTile;
+                        break;
+
+                    case TerrainType.kDoor:
+                        tileToMake = DoorTile;
+                        tilePos.z += 0.25f;
+                        break;
+
+                    default: break;
                 }
-                else if(tileMapTest[i][j] == 2)
-                {
-                    GameObject NewTile = Instantiate(DoorTile, tilePos + new Vector3(0.0f, 0.0f, 0.25f), tileRot) 
-                        as GameObject;
-                    NewTile.transform.parent = gameObject.transform;
-                }
-                else
-                {
-                    GameObject NewTile = Instantiate(PassableTile, tilePos + new Vector3(0.0f, 0.0f, 0.25f), tileRot) 
-                        as GameObject;
-                    NewTile.transform.parent = gameObject.transform;
-                }
+                GameObject newTile = (GameObject)Instantiate(tileToMake, tilePos, tileRot);
+                newTile.transform.parent = gameObject.transform;
             }
+        }
         transform.Rotate(35.0f, 315.0f, 345.0f);
-		// Instantiate the tile types onto the game world, or placing them - KTZ
-		
-			
 	}
     
 
