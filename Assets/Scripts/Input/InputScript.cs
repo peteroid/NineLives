@@ -5,11 +5,18 @@ using System.Collections;
 public class InputScript : MonoBehaviour {
 
 	private InputInterface input;
+	private bool isEnable = false;
 	private string errorInterfaceNotImplemented = "Not implemented interface";
 	private string errorObjectNotFound = "Object not found";
 
+	public void SetEnable (bool isEnable) {
+		this.isEnable = isEnable;
+	}
+
 	// the user clicked up
 	public void Up() {
+		if (!this.isEnable)
+			return;
 		Debug.Log ("Up");
 		if (input == null) {
 			Debug.Log (errorObjectNotFound);
@@ -22,6 +29,8 @@ public class InputScript : MonoBehaviour {
 
 	// the user clicked left
 	public void Left() {
+		if (!this.isEnable)
+			return;
 		Debug.Log ("Left");
 		if (input == null) {
 			Debug.Log (errorObjectNotFound);
@@ -34,6 +43,8 @@ public class InputScript : MonoBehaviour {
 
 	// the user clicked down
 	public void Down() {
+		if (!this.isEnable)
+			return;
 		Debug.Log ("Down");
 		if (input == null) {
 			Debug.Log (errorObjectNotFound);
@@ -46,6 +57,8 @@ public class InputScript : MonoBehaviour {
 
 	// the user clicked right
 	public void Right() {
+		if (!this.isEnable)
+			return;
 		Debug.Log ("Right");
 		if (input == null) {
 			Debug.Log (errorObjectNotFound);
@@ -56,68 +69,41 @@ public class InputScript : MonoBehaviour {
 		}
 	}
 
+	public void Reset() {
+		if (!this.isEnable)
+			return;
+		Debug.Log ("Reset");
+		if (input == null) {
+			Debug.Log (errorObjectNotFound);
+		} else if (! (input is InputInterface)) {
+			Debug.Log (errorInterfaceNotImplemented);
+		} else {
+			((InputInterface) input).Reset ();
+		}
+	}
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (input == null)
-            {
-                Debug.Log(errorObjectNotFound);
-            }
-            else if (!(input is InputInterface))
-            {
-                Debug.Log(errorInterfaceNotImplemented);
-            }
-            else
-            {
-                ((InputInterface)input).Up();
-            }
+			Up ();
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (input == null)
-            {
-                Debug.Log(errorObjectNotFound);
-            }
-            else if (!(input is InputInterface))
-            {
-                Debug.Log(errorInterfaceNotImplemented);
-            }
-            else
-            {
-                ((InputInterface)input).Down();
-            }
+			Down ();
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (input == null)
-            {
-                Debug.Log(errorObjectNotFound);
-            }
-            else if (!(input is InputInterface))
-            {
-                Debug.Log(errorInterfaceNotImplemented);
-            }
-            else
-            {
-                ((InputInterface)input).Left();
-            }
+			Left ();
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (input == null)
-            {
-                Debug.Log(errorObjectNotFound);
-            }
-            else if (!(input is InputInterface))
-            {
-                Debug.Log(errorInterfaceNotImplemented);
-            }
-            else
-            {
-                ((InputInterface)input).Right();
-            }
+			Right ();
         }
+		else if (Input.GetKeyDown(KeyCode.R))
+		{
+			Reset ();
+		}
     }
 
 	public void SetInputInterface (InputInterface input) {

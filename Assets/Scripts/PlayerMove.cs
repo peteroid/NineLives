@@ -13,14 +13,15 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
 	}
 
 	// drag and drop the input to this GameObject
+
 	public InputScript input;
     public TileSystem navGrid;
-	public Transform spriteTransform;
-    public GUIText textObject;
+	public GameObject spriteObject;
     //public ParticleSystem dustEffects;
 
     private bool mInitialized = false;
 
+	private float speedFactor = 1f;
     private int mMeowCount = 0;
     private int mHumanCount = 0;
 
@@ -77,16 +78,18 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
 	private IEnumerator NextLevel ()
 	{
 		Debug.Log ("Next");
-		navGrid.PreNextLevel ();
-		yield return new WaitForSeconds(3);
-		navGrid.NextLevel ();
 		Init ();
+		navGrid.PreNextLevel ();
+		yield return new WaitForSeconds(3 / speedFactor);
+		navGrid.NextLevel ();
+		StartCoroutine(PostStart());
 	}
 
 	public void ResetLevel ()
 	{
-		navGrid.LoadCurrentLevel ();
 		Init ();
+		navGrid.LoadCurrentLevel ();
+
 	}
 
 	// the shorthands are messed up due to the rotation of camera
@@ -113,11 +116,16 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
 		Face ("left");
 	}
 
+	public void Reset ()
+	{
+		ResetLevel ();
+	}
+
 	// -1 for left, 1 for right
 	private void Face (string direction)
 	{
-		Vector3 scale = spriteTransform.localScale;
-		spriteTransform.localScale = new Vector3 ((direction == "left"? -1 : 1) * Math.Abs (scale.x), scale.y, scale.z);
+		Vector3 scale = spriteObject.transform.localScale;
+		spriteObject.transform.localScale = new Vector3 ((direction == "left"? -1 : 1) * Math.Abs (scale.x), scale.y, scale.z);
 	}
 
 	private void Init()
@@ -125,23 +133,31 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
 		mX = 0;
 		mY = 0;
         PrepForRemoval();
-		mInitialized = false;
+		SetEnable (false);
+	}
+
+	void SetEnable (bool isEnable) {
+		input.SetEnable (isEnable);
+		spriteObject.SetActive (isEnable);
 	}
 
 	// Use this for initialization
 	void Start () {
 		Init ();
+		mInitialized = false;
         mProperties.isPlayer = true;
         mProperties.canPushBlocks = true;
+		navGrid.SetSpeedFactor (speedFactor);
 
         input.SetInputInterface (this);
 	}
 
 	IEnumerator PostStart()
     {
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(3 / speedFactor);
         Move(navGrid.mPlayerStartX, navGrid.mPlayerStartY);
 		navGrid.PostGenerateTileMap ();
+		SetEnable (true);
     }
 	
 	// Update is called once per frame

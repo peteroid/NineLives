@@ -34,13 +34,16 @@ public class TileSystem : MonoBehaviour {
     public Tile[][] mNavGrid;
 
 	private ArrayList mPlaceableUpdates = new ArrayList();
-	private ArrayList mTiles;
+	private ArrayList mTiles, mPlaceables;
 	private string[] mLevels;
-	private int mLevelIndex = -1;
+
+	public int mLevelIndex = -1;
+	private float speedFactor = 1f;
 
 	public TileSystem ()
 	{
 		mTiles = new ArrayList ();
+		mPlaceables = new ArrayList ();
 	}
 
     public Tile GetTile(int x, int y)
@@ -82,7 +85,7 @@ public class TileSystem : MonoBehaviour {
 		int levelCount = jsonObj["data"].AsArray.Count;
 		if (levelCount > 0)
 		{
-			mLevelIndex = 0;
+			mLevelIndex = (mLevelIndex < 0 ? 0 : mLevelIndex);
 			mLevels = new string[levelCount];
 			for (int i = 0; i < levelCount; i++)
 			{
@@ -156,7 +159,7 @@ public class TileSystem : MonoBehaviour {
 				// randomize the position of the tiles first
 				Vector3 startFrom = GetRandomVector3 (15f, 30f);
 				GameObject newTile = (GameObject)Instantiate(mNavGrid[x][y].mTileBaseObject, startFrom, tileRot);
-				newTile.GetComponent<SlideBlock> ().SetStartPosition (tilePos, startFrom.magnitude / 2f);
+				newTile.GetComponent<SlideBlock> ().SetStartPosition (tilePos, startFrom.magnitude / 2f * speedFactor);
 
                 newTile.transform.parent = gameObject.transform;
 				mTiles.Add (newTile);
@@ -179,10 +182,17 @@ public class TileSystem : MonoBehaviour {
 					{
 						GameObject blockObj = (GameObject)Instantiate(tryBlock.mBlockBaseObject, Vector3.zero, Quaternion.identity);
 						tryBlock.SetBlockGameObject(blockObj);
+						mPlaceables.Add (blockObj);
+						Debug.Log ("block generated");
 					}
 				}
 			}
 		}
+	}
+
+	public void SetSpeedFactor (float speedFactor)
+	{
+		this.speedFactor = speedFactor;
 	}
 
     private void LoadSpecializedItem(Tile tile, int tileCode)
@@ -258,11 +268,11 @@ public class TileSystem : MonoBehaviour {
 
 	public void LoadCurrentLevel ()
 	{
-		LoadMap(mLevels[mLevelIndex]);
 		// clean up the current tiles before generating
+		LoadMap(mLevels[mLevelIndex]);
 		foreach (GameObject tile in mTiles)
 		{
-			Destroy (tile);
+			Delete (tile);
 		}
 		mTiles.Clear ();
 
@@ -271,11 +281,17 @@ public class TileSystem : MonoBehaviour {
 
 	public void PreNextLevel ()
 	{
+		foreach (GameObject placeable in mPlaceables)
+		{
+			Delete (placeable);
+		}
+		mPlaceables.Clear ();
+
 		UnityEngine.Random.seed = (int) Time.time;
 		Debug.Log (UnityEngine.Random.seed.ToString ());
 		foreach (GameObject tile in mTiles)
 		{
-			Vector3 velocity = GetRandomVector3 (7f, 10f);
+			Vector3 velocity = GetRandomVector3 (7f * speedFactor, 10f * speedFactor);
 			tile.GetComponent<SlideBlock> ().SetVelocity (velocity);
 		}
 	}
