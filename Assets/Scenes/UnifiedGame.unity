@@ -164,6 +164,18 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 11488578, guid: 6ce8b611cbd264e029ad206fa9741934, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1926905692}
+    - target: {fileID: 11488578, guid: 6ce8b611cbd264e029ad206fa9741934, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 11488578, guid: 6ce8b611cbd264e029ad206fa9741934, type: 2}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ce8b611cbd264e029ad206fa9741934, type: 2}
   m_IsPrefabParent: 0
@@ -312,6 +324,10 @@ Prefab:
     - target: {fileID: 11400732, guid: 7b22a994a1ec84b4db7c88305a8c1aad, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 128234, guid: 7b22a994a1ec84b4db7c88305a8c1aad, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b22a994a1ec84b4db7c88305a8c1aad, type: 2}
