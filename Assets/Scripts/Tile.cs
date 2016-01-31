@@ -75,7 +75,7 @@ public class Tile : ITile
                 break;
 
 			case TerrainType.kHumanExit:
-				mTileBaseObject = parent.DoorTile;
+				mTileBaseObject = parent.HumanDoorTile;
 				mDisplayOffsets.z += 0.13f;
                 mBlockPassable = false;
                 break;
