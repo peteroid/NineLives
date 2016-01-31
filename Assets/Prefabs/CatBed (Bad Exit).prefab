@@ -8,6 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 496848}
+  - 114: {fileID: 11409970}
   m_Layer: 0
   m_Name: CatBed (Bad Exit)
   m_TagString: Untagged
@@ -24,7 +25,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 427740}
   - 33: {fileID: 3362286}
-  - 136: {fileID: 13696894}
   - 23: {fileID: 2306692}
   m_Layer: 0
   m_Name: Cylinder
@@ -42,7 +42,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 485708}
   - 33: {fileID: 3380262}
-  - 135: {fileID: 13548504}
   - 23: {fileID: 2312022}
   m_Layer: 0
   m_Name: Sphere
@@ -60,7 +59,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 418412}
   - 33: {fileID: 3302806}
-  - 65: {fileID: 6507726}
   - 23: {fileID: 2310522}
   m_Layer: 0
   m_Name: Ground
@@ -219,43 +217,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172970}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &6507726
-BoxCollider:
+--- !u!114 &11409970
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 177408}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_GameObject: {fileID: 101692}
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &13548504
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 172970}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &13696894
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133010}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63f8405f92a0649d98bf78f98a956024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

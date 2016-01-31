@@ -764,8 +764,8 @@ MonoBehaviour:
   mHeight: 0
   PassableTile: {fileID: 135934, guid: 4a6af835cc01eec4c82c43ddb2dfd524, type: 2}
   WallTile: {fileID: 144898, guid: 65232a72ba718244c810d59f045caaf2, type: 2}
-  DoorTile: {fileID: 116280, guid: 628e0ff9ce80b4f469527e3081f0bfe8, type: 2}
-  HumanDoorTile: {fileID: 116280, guid: 628e0ff9ce80b4f469527e3081f0bfe8, type: 2}
+  DoorTile: {fileID: 101692, guid: c665b621d038d71498d167f39836e7c6, type: 2}
+  HumanDoorTile: {fileID: 114480, guid: 8da8cfa59d748d0479da91caa38ae1a5, type: 2}
   EmptyTile: {fileID: 144898, guid: 44586c9283584714e939f811a4bf8f94, type: 2}
   BlockOnlyTile: {fileID: 144898, guid: daa34cb2d9bdcb844b5aece88eb17a44, type: 2}
   PressureTile: {fileID: 135934, guid: 148dd3377d9b08c4d8117872d32fb0c7, type: 2}
@@ -774,10 +774,10 @@ MonoBehaviour:
   PushLeftTile: {fileID: 167502, guid: f3c8ec69513f6a147a0e5e7a48f58d9f, type: 2}
   PushRightTile: {fileID: 100554, guid: d125b2866cfef5e409da3d4a969ba5f0, type: 2}
   PushDownTile: {fileID: 112250, guid: 9b24870fc445fd14d843055beae35c3b, type: 2}
-  SimpleBlock: {fileID: 144898, guid: 2be3b3e9e760b3047b5e66eac006ed05, type: 2}
-  RollingBlock: {fileID: 144898, guid: 3acec28ea699b5147a2942ea7cb64242, type: 2}
+  SimpleBlock: {fileID: 116786, guid: 1aab8089b54441241b29ad019b0836fb, type: 2}
+  RollingBlock: {fileID: 100968, guid: 59b511c015c01ed468b38ade02ffb249, type: 2}
   AttachableBlock: {fileID: 163004, guid: f513d377d01d58a46bb3fcea1db8e521, type: 2}
-  CommandBlock: {fileID: 144898, guid: 5702313d8ab667a498894a695f75c7df, type: 2}
+  CommandBlock: {fileID: 187730, guid: 8d611e9657d29ea4ebb25f5867c47427, type: 2}
   mDisplayOffset: {x: 0, y: 0, z: 0}
   mPlayerStartX: 0
   mPlayerStartY: 0
