@@ -1,7 +1,7 @@
 using UnityEngine;
 using SimpleJSON;
-using System.Collections;
 using System.IO;
+using System.Collections;
 using System;
 
 public class TileSystem : MonoBehaviour {
@@ -26,6 +26,8 @@ public class TileSystem : MonoBehaviour {
     public GameObject RollingBlock;
     public GameObject AttachableBlock;
     public GameObject CommandBlock;
+
+	public SharedDataScript sharedDdataObject;
 
     public Vector3 mDisplayOffset = new Vector3(0.0f, 0.0f, 0.0f);
 
@@ -277,6 +279,8 @@ public class TileSystem : MonoBehaviour {
     void Start ()
     {
 		LoadLevels ();
+		mLevelIndex = sharedDdataObject.levelIndex;
+		Debug.Log (sharedDdataObject.levelIndex);
 		LoadCurrentLevel ();
 	}
 
@@ -295,6 +299,8 @@ public class TileSystem : MonoBehaviour {
 
 	public void PreNextLevel ()
 	{
+		sharedDdataObject.levelIndex = ++mLevelIndex;
+//		Debug.Log (mLevelIndex);
 		foreach (GameObject placeable in mPlaceables)
 		{
 			Delete (placeable);

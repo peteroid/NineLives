@@ -1,0 +1,93 @@
+{
+  "catStory": [
+    {
+      "order": ["cat"],
+      "cat": "My bed! I'm pooped"
+    },
+    {
+      "order": ["cat"],
+      "cat": "That was exhausting. A nap sounds nice"
+    },
+    {
+      "order": ["cat", "other"],
+      "cat": "That was exhausting. A nap sounds nice",
+      "other": "Don't sleep! You're still needed"
+    },
+    {
+      "order": ["other", "cat"],
+      "cat": "It's too hard. You'll be okay, let me sleep",
+      "other": "Please keep trying. I can't do this without you"
+    },
+    {
+      "order": ["other", "cat"],
+      "cat": "Shhh. Can't you see I just want to rest",
+      "other": "Can you hear me? I'm right here"
+    },
+    {
+      "order": ["cat", "other"],
+      "cat": "Sit with me, I don't want to fall asleep alone",
+      "other": "You're so brave, so strong!"
+    },{
+      "order": ["cat", "other"],
+      "cat": "This is nice. I will sleep peacefully now",
+      "other": "Everything is going to be ok, I promise"
+    },{
+      "order": ["cat", "other"],
+      "cat": "Goodnight sweet friend. Don't be sad",
+      "other": "What was that? Was that you?"
+    },{
+      "order": ["cat", "other"],
+      "cat": "You heard that? I'm glad. My eyes are getting heavy",
+      "other": "Come quick! She's awake!"
+    },{
+      "order": ["cat", "other"],
+      "cat": "So difficult... so much pain... but sleep comes quickly",
+      "other": "You're ok, you'll be ok, I know you'll be ok"
+    }
+  ],
+  "human": [
+    {
+      "order": []
+    },
+    {
+      "order": ["cat"],
+      "cat": "That was exhausting. A nap sounds nice"
+    },
+    {
+      "order": ["cat", "other"],
+      "cat": "That was exhausting. A nap sounds nice",
+      "other": "Don't sleep! You're still needed"
+    },
+    {
+      "order": ["other", "cat"],
+      "cat": "Why is it so important to you? Can't I rest?",
+      "other": "Please keep trying. I can't do this without you"
+    },
+    {
+      "order": ["other", "cat"],
+      "cat": "Silly human. If I give you some attention will you let me be?",
+      "other": "Can you hear me? I'm right here with you"
+    },
+    {
+      "order": ["cat", "other"],
+      "cat": "Maybe you could hold me... but just for a little bit",
+      "other": "You're so brave! So strong!"
+    },{
+      "order": ["cat", "other"],
+      "cat": "This is nice. Perhaps humans aren't so bad after all",
+      "other": "Everything is going to be ok, I promise"
+    },{
+      "order": ["cat", "other"],
+      "cat": "I, um, maybe I should--",
+      "other": "What was that? Was that you?"
+    },{
+      "order": ["cat", "other"],
+      "cat": "You can hear me? What is happening?",
+      "other": "Come quick! She's awake!"
+    },{
+      "order": ["cat", "other"],
+      "cat": "So difficult... so much pain...",
+      "other": "You're okay, you'll be okay, I know you'll be okay."
+    }
+  ]
+}

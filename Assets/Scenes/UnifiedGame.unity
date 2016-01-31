@@ -179,6 +179,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ce8b611cbd264e029ad206fa9741934, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &485757322
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 467382, guid: 0bee6801c437641829b99ff17cdd89bb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 316.62952
+      objectReference: {fileID: 0}
+    - target: {fileID: 467382, guid: 0bee6801c437641829b99ff17cdd89bb, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 236.40935
+      objectReference: {fileID: 0}
+    - target: {fileID: 467382, guid: 0bee6801c437641829b99ff17cdd89bb, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 467382, guid: 0bee6801c437641829b99ff17cdd89bb, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 467382, guid: 0bee6801c437641829b99ff17cdd89bb, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 467382, guid: 0bee6801c437641829b99ff17cdd89bb, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 467382, guid: 0bee6801c437641829b99ff17cdd89bb, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 467382, guid: 0bee6801c437641829b99ff17cdd89bb, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0bee6801c437641829b99ff17cdd89bb, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &700486281
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +823,8 @@ MonoBehaviour:
   SimpleBlock: {fileID: 116786, guid: 1aab8089b54441241b29ad019b0836fb, type: 2}
   RollingBlock: {fileID: 100968, guid: 59b511c015c01ed468b38ade02ffb249, type: 2}
   AttachableBlock: {fileID: 163004, guid: f513d377d01d58a46bb3fcea1db8e521, type: 2}
-  CommandBlock: {fileID: 187730, guid: 8d611e9657d29ea4ebb25f5867c47427, type: 2}
+  CommandBlock: {fileID: 144898, guid: 5702313d8ab667a498894a695f75c7df, type: 2}
+  sharedDdataObject: {fileID: 2005135638}
   mDisplayOffset: {x: 0, y: 0, z: 0}
   mPlayerStartX: 0
   mPlayerStartY: 0
@@ -891,6 +934,7 @@ MonoBehaviour:
   input: {fileID: 801243976}
   navGrid: {fileID: 1637684001}
   spriteObject: {fileID: 700486281}
+  sharedDataObject: {fileID: 2005135638}
 --- !u!33 &1926905693
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -912,3 +956,9 @@ Transform:
   - {fileID: 700486282}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &2005135638 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11474724, guid: 0bee6801c437641829b99ff17cdd89bb,
+    type: 2}
+  m_PrefabInternal: {fileID: 485757322}
+  m_Script: {fileID: 11500000, guid: 2fe7ee803440d44648963575057e4cb2, type: 3}
