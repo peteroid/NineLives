@@ -72,6 +72,7 @@ public class TileSystem : MonoBehaviour {
 		int levelCount = jsonObj["data"].AsArray.Count;
 		if (levelCount > 0)
 		{
+			mLevelIndex = 0;
 			mLevels = new string[levelCount];
 			for (int i = 0; i < levelCount; i++)
 			{
@@ -181,19 +182,25 @@ public class TileSystem : MonoBehaviour {
     void Start ()
     {
 		LoadLevels ();
-		NextLevel ();
+		LoadCurrentLevel ();
 	}
 
-	public void NextLevel ()
+	public void LoadCurrentLevel ()
 	{
-		LoadMap(mLevels[++mLevelIndex]);
+		LoadMap(mLevels[mLevelIndex]);
 		// clean up the current tiles before generating
 		foreach (GameObject tile in mTiles)
 		{
 			Destroy (tile);
 		}
 
-		GenerateTileMap();
+		GenerateTileMap();	
+	}
+
+	public void NextLevel ()
+	{
+		++mLevelIndex;
+		LoadCurrentLevel ();
 	}
 
 

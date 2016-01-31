@@ -51,6 +51,13 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 		Init ();
 	}
 
+	public void ResetLevel ()
+	{
+		Debug.Log ("reset");
+		navGrid.LoadCurrentLevel ();
+		Init ();
+	}
+
 	// the shorthands are messed up due to the rotation of camera
 	public void Up () {
         Move(0, 1);
