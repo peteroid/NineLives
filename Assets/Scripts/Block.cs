@@ -7,7 +7,8 @@ public class Block : ITilePlaceable {
     {
         kSimple = 1,
         kRolling = 2,
-        kAttachable = 3
+        kAttachable = 3,
+        kCommand = 4
     }
 
     private BlockType mType;
@@ -40,7 +41,24 @@ public class Block : ITilePlaceable {
                 mDisplayOffset.z += -0.25f;
                 break;
 
+            case BlockType.kCommand:
+                mBlockBaseObject = tile.mParentNavGrid.CommandBlock;
+                break;
+
             default: break;
+        }
+
+        if(mType != BlockType.kCommand)
+        {
+            DelegateHost.OnCommandMove += HandleOnCommandMove;
+        }
+    }
+
+    ~Block()
+    {
+        if (mType != BlockType.kCommand)
+        {
+            DelegateHost.OnCommandMove -= HandleOnCommandMove;
         }
     }
 
@@ -91,6 +109,14 @@ public class Block : ITilePlaceable {
         }
     }
 
+    private void HandleOnCommandMove(int dirX, int dirY)
+    {
+        if(CanMove(dirX, dirY))
+        {
+            TryMove(dirX, dirY);
+        }
+    }
+
     public bool CanMove(int dirX, int dirY)
     {
         ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
@@ -107,6 +133,11 @@ public class Block : ITilePlaceable {
 
         ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
         siblingTile.TryIncomingMove(this, dirX, dirY);
+
+        if(mType == BlockType.kCommand)
+        {
+            DelegateHost.OnCommandMove.Invoke(dirX, dirY);
+        }
     }
 
     public void SetVisualPosition(Vector3 position)
