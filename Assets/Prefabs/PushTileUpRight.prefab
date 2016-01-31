@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 477484}
   - 212: {fileID: 21211884}
   - 95: {fileID: 9514080}
+  - 114: {fileID: 11446638}
   m_Layer: 0
   m_Name: PushTileUpRight
   m_TagString: Untagged
@@ -46,6 +47,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11446638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63f8405f92a0649d98bf78f98a956024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!212 &21211884
 SpriteRenderer:
   m_ObjectHideFlags: 1
