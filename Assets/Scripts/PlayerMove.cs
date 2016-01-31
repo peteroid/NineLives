@@ -18,6 +18,9 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
     private int mX;
     private int mY;
 
+    private ArrayList Followers = new ArrayList();
+
+
     private bool mInitialized = false;
 
     private ITile mOwningTile = null;
@@ -160,6 +163,13 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
         mOwningTile = tile;
     }
 
+    public void Attach(ITilePlaceable follower)
+    {
+
+        Followers.Add(follower);
+    }
+
+
     public void SetVisualPosition(Vector3 position)
     {
         ParticleSystem p = GetComponent<ParticleSystem>();
@@ -173,4 +183,5 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
     {
         return mProperties;
     }
+
 }

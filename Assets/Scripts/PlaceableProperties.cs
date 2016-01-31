@@ -8,4 +8,5 @@ public class PlaceableProperties {
     public bool attachable = false;
     public ITilePlaceable attachedTo = null;
     public bool isAttached = false;
+    public bool canBePushed = true;
 }

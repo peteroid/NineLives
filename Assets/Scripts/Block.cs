@@ -38,6 +38,7 @@ public class Block : ITilePlaceable {
             case BlockType.kAttachable:
                 mBlockBaseObject = tile.mParentNavGrid.AttachableBlock;
                 mProperties.attachable = true;
+                mProperties.canBePushed = false;
                 break;
 
             default: break;
@@ -57,6 +58,11 @@ public class Block : ITilePlaceable {
             return false;
         }
 
+        if(!mProperties.canBePushed)
+        {
+            return true;
+        }
+
         ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
         if(siblingTile == null)
         {
@@ -67,17 +73,22 @@ public class Block : ITilePlaceable {
 
     public void TryIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY)
     {
-        ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
-        siblingTile.TryIncomingMove(this, dirX, dirY);
-
-        if(mProperties.keepsMoving)
+        
+        if(mProperties.canBePushed)
         {
-            mOwningTile.mParentNavGrid.AddBlockToUpdateList(this, dirX, dirY);
+            ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
+            siblingTile.TryIncomingMove(this, dirX, dirY);
+
+            if (mProperties.keepsMoving)
+            {
+                mOwningTile.mParentNavGrid.AddBlockToUpdateList(this, dirX, dirY);
+            }
+
         }
 
         if(mProperties.attachable && !mProperties.isAttached)
         {
-            Attach(this);
+            incomingPlaceable.Attach(this);
             mProperties.isAttached = true;
         }
     }
@@ -94,8 +105,13 @@ public class Block : ITilePlaceable {
 
     public void Attach(ITilePlaceable follower)
     {
-        mProperties.isAttached = true;
+        
         Followers.Add(follower);
+    }
+
+    public void Detach(ITilePlaceable follower)
+    {
+        Followers.Remove(follower);
     }
         
     public void TryMove(int dirX, int dirY)
@@ -107,7 +123,14 @@ public class Block : ITilePlaceable {
         {
             foreach(ITilePlaceable obj in Followers)
             {
-                siblingTile.TryIncomingMove(obj, dirX, dirY);
+                if (siblingTile.AllowIncomingMove(obj, dirX, dirY))
+                {
+                    siblingTile.TryIncomingMove(obj, dirX, dirY);
+                }
+                else
+                {
+                    Detach(obj);
+                }
             }
                 
         }
