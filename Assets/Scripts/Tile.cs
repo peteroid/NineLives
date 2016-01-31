@@ -215,7 +215,12 @@ public class Tile : ITile
             }
         }
 
-        if(mType == TerrainType.kBlockHole && !interferingObj.GetProperties().isPlayer)
+        TriggerSpecialMoveConditions(interferingObj);
+    }
+
+    public void TriggerSpecialMoveConditions(ITilePlaceable interferingObj)
+    {
+        if (mType == TerrainType.kBlockHole && !interferingObj.GetProperties().isPlayer)
         {
             mParentNavGrid.RemoveFromUpdateList(interferingObj);
             interferingObj.PrepForRemoval();

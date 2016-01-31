@@ -128,6 +128,15 @@ public class TileSystem : MonoBehaviour {
                 }
             }
         }
+
+        int numExtra = jsonObj["extraSpawns"].AsArray.Count;
+        for(int extra = 0; extra < numExtra; ++extra)
+        {
+            JSONNode node = jsonObj["extraSpawns"][extra];
+            int x = node["x"].AsInt;
+            int y = node["y"].AsInt;
+            LoadSpecializedItem(mNavGrid[x][y], node["id"].AsInt);
+        }
     }
 
     public void GenerateTileMap()
@@ -149,7 +158,8 @@ public class TileSystem : MonoBehaviour {
 
                 mNavGrid[x][y].SetTileGameObject(newTile);
 
-                foreach(Block block in mNavGrid[x][y].mPlaceables)
+                ArrayList placeables = (ArrayList)mNavGrid[x][y].mPlaceables.Clone();
+                foreach(Block block in placeables)
                 {
                     if (block != null)
                     {

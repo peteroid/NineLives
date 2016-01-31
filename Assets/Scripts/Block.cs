@@ -77,6 +77,7 @@ public class Block : ITilePlaceable {
         mBlockObject = blockObject;
         mBlockObject.transform.position += mDisplayOffset;
         mOwningTile.LockToPosition(this);
+        mOwningTile.TriggerSpecialMoveConditions(this);
     }
 
     public bool AllowIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY)
