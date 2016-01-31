@@ -71,7 +71,7 @@ public class TileSystem : MonoBehaviour {
                 newTile.transform.parent = gameObject.transform;
             }
         }
-        transform.Rotate(35.0f, 315.0f, 345.0f);
+        //transform.Rotate(35.0f, 315.0f, 345.0f);
 	}
     
 
