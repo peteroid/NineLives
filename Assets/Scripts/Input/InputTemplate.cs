@@ -19,6 +19,9 @@ public class InputTest : MonoBehaviour, InputInterface {
 	public void Down () {
 	}
 
+	public void Reset () {
+	}
+
 	void Start () {
 		input.GetComponent<InputScript> ().SetInputInterface (this);
 	}

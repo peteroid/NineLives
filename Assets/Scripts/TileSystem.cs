@@ -37,6 +37,7 @@ public class TileSystem : MonoBehaviour {
 	private ArrayList mTiles;
 	private string[] mLevels;
 	private int mLevelIndex = -1;
+	private float speedFactor = 1f;
 
 	public TileSystem ()
 	{
@@ -156,7 +157,7 @@ public class TileSystem : MonoBehaviour {
 				// randomize the position of the tiles first
 				Vector3 startFrom = GetRandomVector3 (15f, 30f);
 				GameObject newTile = (GameObject)Instantiate(mNavGrid[x][y].mTileBaseObject, startFrom, tileRot);
-				newTile.GetComponent<SlideBlock> ().SetStartPosition (tilePos, startFrom.magnitude / 2f);
+				newTile.GetComponent<SlideBlock> ().SetStartPosition (tilePos, startFrom.magnitude / 2f * speedFactor);
 
                 newTile.transform.parent = gameObject.transform;
 				mTiles.Add (newTile);
@@ -183,6 +184,11 @@ public class TileSystem : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public void SetSpeedFactor (float speedFactor)
+	{
+		this.speedFactor = speedFactor;
 	}
 
     private void LoadSpecializedItem(Tile tile, int tileCode)
@@ -275,7 +281,7 @@ public class TileSystem : MonoBehaviour {
 		Debug.Log (UnityEngine.Random.seed.ToString ());
 		foreach (GameObject tile in mTiles)
 		{
-			Vector3 velocity = GetRandomVector3 (7f, 10f);
+			Vector3 velocity = GetRandomVector3 (7f * speedFactor, 10f * speedFactor);
 			tile.GetComponent<SlideBlock> ().SetVelocity (velocity);
 		}
 	}

@@ -6,4 +6,5 @@ public interface InputInterface {
 	void Left ();
 	void Down ();
 	void Right ();
+	void Reset ();
 }
