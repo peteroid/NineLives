@@ -12,11 +12,12 @@ public class TileSystem : MonoBehaviour {
 
     public GameObject PassableTile;
     public GameObject WallTile;
+    public GameObject LeftTile;
     public bool passable;
     public int[][] tileMapTest = new int[][]{ new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                                               new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                                               new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                                              new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                                              new int[]{1, 0, 2, 0, 0, 0, 0, 0, 0, 1},
                                               new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                                               new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                                               new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -35,6 +36,10 @@ public class TileSystem : MonoBehaviour {
                 if (tileMapTest[i][j] == 1)
                 {
                     Instantiate(WallTile, tilePos, tileRot);
+                }
+                else if(tileMapTest[i][j] == 2)
+                {
+                    Instantiate(LeftTile, tilePos, tileRot);
                 }
                 else
                 {
