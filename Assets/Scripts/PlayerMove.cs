@@ -17,6 +17,7 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
     public TileSystem navGrid;
 	public Transform spriteTransform;
     public GUIText textObject;
+    public ParticleSystem dustEffects;
 
 
     private bool mInitialized = false;
@@ -154,10 +155,8 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
 
     public void SetVisualPosition(Vector3 position)
     {
-        ParticleSystem p = GetComponent<ParticleSystem>();
-        p.Play();
+        Instantiate(dustEffects, this.transform.position, Quaternion.identity);
         transform.position = new Vector3(position.x, position.y, transform.position.z);
-        //p.Pause();
     }
 
     //////
