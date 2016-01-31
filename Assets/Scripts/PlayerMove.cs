@@ -110,7 +110,10 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 
     public void SetVisualPosition(Vector3 position)
     {
+        ParticleSystem p = GetComponent<ParticleSystem>();
+        p.Play();
         transform.position = new Vector3(position.x, position.y, transform.position.z);
+        //p.Pause();
     }
 
     private PlaceableProperties mProperties = new PlaceableProperties();
