@@ -116,6 +116,7 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
 	{
 		mX = 0;
 		mY = 0;
+        PrepForRemoval();
 		mInitialized = false;
 	}
 

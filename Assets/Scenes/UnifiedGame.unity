@@ -589,6 +589,8 @@ MonoBehaviour:
   PassableTile: {fileID: 135934, guid: 4a6af835cc01eec4c82c43ddb2dfd524, type: 2}
   WallTile: {fileID: 144898, guid: 65232a72ba718244c810d59f045caaf2, type: 2}
   DoorTile: {fileID: 116280, guid: 628e0ff9ce80b4f469527e3081f0bfe8, type: 2}
+  EmptyTile: {fileID: 144898, guid: 44586c9283584714e939f811a4bf8f94, type: 2}
+  BlockOnlyTile: {fileID: 0}
   PressureTile: {fileID: 135934, guid: 148dd3377d9b08c4d8117872d32fb0c7, type: 2}
   OmenDoor: {fileID: 144898, guid: 6a2f3e4304bdeca4eaa4c8db12267aa9, type: 2}
   PushUpTile: {fileID: 161302, guid: ed96e5a116b3f1e4bb30b312ea5dd067, type: 2}

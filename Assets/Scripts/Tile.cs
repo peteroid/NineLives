@@ -11,6 +11,7 @@ public class Tile : ITile
         kExit = 2,
 		kHumanExit = 3,
         kBlockHole = 4,
+        kBlockOnly = 5,
 
         kPushUp = 10,
         kPushRight = 11,
@@ -81,6 +82,12 @@ public class Tile : ITile
 
             case TerrainType.kBlockHole:
                 mTileBaseObject = parent.EmptyTile;
+                mDisplayOffsets.z -= 0.15f;
+                mPlayerPassable = false;
+                break;
+
+            case TerrainType.kBlockOnly:
+                mTileBaseObject = parent.BlockOnlyTile;
                 mPlayerPassable = false;
                 break;
 
