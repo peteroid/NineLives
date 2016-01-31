@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 
@@ -14,6 +15,7 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 	public InputScript input;
     public TileSystem navGrid;
 	public Transform spriteTransform;
+    public GUIText textObject;
 
     private int mX;
     private int mY;
@@ -22,32 +24,43 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 
     private ITile mOwningTile = null;
 
+    private int mMeowCount = 0;
+    private int mHumanCount = 0;
+
+    private GUITexture mFlash;
+
     private void Move(int x, int y)
     {
-        if(navGrid.CanMove(this, x, y))
+        if (navGrid.CanMove(this, x, y))
         {
             navGrid.TryMove(this, x, y);
 
+            bool moveToNext = true;
 			// check for win conditions
 			switch (((Tile) mOwningTile).mType)
 			{
 				case Tile.TerrainType.kDoor:
-					NextLevel ();
-					Debug.Log ("Meow");
-					break;
+                    mMeowCount++;
+                    break;
 				case Tile.TerrainType.kHumanDoor:
-					NextLevel ();
-					Debug.Log ("Human");
+                    mHumanCount++;
 					break;
 				default:
-					break;
+                    moveToNext = false;
+                    break;
 			}
+            if(moveToNext)
+            {
+                NextLevel();
+            }
         }
     }
 
 	private void NextLevel ()
 	{
-		navGrid.NextLevel ();
+        mFlash.enabled = true;
+
+        navGrid.NextLevel ();
 		Init ();
 	}
 
@@ -99,6 +112,18 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 	// Use this for initialization
 	void Start () {
 		Init ();
+
+        Texture2D tex = new Texture2D(1, 1);
+        tex.SetPixel(0, 0, Color.white);
+        tex.Apply();
+        GameObject storageGB = new GameObject("Flash");
+        storageGB.transform.localScale = new Vector3(0, 0, 1);
+        mFlash = storageGB.AddComponent<GUITexture>();
+        mFlash.pixelInset = new Rect(0, 0, Screen.width, Screen.height);
+        mFlash.color = Color.black;
+        mFlash.texture = tex;
+        mFlash.enabled = false;
+
         mProperties.isPlayer = true;
         mProperties.canPushBlocks = true;
 
