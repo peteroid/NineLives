@@ -88,12 +88,19 @@ public class Tile : ITile
         return true;
     }
 
-	public bool TryIncomingMove(ITilePlaceable interferingObj, int dirX, int dirY)
+	public void TryIncomingMove(ITilePlaceable interferingObj, int dirX, int dirY)
     {
         ArrayList moveList = new ArrayList();
         foreach (ITilePlaceable obj in mPlaceables)
         {
-            moveList.Add(obj);
+            if(obj.GetProperties().canBeWalkedOver)
+            {
+                obj.TryIncomingMove(interferingObj, dirX, dirY);
+            }
+            else
+            {
+                moveList.Add(obj);
+            }
         }
 
         if(moveList.Count > 0)
@@ -106,13 +113,12 @@ public class Tile : ITile
                    
             if(interferingObj.GetProperties().isPlayer)
             {
-                return false;
+                return;
             }
         }
 
         interferingObj.SetAsOwningTile(this);
         LockToPosition(interferingObj);
-		return true;
     }
 
     public void Subscribe(ITilePlaceable placeable)

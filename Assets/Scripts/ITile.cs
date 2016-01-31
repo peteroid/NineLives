@@ -7,5 +7,5 @@ public interface ITile {
     void LockToPosition(ITilePlaceable placeable);
     ITile GetSiblingTile(int dirX, int dirY);
     bool AllowIncomingMove(ITilePlaceable interferingObj, int dirX, int dirY);
-    bool TryIncomingMove(ITilePlaceable interferingObj, int dirX, int dirY);
+    void TryIncomingMove(ITilePlaceable interferingObj, int dirX, int dirY);
 }

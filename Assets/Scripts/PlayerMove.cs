@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 
-public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
+public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
+{
 
 	public enum WinType
 	{
@@ -17,26 +18,20 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 	public Transform spriteTransform;
     public GUIText textObject;
 
-    private int mX;
-    private int mY;
-
-    private ArrayList Followers = new ArrayList();
-
 
     private bool mInitialized = false;
-
-    private ITile mOwningTile = null;
 
     private int mMeowCount = 0;
     private int mHumanCount = 0;
 
-    private GUITexture mFlash;
-
-    private void Move(int x, int y)
+    private void Move(int dirX, int dirY)
     {
-        if (navGrid.CanMove(this, x, y))
+        if (navGrid.CanMove(this, dirX, dirY))
         {
-            navGrid.TryMove(this, x, y);
+            MoveFollowers(dirX, dirY);
+
+            navGrid.TryMove(this, dirX, dirY);
+            
 
             bool moveToNext = true;
 			// check for win conditions
@@ -61,8 +56,6 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 
 	private void NextLevel ()
 	{
-        mFlash.enabled = true;
-
         navGrid.NextLevel ();
 		Init ();
 	}
@@ -115,18 +108,6 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 	// Use this for initialization
 	void Start () {
 		Init ();
-
-        Texture2D tex = new Texture2D(1, 1);
-        tex.SetPixel(0, 0, Color.white);
-        tex.Apply();
-        GameObject storageGB = new GameObject("Flash");
-        storageGB.transform.localScale = new Vector3(0, 0, 1);
-        mFlash = storageGB.AddComponent<GUITexture>();
-        mFlash.pixelInset = new Rect(0, 0, Screen.width, Screen.height);
-        mFlash.color = Color.black;
-        mFlash.texture = tex;
-        mFlash.enabled = false;
-
         mProperties.isPlayer = true;
         mProperties.canPushBlocks = true;
 
@@ -146,6 +127,71 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
             PostStart();
         }
 	}
+
+    public bool AllowIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY)
+    {
+        return false;
+    }
+
+    public void TryIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY)
+    {
+        // Should never occur
+    }
+
+    public void SetVisualPosition(Vector3 position)
+    {
+        ParticleSystem p = GetComponent<ParticleSystem>();
+        p.Play();
+        transform.position = new Vector3(position.x, position.y, transform.position.z);
+        //p.Pause();
+    }
+
+    //////
+
+    protected int mX = 0;
+    protected int mY = 0;
+    protected ArrayList mFollowers = new ArrayList();
+    protected Tile mOwningTile = null;
+    protected PlaceableProperties mProperties = new PlaceableProperties();
+
+    public void Attach(ITilePlaceable follower)
+    {
+        mFollowers.Add(follower);
+    }
+
+    public void Detach(ITilePlaceable follower)
+    {
+        mFollowers.Remove(follower);
+    }
+
+    protected void MoveFollowers(int dirX, int dirY)
+    {
+        if (mOwningTile == null)
+        {
+            return;
+        }
+
+        ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
+        if (mFollowers.Count > 0 && siblingTile != null)
+        {
+            ArrayList detachList = new ArrayList();
+            foreach (ITilePlaceable obj in mFollowers)
+            {
+                if (siblingTile.AllowIncomingMove(obj, dirX, dirY))
+                {
+                    siblingTile.TryIncomingMove(obj, dirX, dirY);
+                }
+                else
+                {
+                    detachList.Add(obj);
+                }
+            }
+            foreach (ITilePlaceable obj in detachList)
+            {
+                Detach(obj);
+            }
+        }
+    }
 
     public int GetX()
     {
@@ -167,46 +213,20 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
         mY = y;
     }
 
-    public bool AllowIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY)
-    {
-        return false;
-    }
-
-    public void TryIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY)
-    {
-        // Should never occur
-    }
-
     public void SetAsOwningTile(ITile tile)
     {
-        if(mOwningTile != null)
+        if (mOwningTile != null)
         {
             mOwningTile.Unsubscribe(this);
         }
         tile.Subscribe(this);
 
-        mOwningTile = tile;
-    }
-
-    public void Attach(ITilePlaceable follower)
-    {
-
-        Followers.Add(follower);
+        mOwningTile = (Tile)tile;
     }
 
 
-    public void SetVisualPosition(Vector3 position)
-    {
-        ParticleSystem p = GetComponent<ParticleSystem>();
-        p.Play();
-        transform.position = new Vector3(position.x, position.y, transform.position.z);
-        //p.Pause();
-    }
-
-    private PlaceableProperties mProperties = new PlaceableProperties();
     public PlaceableProperties GetProperties()
     {
         return mProperties;
     }
-
 }

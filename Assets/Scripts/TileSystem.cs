@@ -27,6 +27,7 @@ public class TileSystem : MonoBehaviour {
     private ArrayList mBlocksOnMoveLoop = new ArrayList();
 	private ArrayList mTiles;
 	private string[] mLevels;
+
 	private int mLevelIndex = -1;
 
 	public TileSystem ()

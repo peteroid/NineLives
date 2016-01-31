@@ -10,14 +10,11 @@ public class Block : ITilePlaceable {
         kAttachable = 3
     }
 
-    private int mX = 0;
-    private int mY = 0;
-    private Tile mOwningTile = null;
     private BlockType mType;
+    private Vector3 mDisplayOffset = new Vector3();
 
     public GameObject mBlockBaseObject;
     private GameObject mBlockObject;
-    private ArrayList Followers = new ArrayList();
 
     public Block(BlockType type, Tile tile)
     {
@@ -35,10 +32,12 @@ public class Block : ITilePlaceable {
                 mBlockBaseObject = tile.mParentNavGrid.RollingBlock;
                 mProperties.keepsMoving = true;
                 break;
+
             case BlockType.kAttachable:
                 mBlockBaseObject = tile.mParentNavGrid.AttachableBlock;
                 mProperties.attachable = true;
-                mProperties.canBePushed = false;
+                mProperties.canBeWalkedOver = true;
+                mDisplayOffset.z += -0.25f;
                 break;
 
             default: break;
@@ -48,19 +47,20 @@ public class Block : ITilePlaceable {
     public void SetBlockGameObject(GameObject blockObject)
     {
         mBlockObject = blockObject;
+        mBlockObject.transform.position += mDisplayOffset;
         mOwningTile.LockToPosition(this);
     }
 
     public bool AllowIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY)
     {
-        if(!incomingPlaceable.GetProperties().canPushBlocks)
-        {
-            return false;
-        }
-
-        if(!mProperties.canBePushed)
+        if (mProperties.canBeWalkedOver)
         {
             return true;
+        }
+
+        if (!incomingPlaceable.GetProperties().canPushBlocks)
+        {
+            return false;
         }
 
         ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
@@ -73,11 +73,9 @@ public class Block : ITilePlaceable {
 
     public void TryIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY)
     {
-        
-        if(mProperties.canBePushed)
+        if(!mProperties.canBeWalkedOver)
         {
-            ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
-            siblingTile.TryIncomingMove(this, dirX, dirY);
+            TryMove(dirX, dirY);
 
             if (mProperties.keepsMoving)
             {
@@ -102,26 +100,50 @@ public class Block : ITilePlaceable {
         }
         return siblingTile.AllowIncomingMove(this, dirX, dirY);
     }
+        
+    public void TryMove(int dirX, int dirY)
+    {
+        MoveFollowers(dirX, dirY);
+
+        ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
+        siblingTile.TryIncomingMove(this, dirX, dirY);
+    }
+
+    public void SetVisualPosition(Vector3 position)
+    {
+        mBlockObject.transform.position = new Vector3(position.x, position.y, mBlockObject.transform.position.z);
+    }
+
+    ////////// ITilePlaceable
+
+    protected int mX = 0;
+    protected int mY = 0;
+    protected ArrayList mFollowers = new ArrayList();
+    protected Tile mOwningTile = null;
+    protected PlaceableProperties mProperties = new PlaceableProperties();
 
     public void Attach(ITilePlaceable follower)
     {
-        
-        Followers.Add(follower);
+        mFollowers.Add(follower);
     }
 
     public void Detach(ITilePlaceable follower)
     {
-        Followers.Remove(follower);
+        mFollowers.Remove(follower);
     }
-        
-    public void TryMove(int dirX, int dirY)
-    {
-        ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
-        siblingTile.TryIncomingMove(this, dirX, dirY);
 
-        if (Followers.Count > 0)
+    protected void MoveFollowers(int dirX, int dirY)
+    {
+        if (mOwningTile == null)
         {
-            foreach(ITilePlaceable obj in Followers)
+            return;
+        }
+
+        ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
+        if (mFollowers.Count > 0 && siblingTile != null)
+        {
+            ArrayList detachList = new ArrayList();
+            foreach (ITilePlaceable obj in mFollowers)
             {
                 if (siblingTile.AllowIncomingMove(obj, dirX, dirY))
                 {
@@ -129,10 +151,13 @@ public class Block : ITilePlaceable {
                 }
                 else
                 {
-                    Detach(obj);
+                    detachList.Add(obj);
                 }
             }
-                
+            foreach (ITilePlaceable obj in detachList)
+            {
+                Detach(obj);
+            }
         }
     }
 
@@ -166,13 +191,7 @@ public class Block : ITilePlaceable {
 
         mOwningTile = (Tile)tile;
     }
-
-    public void SetVisualPosition(Vector3 position)
-    {
-        mBlockObject.transform.position = new Vector3(position.x, position.y, mBlockObject.transform.position.z);
-    }
-
-    private PlaceableProperties mProperties = new PlaceableProperties();
+    
     public PlaceableProperties GetProperties()
     {
         return mProperties;

@@ -6,7 +6,8 @@ public class PlaceableProperties {
     public bool canPushBlocks = false;
     public bool keepsMoving = false;
     public bool attachable = false;
-    public ITilePlaceable attachedTo = null;
+    public bool canBeWalkedOver = false;
+
     public bool isAttached = false;
-    public bool canBePushed = true;
+    public ITilePlaceable attachedTo = null;
 }
