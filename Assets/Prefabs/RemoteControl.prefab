@@ -113,7 +113,7 @@ Transform:
   m_GameObject: {fileID: 187730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.479, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children:
   - {fileID: 423878}
   - {fileID: 427282}
@@ -130,7 +130,7 @@ Transform:
   m_GameObject: {fileID: 176990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.25, z: 0.05}
+  m_LocalScale: {x: 0.15, y: 0.25, z: -0.1}
   m_Children: []
   m_Father: {fileID: 419680}
   m_RootOrder: 0
@@ -142,7 +142,7 @@ Transform:
   m_GameObject: {fileID: 163686}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.031, y: 0.0614, z: -0.023}
-  m_LocalScale: {x: 0.05, y: 0.05, z: -0.02}
+  m_LocalScale: {x: 0.05, y: 0.05, z: -0.18}
   m_Children: []
   m_Father: {fileID: 419680}
   m_RootOrder: 1
@@ -154,7 +154,7 @@ Transform:
   m_GameObject: {fileID: 123740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.03099999, y: 0.0614, z: -0.023}
-  m_LocalScale: {x: 0.05, y: 0.05, z: -0.02}
+  m_LocalScale: {x: 0.05, y: 0.05, z: -0.18}
   m_Children: []
   m_Father: {fileID: 419680}
   m_RootOrder: 2
@@ -166,7 +166,7 @@ Transform:
   m_GameObject: {fileID: 174726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.03099999, y: -0.0108, z: -0.023}
-  m_LocalScale: {x: 0.05, y: 0.05, z: -0.02}
+  m_LocalScale: {x: 0.05, y: 0.05, z: -0.18}
   m_Children: []
   m_Father: {fileID: 419680}
   m_RootOrder: 4
@@ -178,7 +178,7 @@ Transform:
   m_GameObject: {fileID: 149208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.030999988, y: -0.0108, z: -0.023}
-  m_LocalScale: {x: 0.05, y: 0.05, z: -0.02}
+  m_LocalScale: {x: 0.05, y: 0.05, z: -0.18}
   m_Children: []
   m_Father: {fileID: 419680}
   m_RootOrder: 3
@@ -413,7 +413,19 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.z
+      value: -0.18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 187730}
