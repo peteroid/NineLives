@@ -144,14 +144,21 @@ public class Tile : ITile
             default: break;
         }
     }
-
+    
     private void HandleOnPressureChange(bool state, int id)
     {
         if(id == mSpecialCaseID)
         {
             mPlayerPassable = state;
             mBlockPassable = state;
-            mTileObject.transform.position += new Vector3(0.0f, 0.0f, (state ? .50f : -.50f));
+            if(mTileObject != null)
+            {
+                mTileObject.transform.position += new Vector3(0.0f, 0.0f, (state ? .50f : -.50f));
+            }
+            else
+            {
+                mDisplayOffsets.z += .5f;
+            }
         }
     }
 
