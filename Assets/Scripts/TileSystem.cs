@@ -14,6 +14,10 @@ public class TileSystem : MonoBehaviour {
     public GameObject DoorTile;
     public GameObject PressureTile;
     public GameObject OmenDoor;
+    public GameObject PushUpTile;
+    public GameObject PushLeftTile;
+    public GameObject PushRightTile;
+    public GameObject PushDownTile;
 
     public GameObject SimpleBlock;
     public GameObject RollingBlock;
@@ -113,7 +117,7 @@ public class TileSystem : MonoBehaviour {
                 else
                 {
                     int id = 0;
-                    if(tileCode >= 10)
+                    if(tileCode >= 40)
                     {
                         id = tileCode % 10;
                         tileCode -= id;
@@ -271,7 +275,7 @@ public class TileSystem : MonoBehaviour {
 
                 if(remove)
                 {
-                    update.placeable.GetProperties().inUpdateSequenceFor = 0;
+                    update.placeable.GetProperties().inUpdateSequenceFor = -1;
                     mPlaceableUpdates.Remove(update);
                 }
             }

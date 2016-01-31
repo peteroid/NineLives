@@ -11,6 +11,11 @@ public class Tile : ITile
         kExit = 2,
 		kHumanExit = 3,
 
+        kPushUp = 10,
+        kPushRight = 11,
+        kPushDown = 12,
+        kPushLeft = 13,
+
         kPressure = 40,
         
         kPressureDoor = 50
@@ -69,6 +74,26 @@ public class Tile : ITile
 				mTileBaseObject = parent.DoorTile;
 				mDisplayOffsets.z += 0.25f;
                 mIsExit = true;
+                break;
+
+            case TerrainType.kPushUp:
+                mTileBaseObject = parent.PushUpTile;
+                mPushDirY = 1;
+                break;
+
+            case TerrainType.kPushRight:
+                mTileBaseObject = parent.PushRightTile;
+                mPushDirX = 1;
+                break;
+
+            case TerrainType.kPushDown:
+                mTileBaseObject = parent.PushDownTile;
+                mPushDirY = -1;
+                break;
+
+            case TerrainType.kPushLeft:
+                mTileBaseObject = parent.PushLeftTile;
+                mPushDirX = -1;
                 break;
 
             case TerrainType.kPressure:

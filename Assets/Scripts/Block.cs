@@ -51,6 +51,11 @@ public class Block : ITilePlaceable {
         if(mType != BlockType.kCommand)
         {
             DelegateHost.OnCommandMove += HandleOnCommandMove;
+            DelegateHost.OnCommandMoveClear += HandleOnCommandMoveClear;
+        }
+        else
+        {
+            DelegateHost.OnCommandMoveRespond += HandleOnCommandMoveRespond;
         }
     }
 
@@ -59,6 +64,11 @@ public class Block : ITilePlaceable {
         if (mType != BlockType.kCommand)
         {
             DelegateHost.OnCommandMove -= HandleOnCommandMove;
+            DelegateHost.OnCommandMoveClear -= HandleOnCommandMoveClear;
+        }
+        else
+        {
+            DelegateHost.OnCommandMoveRespond -= HandleOnCommandMoveRespond;
         }
     }
 
@@ -109,12 +119,35 @@ public class Block : ITilePlaceable {
         }
     }
 
+    private bool mHasRespondedToCommand = false;
+
     private void HandleOnCommandMove(int dirX, int dirY)
     {
+        if(mHasRespondedToCommand)
+        {
+            return;
+        }
+
         if(CanMove(dirX, dirY))
         {
+            mHasRespondedToCommand = true;
             TryMove(dirX, dirY);
         }
+        else
+        {
+            DelegateHost.OnCommandMoveRespond.Invoke();
+        }
+    }
+
+    private void HandleOnCommandMoveClear()
+    {
+        mHasRespondedToCommand = false;
+    }
+
+    private int mCommandMoveNegativeResponses = 0;
+    private void HandleOnCommandMoveRespond()
+    {
+        mCommandMoveNegativeResponses++;
     }
 
     public bool CanMove(int dirX, int dirY)
@@ -137,6 +170,17 @@ public class Block : ITilePlaceable {
         if(mType == BlockType.kCommand)
         {
             DelegateHost.OnCommandMove.Invoke(dirX, dirY);
+
+            int lastKnownResponses = 0;
+            while(mCommandMoveNegativeResponses > lastKnownResponses)
+            {
+                lastKnownResponses = mCommandMoveNegativeResponses;
+                mCommandMoveNegativeResponses = 0;
+                DelegateHost.OnCommandMove.Invoke(dirX, dirY);
+            }
+            mCommandMoveNegativeResponses = 0;
+
+            DelegateHost.OnCommandMoveClear.Invoke();
         }
     }
 
