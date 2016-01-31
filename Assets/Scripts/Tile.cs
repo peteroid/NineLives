@@ -58,7 +58,7 @@ public class Tile : ITile
         {
             case TerrainType.kPass:
                 mTileBaseObject = parent.PassableTile;
-                mDisplayOffsets.z -= 0.1f;
+                mDisplayOffsets.z -= 0.07f;
                 break;
 
             case TerrainType.kWall:
@@ -70,24 +70,24 @@ public class Tile : ITile
 
             case TerrainType.kExit:
                 mTileBaseObject = parent.DoorTile;
-                mDisplayOffsets.z += 0.15f;
+                mDisplayOffsets.z += 0.13f;
                 mBlockPassable = false;
                 break;
 
 			case TerrainType.kHumanExit:
 				mTileBaseObject = parent.DoorTile;
-				mDisplayOffsets.z += 0.15f;
+				mDisplayOffsets.z += 0.13f;
                 mBlockPassable = false;
                 break;
 
             case TerrainType.kBlockHole:
                 mTileBaseObject = parent.EmptyTile;
-                mDisplayOffsets.z -= 0.15f;
                 mPlayerPassable = false;
                 break;
 
             case TerrainType.kBlockOnly:
                 mTileBaseObject = parent.BlockOnlyTile;
+                mDisplayOffsets.z -= 0.15f;
                 mPlayerPassable = false;
                 break;
 
@@ -151,7 +151,7 @@ public class Tile : ITile
         {
             mPlayerPassable = state;
             mBlockPassable = state;
-            mTileObject.transform.position += new Vector3(0.0f, 0.0f, (state ? .35f : -.35f));
+            mTileObject.transform.position += new Vector3(0.0f, 0.0f, (state ? .50f : -.50f));
         }
     }
 
