@@ -70,13 +70,13 @@ public class Tile : ITile
 
             case TerrainType.kExit:
                 mTileBaseObject = parent.DoorTile;
-                mDisplayOffsets.z += 0.13f;
+                mDisplayOffsets.z += -0.08f;
                 mBlockPassable = false;
                 break;
 
 			case TerrainType.kHumanExit:
 				mTileBaseObject = parent.HumanDoorTile;
-				mDisplayOffsets.z += 0.13f;
+                mDisplayOffsets.z += -0.08f;
                 mBlockPassable = false;
                 break;
 
@@ -239,6 +239,7 @@ public class Tile : ITile
             mParentNavGrid.RemoveFromUpdateList(interferingObj);
             interferingObj.PrepForRemoval();
             mParentNavGrid.Delete(interferingObj.GetConnectedObject());
+            interferingObj.Clear();
         }
         else
         {

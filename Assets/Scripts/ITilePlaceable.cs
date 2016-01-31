@@ -8,6 +8,8 @@ public interface ITilePlaceable
     void SetX(int x);
     void SetY(int y);
 
+    void Clear();
+
     bool AllowIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY);
     void TryIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY);
     bool CanMove(int dirX, int dirY);

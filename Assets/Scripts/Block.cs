@@ -31,6 +31,9 @@ public class Block : ITilePlaceable {
 
             case BlockType.kRolling:
                 mBlockBaseObject = tile.mParentNavGrid.RollingBlock;
+                mDisplayOffset.x += -1.25f;
+                mDisplayOffset.y +=  0.1f;
+                mDisplayOffset.z += -0.3f;
                 mProperties.sticksInUpdateFor = 100;
                 break;
 
@@ -192,7 +195,10 @@ public class Block : ITilePlaceable {
 
     public void SetVisualPosition(Vector3 position)
     {
-        mBlockObject.transform.position = new Vector3(position.x, position.y, mBlockObject.transform.position.z);
+        if(mBlockObject != null)
+        {
+            mBlockObject.transform.position = new Vector3(position.x, position.y, mBlockObject.transform.position.z);
+        }
     }
 
     ////////// ITilePlaceable
@@ -285,6 +291,11 @@ public class Block : ITilePlaceable {
     public GameObject GetConnectedObject()
     {
         return mBlockObject;
+    }
+
+    public void Clear()
+    {
+        mBlockObject = null;
     }
     
     public PlaceableProperties GetProperties()

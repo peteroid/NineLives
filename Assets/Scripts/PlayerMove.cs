@@ -273,6 +273,11 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
         throw new NotImplementedException();
     }
 
+    public void Clear()
+    {
+        throw new NotImplementedException();
+    }
+
 
     public PlaceableProperties GetProperties()
     {
