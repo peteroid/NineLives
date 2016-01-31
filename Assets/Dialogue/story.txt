@@ -1,0 +1,101 @@
+Human Wannabe Story
+
+
+I'm a cat.
+
+What are my motivations?
+	I want to be human
+		Why?
+			I don't really know
+			
+	I want to get the glowy thing
+		Why?
+			It's Glowy
+	
+	I want to get to the bed
+		Why?
+			sleepz
+	
+	I want to explore this box/room/place
+		Why?
+			I'm a cat, I'm curious
+			
+			
+			
+
+			
+Human 1
+	Cat - "That was exhausting. A nap sounds nice"
+	Other - "Don't sleep! You're still needed"
+	
+Human 2
+		Other - "Please keep trying. I can't do this without you"
+		Cat - "Why is it so important to you? Can't I rest?"	
+Human 3
+	Other - "Can you hear me? I'm right here with you"
+	Cat - "Silly human. If I give you some attention will you let me be?"
+Human 4
+	Cat - "Maybe you could hold me... but just for a little bit"
+	Other - "You're so brave! So strong!"
+Human 5
+	Cat - "This is nice. Perhaps humans aren't so bad after all"
+	Other - "Everything is going to be ok, I promise"
+Human 6
+	Cat - "I, um, maybe I should--"		
+	Other - "What was that? Was that you?"
+Human 7
+		Cat - "You can hear me? What is happening?"
+		Other - "Come quick! She's awake!"
+
+Human 8
+	Cat - "So difficult... so much pain..."
+	Other - "You're okay, you'll be okay, I know you'll be okay."
+	
+IF ALL Human
+			Cat-"Where am I? What's going on? Everything hurts..."
+			Doctor - "Another close call, but you pulled through."
+			Other - "I knew you could do it. I knew you would be alright."
+			Other - "If you made it through this time I just know you can do it tomorrow, and the day after that"
+			Cat - "Ya! ya, maybe I can do this--"
+			
+			
+		RESPAWN	
+		
+Cat tutorial 1
+		Cat - "My bed! I'm pooped"
+Cat tutorial 2
+		Cat - "Mrowr. So comfy. Goodnight, World."
+		BLACK SCREEN, CAT SLEEPING
+Cat 1
+		Cat - "That was exhausting. A nap sounds nice"
+		Other - "Don't sleep! You're still needed"
+Cat 2
+		Other - "Please keep trying. I can't do this without you"
+		Cat - "It's too hard. You'll be okay, let me sleep"
+Cat 3
+		Other - "Can you hear me? I'm right here"
+		Cat - "Shhh. Can't you see I just want to rest"
+Cat 4	
+		Cat - "Sit with me, I don't want to fall asleep alone"
+		Other - "You're so brave, so strong!"
+Cat 5	
+		Cat - "This is nice. I will sleep peacefully now"
+		Other - "Everything is going to be ok, I promise"
+Cat 6
+		Cat - "Goodnight sweet friend. Don't be sad"
+		Other - "What was that? Was that you?"
+Cat 7 
+		Cat - "You heard that? I'm glad. My eyes are getting heavy"
+		Other - "Come quick! She's awake!"
+Cat 8
+		Cat - "So difficult... so much pain... but sleep comes quickly"
+		Other - "You're ok, you'll be ok, I know you'll be ok"
+		
+If NOT all human
+		Cat - "Goodnight."
+		FADE TO BLACK, PAUSE
+		Doctor - "Your mother fought hard, but in the end she went peacefully"
+		Other - "I thought she would make it through. I thought she would be alright"
+		Doctor - "Sometimes-- Sometimes, the pain is too much. Sometimes you have to just let go."
+		
+
