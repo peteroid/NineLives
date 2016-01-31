@@ -32,7 +32,7 @@ public class TileSystem : MonoBehaviour {
     
     public Tile[][] mNavGrid;
 
-    private ArrayList mBlocksOnMoveLoop = new ArrayList();
+	private ArrayList mPlaceableUpdates = new ArrayList();
 	private ArrayList mTiles;
 	private string[] mLevels;
 	private int mLevelIndex = -1;
@@ -111,7 +111,7 @@ public class TileSystem : MonoBehaviour {
                 int tileCode = jsonObj["data"][x][y].AsInt;
                 if(tileCode < 0)
                 {
-                    mNavGrid[x][y] = new Tile(this, Tile.TerrainType.kPass, x, y);
+                    mNavGrid[x][y] = new Tile(this, Tile.TerrainType.kPass, x, y, 0);
                     LoadSpecializedItem(mNavGrid[x][y], tileCode);
                 }
                 else
