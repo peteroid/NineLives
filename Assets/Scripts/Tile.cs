@@ -8,7 +8,8 @@ public class Tile : ITile
     {
         kPass = 0,
         kWall = 1,
-        kDoor = 2
+        kDoor = 2,
+		kHumanDoor = 3
     }
 
     public TerrainType mType;
@@ -50,6 +51,11 @@ public class Tile : ITile
                 mDisplayOffsets.z += 0.25f;
                 break;
 
+			case TerrainType.kHumanDoor:
+				mTileBaseObject = parent.DoorTile;
+				mDisplayOffsets.z += 0.25f;
+				break;
+
             default: break;
         }
     }
@@ -82,7 +88,7 @@ public class Tile : ITile
         return true;
     }
 
-    public void TryIncomingMove(ITilePlaceable interferingObj, int dirX, int dirY)
+	public bool TryIncomingMove(ITilePlaceable interferingObj, int dirX, int dirY)
     {
         ArrayList moveList = new ArrayList();
         foreach (ITilePlaceable obj in mPlaceables)
@@ -100,12 +106,13 @@ public class Tile : ITile
                    
             if(interferingObj.GetProperties().isPlayer)
             {
-                return;
+                return false;
             }
         }
 
         interferingObj.SetAsOwningTile(this);
         LockToPosition(interferingObj);
+		return true;
     }
 
     public void Subscribe(ITilePlaceable placeable)
