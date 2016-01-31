@@ -9,6 +9,12 @@ public class SharedDataScript : MonoBehaviour {
 		set { _levelIndex = value; }
 	}
 
+	static Tile.TerrainType _type;
+	public Tile.TerrainType type {
+		get { return _type; }
+		set { _type = value; }
+	}
+
 	// Use this for initialization
 	void Start () {
 	

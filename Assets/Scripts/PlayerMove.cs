@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
 
@@ -17,6 +18,7 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
 	public InputScript input;
     public TileSystem navGrid;
 	public GameObject spriteObject;
+	public SharedDataScript sharedDataObject;
     //public ParticleSystem dustEffects;
 
     private bool mInitialized = false;
@@ -48,15 +50,16 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
             // check for win conditions
             switch (((Tile) mOwningTile).mType)
             {
-                case Tile.TerrainType.kExit:
-                    mMeowCount++;
-                    if(mMeowCount > 1) // First exit is always a cat
-                    {
-                        navGrid.mHasCatEndings = true;
-                    }
+			case Tile.TerrainType.kExit:
+					mMeowCount++;
+					if (mMeowCount > 1) { // First exit is always a cat
+						navGrid.mHasCatEndings = true;
+					}
+					sharedDataObject.type = Tile.TerrainType.kExit;
                     break;
                 case Tile.TerrainType.kHumanExit:
                     mHumanCount++;
+					sharedDataObject.type = Tile.TerrainType.kHumanExit;
                     break;
                 default:
                     moveToNext = false;
@@ -85,15 +88,15 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
 		Init ();
 		navGrid.PreNextLevel ();
 		yield return new WaitForSeconds(3 / speedFactor);
-		navGrid.NextLevel ();
-		StartCoroutine(PostStart());
+		SceneManager.LoadScene ("DialogueScene");
+//		navGrid.NextLevel ();
+//		StartCoroutine(PostStart());
 	}
 
 	public void ResetLevel ()
 	{
 		Init ();
 		navGrid.LoadCurrentLevel ();
-
 	}
 
 	// the shorthands are messed up due to the rotation of camera
