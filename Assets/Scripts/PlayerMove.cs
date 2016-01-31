@@ -4,6 +4,12 @@ using System;
 
 public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 
+	public enum WinType
+	{
+		trivial,
+		humanize
+	}
+
 	// drag and drop the input to this GameObject
 	public GameObject input;
     public TileSystem navGrid;
@@ -20,8 +26,29 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
         if(navGrid.CanMove(this, x, y))
         {
             navGrid.TryMove(this, x, y);
+
+			// check for win conditions
+			switch (((Tile) mOwningTile).mType)
+			{
+				case Tile.TerrainType.kDoor:
+					NextLevel ();
+					Debug.Log ("Meow");
+					break;
+				case Tile.TerrainType.kHumanDoor:
+					NextLevel ();
+					Debug.Log ("Human");
+					break;
+				default:
+					break;
+			}
         }
     }
+
+	private void NextLevel ()
+	{
+		navGrid.NextLevel ();
+		Init ();
+	}
 
 	// the shorthands are messed up due to the rotation of camera
 	public void Up () {
@@ -43,13 +70,18 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
         Move(0, -1);
 	}
 
+	private void Init()
+	{
+		mX = 0;
+		mY = 0;
+		mInitialized = false;
+	}
+
 	// Use this for initialization
 	void Start () {
-        mX = 0;
-        mY = 0;
+		Init ();
         mProperties.isPlayer = true;
         mProperties.canPushBlocks = true;
-
 
         input.GetComponent<InputScript> ().SetInputInterface (this);
 	}
