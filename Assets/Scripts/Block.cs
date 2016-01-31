@@ -17,6 +17,7 @@ public class Block : ITilePlaceable {
 
     public GameObject mBlockBaseObject;
     private GameObject mBlockObject;
+    private ArrayList Followers = new ArrayList();
 
     public Block(BlockType type, Tile tile)
     {
@@ -73,6 +74,12 @@ public class Block : ITilePlaceable {
         {
             mOwningTile.mParentNavGrid.AddBlockToUpdateList(this, dirX, dirY);
         }
+
+        if(mProperties.attachable && !mProperties.isAttached)
+        {
+            Attach(this);
+            mProperties.isAttached = true;
+        }
     }
 
     public bool CanMove(int dirX, int dirY)
@@ -85,10 +92,25 @@ public class Block : ITilePlaceable {
         return siblingTile.AllowIncomingMove(this, dirX, dirY);
     }
 
+    public void Attach(ITilePlaceable follower)
+    {
+        mProperties.isAttached = true;
+        Followers.Add(follower);
+    }
+        
     public void TryMove(int dirX, int dirY)
     {
         ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
         siblingTile.TryIncomingMove(this, dirX, dirY);
+
+        if (Followers.Count > 0)
+        {
+            foreach(ITilePlaceable obj in Followers)
+            {
+                siblingTile.TryIncomingMove(obj, dirX, dirY);
+            }
+                
+        }
     }
 
     public int GetX()
