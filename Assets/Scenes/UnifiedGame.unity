@@ -506,7 +506,7 @@ MonoBehaviour:
   DoorTile: {fileID: 116280, guid: 628e0ff9ce80b4f469527e3081f0bfe8, type: 2}
   SimpleBlock: {fileID: 144898, guid: 2be3b3e9e760b3047b5e66eac006ed05, type: 2}
   RollingBlock: {fileID: 144898, guid: 3acec28ea699b5147a2942ea7cb64242, type: 2}
-  AttachableBlock: {fileID: 0}
+  AttachableBlock: {fileID: 163004, guid: f513d377d01d58a46bb3fcea1db8e521, type: 2}
   mDisplayOffset: {x: 0, y: 0, z: 0}
   mPlayerStartX: 0
   mPlayerStartY: 0
