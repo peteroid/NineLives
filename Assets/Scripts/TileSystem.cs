@@ -21,7 +21,7 @@ public class TileSystem : MonoBehaviour {
     public int mPlayerStartX;
     public int mPlayerStartY;
     
-    public Tile[][] mNavGrid;
+    private Tile[][] mNavGrid;
 
     private ArrayList mBlocksOnMoveLoop = new ArrayList();
 
@@ -81,6 +81,7 @@ public class TileSystem : MonoBehaviour {
                 }
                 else
                 {
+                    if (tileCode > 9) tileCode = 0; // Temporary
                     mNavGrid[x][y] = new Tile(this, (Tile.TerrainType)tileCode, x, y);
                 }
             }
