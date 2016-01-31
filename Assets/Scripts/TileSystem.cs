@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using SimpleJSON;
 using System.Collections;
 using System.IO;
@@ -30,12 +30,11 @@ public class TileSystem : MonoBehaviour {
     public int mPlayerStartX;
     public int mPlayerStartY;
     
-    private Tile[][] mNavGrid;
+    public Tile[][] mNavGrid;
 
-    private ArrayList mPlaceableUpdates = new ArrayList();
+    private ArrayList mBlocksOnMoveLoop = new ArrayList();
 	private ArrayList mTiles;
 	private string[] mLevels;
-
 	private int mLevelIndex = -1;
 
 	public TileSystem ()
@@ -112,7 +111,7 @@ public class TileSystem : MonoBehaviour {
                 int tileCode = jsonObj["data"][x][y].AsInt;
                 if(tileCode < 0)
                 {
-                    mNavGrid[x][y] = new Tile(this, Tile.TerrainType.kPass, x, y, 0);
+                    mNavGrid[x][y] = new Tile(this, Tile.TerrainType.kPass, x, y);
                     LoadSpecializedItem(mNavGrid[x][y], tileCode);
                 }
                 else
@@ -139,7 +138,7 @@ public class TileSystem : MonoBehaviour {
         }
     }
 
-    public void GenerateTileMap()
+	public void GenerateTileMap()
     {
         // Instantiate the tile types onto the game world, or placing them - KTZ
         for (int x = 0; x < mWidth; ++x)
@@ -152,24 +151,38 @@ public class TileSystem : MonoBehaviour {
                 tilePos += mNavGrid[x][y].mDisplayOffsets;
                 tilePos.y *= -1;
                 tilePos.y--;
-                GameObject newTile = (GameObject)Instantiate(mNavGrid[x][y].mTileBaseObject, tilePos, tileRot);
+
+				// randomize the position of the tiles first
+				Vector3 startFrom = GetRandomVector3 (15f, 30f);
+				GameObject newTile = (GameObject)Instantiate(mNavGrid[x][y].mTileBaseObject, startFrom, tileRot);
+				newTile.GetComponent<SlideBlock> ().SetStartPosition (tilePos, startFrom.magnitude / 2f);
+
                 newTile.transform.parent = gameObject.transform;
 				mTiles.Add (newTile);
-
                 mNavGrid[x][y].SetTileGameObject(newTile);
-
-                ArrayList placeables = (ArrayList)mNavGrid[x][y].mPlaceables.Clone();
-                foreach(Block block in placeables)
-                {
-                    if (block != null)
-                    {
-                        GameObject blockObj = (GameObject)Instantiate(block.mBlockBaseObject, Vector3.zero, Quaternion.identity);
-                        block.SetBlockGameObject(blockObj);
-                    }
-                }
             }
         }
     }
+
+	public void PostGenerateTileMap ()
+	{
+		for (int x = 0; x < mWidth; ++x)
+		{
+			for (int y = 0; y < mHeight; ++y)
+			{
+                ArrayList placeables = (ArrayList)mNavGrid[x][y].mPlaceables.Clone();
+				foreach(System.Object block in placeables)
+				{
+					Block tryBlock = block as Block;
+					if (tryBlock != null)
+					{
+						GameObject blockObj = (GameObject)Instantiate(tryBlock.mBlockBaseObject, Vector3.zero, Quaternion.identity);
+						tryBlock.SetBlockGameObject(blockObj);
+					}
+				}
+			}
+		}
+	}
 
     private void LoadSpecializedItem(Tile tile, int tileCode)
     {
@@ -185,7 +198,7 @@ public class TileSystem : MonoBehaviour {
         }
     }
 
-    const float kDelays = .15f;
+    const float kDelays = 0.15f;
 
     private class PlaceableUpdate
     {
@@ -250,8 +263,33 @@ public class TileSystem : MonoBehaviour {
 		{
 			Destroy (tile);
 		}
+		mTiles.Clear ();
 
-		GenerateTileMap();	
+		GenerateTileMap ();
+	}
+
+	public void PreNextLevel ()
+	{
+		UnityEngine.Random.seed = (int) Time.time;
+		Debug.Log (UnityEngine.Random.seed.ToString ());
+		foreach (GameObject tile in mTiles)
+		{
+			Vector3 velocity = GetRandomVector3 (7f, 10f);
+			tile.GetComponent<SlideBlock> ().SetVelocity (velocity);
+		}
+	}
+
+	public Vector3 GetRandomVector3 (float min, float max)
+	{
+		float axisDeterminator = UnityEngine.Random.value;
+		float randomizedSpeed = UnityEngine.Random.Range (min, max) * (UnityEngine.Random.value > 0.5f ? 1 : -1);
+		if (axisDeterminator < 1.0f / 3) {
+			return new Vector3 (randomizedSpeed, 0, 0);
+		} else if (axisDeterminator > 1.0f / 3 * 2) {
+			return new Vector3 (0, randomizedSpeed, 0);
+		} else {
+			return new Vector3 (0, 0, randomizedSpeed);
+		}
 	}
 
 	public void NextLevel ()
@@ -259,8 +297,7 @@ public class TileSystem : MonoBehaviour {
 		++mLevelIndex;
 		LoadCurrentLevel ();
 	}
-
-
+		
     private float mLastUpdate = 0.0f;
     // Update is called once per frame
     void Update () {
