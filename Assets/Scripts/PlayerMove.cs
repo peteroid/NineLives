@@ -50,6 +50,10 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
             {
                 case Tile.TerrainType.kExit:
                     mMeowCount++;
+                    if(mMeowCount > 1) // First exit is always a cat
+                    {
+                        navGrid.mHasCatEndings = true;
+                    }
                     break;
                 case Tile.TerrainType.kHumanExit:
                     mHumanCount++;

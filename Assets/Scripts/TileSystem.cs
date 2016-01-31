@@ -37,6 +37,8 @@ public class TileSystem : MonoBehaviour {
 	private ArrayList mTiles, mPlaceables;
 	private string[] mLevels;
 
+    public bool mHasCatEndings = false;
+
 	public int mLevelIndex = -1;
 	private float speedFactor = 1f;
 
@@ -97,6 +99,17 @@ public class TileSystem : MonoBehaviour {
 
     public void LoadMap(string lvlNum)
     {
+        if(lvlNum == "8")
+        {
+            if(mHasCatEndings)
+            {
+                lvlNum = "8cat";
+            }
+            else
+            {
+                lvlNum = "8human";
+            }
+        }
 		TextAsset levelFile = Resources.Load<TextAsset>("Levels/" + lvlNum);
         JSONNode jsonObj = JSON.Parse(levelFile.text);
         
