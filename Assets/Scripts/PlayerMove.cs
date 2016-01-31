@@ -11,8 +11,9 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 	}
 
 	// drag and drop the input to this GameObject
-	public GameObject input;
+	public InputScript input;
     public TileSystem navGrid;
+	public Transform spriteTransform;
 
     private int mX;
     private int mY;
@@ -53,21 +54,32 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 	// the shorthands are messed up due to the rotation of camera
 	public void Up () {
         Move(0, 1);
+		Face ("right");
 	}
 
 	public void Left ()
     {
         Move(-1, 0);
+		Face ("left");
 	}
 
 	public void Right ()
     {
         Move(1, 0);
+		Face ("right");
 	}
 
 	public void Down ()
     {
         Move(0, -1);
+		Face ("left");
+	}
+
+	// -1 for left, 1 for right
+	private void Face (string direction)
+	{
+		Vector3 scale = spriteTransform.localScale;
+		spriteTransform.localScale = new Vector3 ((direction == "left"? -1 : 1) * Math.Abs (scale.x), scale.y, scale.z);
 	}
 
 	private void Init()
@@ -83,7 +95,7 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
         mProperties.isPlayer = true;
         mProperties.canPushBlocks = true;
 
-        input.GetComponent<InputScript> ().SetInputInterface (this);
+        input.SetInputInterface (this);
 	}
 
     void PostStart()
