@@ -136,6 +136,11 @@ public class Tile : ITile
     public void SetTileGameObject(GameObject tileGameObject)
     {
         mTileObject = tileGameObject;
+
+        if(mType == TerrainType.kPushUp || mType == TerrainType.kPushDown)
+        {
+            mTileObject.transform.Rotate(0.0f, 0.0f, 90.0f);
+        }
     }
 
     public ITile GetSiblingTile(int dirX, int dirY)
