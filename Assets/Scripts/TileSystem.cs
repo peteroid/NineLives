@@ -12,6 +12,8 @@ public class TileSystem : MonoBehaviour {
     public GameObject PassableTile;
     public GameObject WallTile;
     public GameObject DoorTile;
+    public GameObject PressureTile;
+    public GameObject OmenDoor;
 
     public GameObject SimpleBlock;
     public GameObject RollingBlock;
@@ -104,13 +106,19 @@ public class TileSystem : MonoBehaviour {
                 int tileCode = jsonObj["data"][x][y].AsInt;
                 if(tileCode < 0)
                 {
-                    mNavGrid[x][y] = new Tile(this, Tile.TerrainType.kPass, x, y);
+                    mNavGrid[x][y] = new Tile(this, Tile.TerrainType.kPass, x, y, 0);
                     LoadSpecializedItem(mNavGrid[x][y], tileCode);
                 }
                 else
                 {
-                    if (tileCode > 9) tileCode = 0; // Temporary
-                    mNavGrid[x][y] = new Tile(this, (Tile.TerrainType)tileCode, x, y);
+                    int id = 0;
+                    if(tileCode >= 10)
+                    {
+                        id = tileCode % 10;
+                        tileCode -= id;
+                    }
+
+                    mNavGrid[x][y] = new Tile(this, (Tile.TerrainType)tileCode, x, y, id);
                 }
             }
         }

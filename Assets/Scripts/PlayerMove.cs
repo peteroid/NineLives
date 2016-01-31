@@ -37,10 +37,10 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
 			// check for win conditions
 			switch (((Tile) mOwningTile).mType)
 			{
-				case Tile.TerrainType.kDoor:
+				case Tile.TerrainType.kExit:
                     mMeowCount++;
                     break;
-				case Tile.TerrainType.kHumanDoor:
+				case Tile.TerrainType.kHumanExit:
                     mHumanCount++;
 					break;
 				default:

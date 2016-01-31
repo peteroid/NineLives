@@ -8,8 +8,12 @@ public class Tile : ITile
     {
         kPass = 0,
         kWall = 1,
-        kDoor = 2,
-		kHumanDoor = 3
+        kExit = 2,
+		kHumanExit = 3,
+
+        kPressure = 40,
+        
+        kPressureDoor = 50
     }
 
     public TerrainType mType;
@@ -26,7 +30,12 @@ public class Tile : ITile
 
     public TileSystem mParentNavGrid;
 
-    public Tile(TileSystem parent, TerrainType type, int x, int y)
+    private bool mIsDoor = false;
+    private bool mIsExit = false;
+
+    private int mSpecialCaseID = 0;
+
+    public Tile(TileSystem parent, TerrainType type, int x, int y, int id)
     {
         mType = type;
         mX = x;
@@ -34,6 +43,7 @@ public class Tile : ITile
         mPlaceables = new ArrayList();
         mPassable = true;
         mParentNavGrid = parent;
+        mSpecialCaseID = id;
 
         switch (mType)
         {
@@ -46,17 +56,52 @@ public class Tile : ITile
                 mTileBaseObject = parent.WallTile;
                 break;
 
-            case TerrainType.kDoor:
+            case TerrainType.kExit:
                 mTileBaseObject = parent.DoorTile;
                 mDisplayOffsets.z += 0.25f;
+                mIsExit = true;
                 break;
 
-			case TerrainType.kHumanDoor:
+			case TerrainType.kHumanExit:
 				mTileBaseObject = parent.DoorTile;
 				mDisplayOffsets.z += 0.25f;
-				break;
+                mIsExit = true;
+                break;
+
+            case TerrainType.kPressure:
+                mTileBaseObject = parent.PressureTile;
+                break;
+
+            case TerrainType.kPressureDoor:
+                mTileBaseObject = parent.OmenDoor;
+                mDisplayOffsets.z += -0.1f;
+                mIsDoor = true;
+                mPassable = false;
+                DelegateHost.OnPressureChange += HandleOnPressureChange;
+                break;
 
             default: break;
+        }
+    }
+
+    ~Tile()
+    {
+        switch(mType)
+        {
+            case TerrainType.kPressureDoor:
+                DelegateHost.OnPressureChange -= HandleOnPressureChange;
+                break;
+
+            default: break;
+        }
+    }
+
+    private void HandleOnPressureChange(bool state, int id)
+    {
+        if(id == mSpecialCaseID)
+        {
+            mPassable = state;
+            mTileObject.transform.position += new Vector3(0.0f, 0.0f, (state ? .35f : -.35f));
         }
     }
 
@@ -73,6 +118,12 @@ public class Tile : ITile
     public bool AllowIncomingMove(ITilePlaceable interferingObj, int dirX, int dirY)
     {
         if (!mPassable)
+        {
+            return false;
+        }
+
+        // Only players enter exits
+        if(!interferingObj.GetProperties().isPlayer && mIsExit)
         {
             return false;
         }
@@ -124,11 +175,19 @@ public class Tile : ITile
     public void Subscribe(ITilePlaceable placeable)
     {
         mPlaceables.Add(placeable);
+        if(mType == TerrainType.kPressure && mPlaceables.Count == 1)
+        {
+            DelegateHost.OnPressureChange.Invoke(true, mSpecialCaseID);
+        }
     }
 
     public void Unsubscribe(ITilePlaceable placeable)
     {
         mPlaceables.Remove(placeable);
+        if (mType == TerrainType.kPressure && mPlaceables.Count == 0)
+        {
+            DelegateHost.OnPressureChange.Invoke(false, mSpecialCaseID);
+        }
     }
 
     public Vector3 GetVisualPosition()
