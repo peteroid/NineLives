@@ -48,6 +48,7 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
         mX = 0;
         mY = 0;
         mProperties.isPlayer = true;
+        mProperties.canPushBlocks = true;
 
 
         input.GetComponent<InputScript> ().SetInputInterface (this);

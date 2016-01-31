@@ -46,6 +46,11 @@ public class Block : ITilePlaceable {
 
     public bool AllowIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY)
     {
+        if(!incomingPlaceable.GetProperties().canPushBlocks)
+        {
+            return false;
+        }
+
         ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
         if(siblingTile == null)
         {
@@ -67,7 +72,12 @@ public class Block : ITilePlaceable {
 
     public bool CanMove(int dirX, int dirY)
     {
-        return mOwningTile.AllowIncomingMove(this, dirX, dirY);
+        ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
+        if (siblingTile == null)
+        {
+            return false;
+        }
+        return siblingTile.AllowIncomingMove(this, dirX, dirY);
     }
 
     public void TryMove(int dirX, int dirY)
