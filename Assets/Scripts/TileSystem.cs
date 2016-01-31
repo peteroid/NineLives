@@ -34,7 +34,7 @@ public class TileSystem : MonoBehaviour {
     public Tile[][] mNavGrid;
 
 	private ArrayList mPlaceableUpdates = new ArrayList();
-	private ArrayList mTiles;
+	private ArrayList mTiles, mPlaceables;
 	private string[] mLevels;
 
 	public int mLevelIndex = -1;
@@ -43,6 +43,7 @@ public class TileSystem : MonoBehaviour {
 	public TileSystem ()
 	{
 		mTiles = new ArrayList ();
+		mPlaceables = new ArrayList ();
 	}
 
     public Tile GetTile(int x, int y)
@@ -181,6 +182,7 @@ public class TileSystem : MonoBehaviour {
 					{
 						GameObject blockObj = (GameObject)Instantiate(tryBlock.mBlockBaseObject, Vector3.zero, Quaternion.identity);
 						tryBlock.SetBlockGameObject(blockObj);
+						mPlaceables.Add (blockObj);
 						Debug.Log ("block generated");
 					}
 				}
@@ -266,11 +268,11 @@ public class TileSystem : MonoBehaviour {
 
 	public void LoadCurrentLevel ()
 	{
-		LoadMap(mLevels[mLevelIndex]);
 		// clean up the current tiles before generating
+		LoadMap(mLevels[mLevelIndex]);
 		foreach (GameObject tile in mTiles)
 		{
-			Destroy (tile);
+			Delete (tile);
 		}
 		mTiles.Clear ();
 
@@ -279,6 +281,12 @@ public class TileSystem : MonoBehaviour {
 
 	public void PreNextLevel ()
 	{
+		foreach (GameObject placeable in mPlaceables)
+		{
+			Delete (placeable);
+		}
+		mPlaceables.Clear ();
+
 		UnityEngine.Random.seed = (int) Time.time;
 		Debug.Log (UnityEngine.Random.seed.ToString ());
 		foreach (GameObject tile in mTiles)

@@ -780,6 +780,7 @@ MonoBehaviour:
   mDisplayOffset: {x: 0, y: 0, z: 0}
   mPlayerStartX: 0
   mPlayerStartY: 0
+  mLevelIndex: -1
 --- !u!4 &1637684002
 Transform:
   m_ObjectHideFlags: 0
