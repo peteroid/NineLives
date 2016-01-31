@@ -36,7 +36,8 @@ public class TileSystem : MonoBehaviour {
 	private ArrayList mPlaceableUpdates = new ArrayList();
 	private ArrayList mTiles;
 	private string[] mLevels;
-	private int mLevelIndex = -1;
+
+	public int mLevelIndex = -1;
 	private float speedFactor = 1f;
 
 	public TileSystem ()
@@ -83,7 +84,7 @@ public class TileSystem : MonoBehaviour {
 		int levelCount = jsonObj["data"].AsArray.Count;
 		if (levelCount > 0)
 		{
-			mLevelIndex = 0;
+			mLevelIndex = (mLevelIndex < 0 ? 0 : mLevelIndex);
 			mLevels = new string[levelCount];
 			for (int i = 0; i < levelCount; i++)
 			{
@@ -180,6 +181,7 @@ public class TileSystem : MonoBehaviour {
 					{
 						GameObject blockObj = (GameObject)Instantiate(tryBlock.mBlockBaseObject, Vector3.zero, Quaternion.identity);
 						tryBlock.SetBlockGameObject(blockObj);
+						Debug.Log ("block generated");
 					}
 				}
 			}
