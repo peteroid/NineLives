@@ -27,6 +27,7 @@ public class Block : ITilePlaceable {
         {
             case BlockType.kSimple:
                 mBlockBaseObject = tile.mParentNavGrid.SimpleBlock;
+                mDisplayOffset.z += -0.19f;
                 break;
 
             case BlockType.kRolling:
