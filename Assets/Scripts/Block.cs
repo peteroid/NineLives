@@ -6,7 +6,8 @@ public class Block : ITilePlaceable {
     public enum BlockType
     {
         kSimple = 1,
-        kRolling = 2
+        kRolling = 2,
+        kAttachable = 3
     }
 
     private int mX = 0;
@@ -32,6 +33,10 @@ public class Block : ITilePlaceable {
             case BlockType.kRolling:
                 mBlockBaseObject = tile.mParentNavGrid.RollingBlock;
                 mProperties.keepsMoving = true;
+                break;
+            case BlockType.kAttachable:
+                mBlockBaseObject = tile.mParentNavGrid.AttachableBlock;
+                mProperties.attachable = true;
                 break;
 
             default: break;
