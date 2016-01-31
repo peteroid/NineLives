@@ -185,7 +185,7 @@ public class TileSystem : MonoBehaviour {
         }
     }
 
-    const float kDelays = 0.15f;
+    const float kDelays = .15f;
 
     private class PlaceableUpdate
     {
@@ -230,7 +230,7 @@ public class TileSystem : MonoBehaviour {
         update.dirY = dirY;
         update.delayUntilNextMove = kDelays;
 
-        placeable.GetProperties().inUpdateSequenceFor = duration;
+        update.placeable.GetProperties().inUpdateSequenceFor = duration;
 
         mPlaceableUpdates.Add(update);
     }
@@ -279,12 +279,13 @@ public class TileSystem : MonoBehaviour {
 
                 PlaceableProperties props = update.placeable.GetProperties();
                 bool remove = false;
+                bool move = false;
 
                 if (update.placeable.CanMove(update.dirX, update.dirY))
                 {
-                    update.placeable.TryMove(update.dirX, update.dirY);
+                    move = true;
                     props.inUpdateSequenceFor--;
-                    if(props.inUpdateSequenceFor <= 0)
+                    if (props.inUpdateSequenceFor <= 0)
                     {
                         remove = true;
                     }
@@ -298,6 +299,11 @@ public class TileSystem : MonoBehaviour {
                 {
                     update.placeable.GetProperties().inUpdateSequenceFor = -1;
                     mPlaceableUpdates.Remove(update);
+                }
+
+                if(move)
+                {
+                    update.placeable.TryMove(update.dirX, update.dirY);
                 }
             }
         }
