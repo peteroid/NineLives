@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerCharacter : MonoBehaviour {
+public class GetAnimator : MonoBehaviour {
 
-    
+    private Animator animator;
 
 	// Use this for initialization
 	void Start () {
-        
+
+        animator = GetComponent<Animator>();
 
     }
 	
