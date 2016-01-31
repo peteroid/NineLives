@@ -24,6 +24,14 @@ public class TileSystem : MonoBehaviour {
     public Tile[][] mNavGrid;
 
     private ArrayList mBlocksOnMoveLoop = new ArrayList();
+	private ArrayList mTiles;
+	private string[] mLevels;
+	private int mLevelIndex = -1;
+
+	public TileSystem ()
+	{
+		mTiles = new ArrayList ();
+	}
 
     public Tile GetTile(int x, int y)
     {
@@ -52,13 +60,31 @@ public class TileSystem : MonoBehaviour {
         Tile dest = GetTile(obj.GetX() + dirX, obj.GetY() + dirY);
         if(dest != null)
         {
-            dest.TryIncomingMove(obj, dirX, dirY);
+			dest.TryIncomingMove (obj, dirX, dirY);
         }
     }
 
+	private void LoadLevels ()
+	{
+		TextAsset levelFile = Resources.Load<TextAsset>("Levels/levels");
+		JSONNode jsonObj = JSON.Parse(levelFile.text);
+
+		int levelCount = jsonObj["data"].AsArray.Count;
+		if (levelCount > 0)
+		{
+			mLevelIndex = 0;
+			mLevels = new string[levelCount];
+			for (int i = 0; i < levelCount; i++)
+			{
+				mLevels[i] = jsonObj["data"][i];
+				Debug.Log (mLevels[i].ToString ());
+			}
+		}
+	}
+
     public void LoadMap(string lvlNum)
     {
-        TextAsset levelFile = Resources.Load<TextAsset>("Levels/" + lvlNum);
+		TextAsset levelFile = Resources.Load<TextAsset>("Levels/" + lvlNum);
         JSONNode jsonObj = JSON.Parse(levelFile.text);
         
         mWidth = jsonObj["data"].AsArray.Count;
@@ -102,6 +128,7 @@ public class TileSystem : MonoBehaviour {
                 tilePos.y--;
                 GameObject newTile = (GameObject)Instantiate(mNavGrid[x][y].mTileBaseObject, tilePos, tileRot);
                 newTile.transform.parent = gameObject.transform;
+				mTiles.Add (newTile);
 
                 mNavGrid[x][y].SetTileGameObject(newTile);
 
@@ -154,8 +181,26 @@ public class TileSystem : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        LoadMap("1");
-        GenerateTileMap();
+		LoadLevels ();
+		LoadCurrentLevel ();
+	}
+
+	public void LoadCurrentLevel ()
+	{
+		LoadMap(mLevels[mLevelIndex]);
+		// clean up the current tiles before generating
+		foreach (GameObject tile in mTiles)
+		{
+			Destroy (tile);
+		}
+
+		GenerateTileMap();	
+	}
+
+	public void NextLevel ()
+	{
+		++mLevelIndex;
+		LoadCurrentLevel ();
 	}
 
 
