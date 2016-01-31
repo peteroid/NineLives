@@ -26,7 +26,7 @@ public class TileSystem : MonoBehaviour {
     
     private Tile[][] mNavGrid;
 
-    private ArrayList mBlocksOnMoveLoop = new ArrayList();
+    private ArrayList mPlaceableUpdates = new ArrayList();
 	private ArrayList mTiles;
 	private string[] mLevels;
 
@@ -171,22 +171,42 @@ public class TileSystem : MonoBehaviour {
 
     const float kDelays = 0.15f;
 
-    private class BlockUpdate
+    private class PlaceableUpdate
     {
-        public Block block;
+        public ITilePlaceable placeable;
         public int dirX;
         public int dirY;
         public float delayUntilNextMove;
     }
 
-    public void AddBlockToUpdateList(Block block, int dirX, int dirY)
+    public void AddToUpdateList(ITilePlaceable placeable, int dirX, int dirY, int duration)
     {
-        BlockUpdate update = new BlockUpdate();
-        update.block = block;
+        // Don't duplicate
+        if(placeable.GetProperties().inUpdateSequenceFor > 0)
+        {
+            ArrayList removeUpdates = new ArrayList();
+            foreach (PlaceableUpdate rUpdate in mPlaceableUpdates)
+            {
+                if(rUpdate.placeable == placeable)
+                {
+                    removeUpdates.Add(rUpdate);
+                }
+            }
+            foreach (PlaceableUpdate rUpdate in removeUpdates)
+            {
+                mPlaceableUpdates.Remove(rUpdate);
+            }
+        }
+
+        PlaceableUpdate update = new PlaceableUpdate();
+        update.placeable = placeable;
         update.dirX = dirX;
         update.dirY = dirY;
         update.delayUntilNextMove = kDelays;
-        mBlocksOnMoveLoop.Add(update);
+
+        placeable.GetProperties().inUpdateSequenceFor = duration;
+
+        mPlaceableUpdates.Add(update);
     }
 
     // Use this for initialization
@@ -222,28 +242,38 @@ public class TileSystem : MonoBehaviour {
         float delta = now - mLastUpdate;
         mLastUpdate = now;
 
-        ArrayList removeUpdates = new ArrayList();
+        ArrayList updates = (ArrayList)mPlaceableUpdates.Clone();
 
-        foreach(BlockUpdate update in mBlocksOnMoveLoop)
+        foreach(PlaceableUpdate update in updates)
         {
             update.delayUntilNextMove -= delta;
             if(update.delayUntilNextMove < 0.0f)
             {
                 update.delayUntilNextMove += kDelays;
-                if(update.block.CanMove(update.dirX, update.dirY))
+
+                PlaceableProperties props = update.placeable.GetProperties();
+                bool remove = false;
+
+                if (update.placeable.CanMove(update.dirX, update.dirY))
                 {
-                    update.block.TryMove(update.dirX, update.dirY);
+                    update.placeable.TryMove(update.dirX, update.dirY);
+                    props.inUpdateSequenceFor--;
+                    if(props.inUpdateSequenceFor <= 0)
+                    {
+                        remove = true;
+                    }
                 }
                 else
                 {
-                    removeUpdates.Add(update);
+                    remove = true;
+                }
+
+                if(remove)
+                {
+                    update.placeable.GetProperties().inUpdateSequenceFor = 0;
+                    mPlaceableUpdates.Remove(update);
                 }
             }
-        }
-
-        foreach(BlockUpdate update in removeUpdates)
-        {
-            mBlocksOnMoveLoop.Remove(update);
         }
 	}
 }

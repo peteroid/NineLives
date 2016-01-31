@@ -26,6 +26,10 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
 
     private void Move(int dirX, int dirY)
     {
+        if(mProperties.inUpdateSequenceFor > 0)
+        {
+            return;
+        }
         if (navGrid.CanMove(this, dirX, dirY))
         {
             MoveFollowers(dirX, dirY);
@@ -52,6 +56,16 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
                 NextLevel();
             }
         }
+    }
+
+    public bool CanMove(int dirX, int dirY)
+    {
+        return navGrid.CanMove(this, dirX, dirY);
+    }
+
+    public void TryMove(int dirX, int dirY)
+    {
+        navGrid.TryMove(this, dirX, dirY);
     }
 
 	private void NextLevel ()

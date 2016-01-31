@@ -33,6 +33,9 @@ public class Tile : ITile
     private bool mIsDoor = false;
     private bool mIsExit = false;
 
+    private int mPushDirX = 0;
+    private int mPushDirY = 0;
+
     private int mSpecialCaseID = 0;
 
     public Tile(TileSystem parent, TerrainType type, int x, int y, int id)
@@ -170,6 +173,12 @@ public class Tile : ITile
 
         interferingObj.SetAsOwningTile(this);
         LockToPosition(interferingObj);
+
+        if(mPushDirX != 0 || mPushDirY != 0)
+        {
+            int forcedPushAmount = Math.Max(interferingObj.GetProperties().sticksInUpdateFor, 1);
+            mParentNavGrid.AddToUpdateList(interferingObj, mPushDirX, mPushDirY, forcedPushAmount);
+        }
     }
 
     public void Subscribe(ITilePlaceable placeable)

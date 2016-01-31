@@ -30,7 +30,7 @@ public class Block : ITilePlaceable {
 
             case BlockType.kRolling:
                 mBlockBaseObject = tile.mParentNavGrid.RollingBlock;
-                mProperties.keepsMoving = true;
+                mProperties.sticksInUpdateFor = 100;
                 break;
 
             case BlockType.kAttachable:
@@ -77,9 +77,9 @@ public class Block : ITilePlaceable {
         {
             TryMove(dirX, dirY);
 
-            if (mProperties.keepsMoving)
+            if (mProperties.sticksInUpdateFor > 0)
             {
-                mOwningTile.mParentNavGrid.AddBlockToUpdateList(this, dirX, dirY);
+                mOwningTile.mParentNavGrid.AddToUpdateList(this, dirX, dirY, mProperties.sticksInUpdateFor);
             }
 
         }
