@@ -238,6 +238,20 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
         mOwningTile = (Tile)tile;
     }
 
+    public void PrepForRemoval()
+    {
+        if (mOwningTile != null)
+        {
+            mOwningTile.Unsubscribe(this);
+        }
+        mOwningTile = null;
+    }
+
+    public GameObject GetConnectedObject()
+    {
+        throw new NotImplementedException();
+    }
+
 
     public PlaceableProperties GetProperties()
     {

@@ -10,6 +10,7 @@ public class Tile : ITile
         kWall = 1,
         kExit = 2,
 		kHumanExit = 3,
+        kBlockHole = 4,
 
         kPushUp = 10,
         kPushRight = 11,
@@ -24,7 +25,8 @@ public class Tile : ITile
     public TerrainType mType;
     public int mX;
     public int mY;
-    public bool mPassable;
+    public bool mPlayerPassable = true;
+    public bool mBlockPassable = true;
 
     public ArrayList mPlaceables;
 
@@ -36,7 +38,6 @@ public class Tile : ITile
     public TileSystem mParentNavGrid;
 
     private bool mIsDoor = false;
-    private bool mIsExit = false;
 
     private int mPushDirX = 0;
     private int mPushDirY = 0;
@@ -49,7 +50,6 @@ public class Tile : ITile
         mX = x;
         mY = y;
         mPlaceables = new ArrayList();
-        mPassable = true;
         mParentNavGrid = parent;
         mSpecialCaseID = id;
 
@@ -57,54 +57,68 @@ public class Tile : ITile
         {
             case TerrainType.kPass:
                 mTileBaseObject = parent.PassableTile;
+                mDisplayOffsets.z -= 0.1f;
                 break;
 
             case TerrainType.kWall:
-                mPassable = false;
+                mPlayerPassable = false;
+                mBlockPassable = false;
                 mTileBaseObject = parent.WallTile;
+                mDisplayOffsets.z -= 0.15f;
                 break;
 
             case TerrainType.kExit:
                 mTileBaseObject = parent.DoorTile;
-                mDisplayOffsets.z += 0.25f;
-                mIsExit = true;
+                mDisplayOffsets.z += 0.15f;
+                mBlockPassable = false;
                 break;
 
 			case TerrainType.kHumanExit:
 				mTileBaseObject = parent.DoorTile;
-				mDisplayOffsets.z += 0.25f;
-                mIsExit = true;
+				mDisplayOffsets.z += 0.15f;
+                mBlockPassable = false;
+                break;
+
+            case TerrainType.kBlockHole:
+                mTileBaseObject = parent.EmptyTile;
+                mPlayerPassable = false;
                 break;
 
             case TerrainType.kPushUp:
                 mTileBaseObject = parent.PushUpTile;
+                mDisplayOffsets.z -= 0.1f;
                 mPushDirY = 1;
                 break;
 
             case TerrainType.kPushRight:
                 mTileBaseObject = parent.PushRightTile;
+                mDisplayOffsets.z -= 0.1f;
                 mPushDirX = 1;
                 break;
 
             case TerrainType.kPushDown:
                 mTileBaseObject = parent.PushDownTile;
+                mDisplayOffsets.z -= 0.1f;
                 mPushDirY = -1;
                 break;
 
             case TerrainType.kPushLeft:
                 mTileBaseObject = parent.PushLeftTile;
+                mDisplayOffsets.z -= 0.1f;
                 mPushDirX = -1;
                 break;
 
             case TerrainType.kPressure:
                 mTileBaseObject = parent.PressureTile;
+                mDisplayOffsets.z -= 0.2f;
                 break;
 
             case TerrainType.kPressureDoor:
                 mTileBaseObject = parent.OmenDoor;
-                mDisplayOffsets.z += -0.1f;
+                mDisplayOffsets.z -= 0.15f;
                 mIsDoor = true;
-                mPassable = false;
+                mPlayerPassable = false;
+                mBlockPassable = false;
                 DelegateHost.OnPressureChange += HandleOnPressureChange;
                 break;
 
@@ -128,7 +142,8 @@ public class Tile : ITile
     {
         if(id == mSpecialCaseID)
         {
-            mPassable = state;
+            mPlayerPassable = state;
+            mBlockPassable = state;
             mTileObject.transform.position += new Vector3(0.0f, 0.0f, (state ? .35f : -.35f));
         }
     }
@@ -150,13 +165,12 @@ public class Tile : ITile
 
     public bool AllowIncomingMove(ITilePlaceable interferingObj, int dirX, int dirY)
     {
-        if (!mPassable)
+        if (!mPlayerPassable && interferingObj.GetProperties().isPlayer)
         {
             return false;
         }
-
-        // Only players enter exits
-        if(!interferingObj.GetProperties().isPlayer && mIsExit)
+        
+        if(!mBlockPassable && !interferingObj.GetProperties().isPlayer)
         {
             return false;
         }
@@ -201,13 +215,22 @@ public class Tile : ITile
             }
         }
 
-        interferingObj.SetAsOwningTile(this);
-        LockToPosition(interferingObj);
-
-        if(mPushDirX != 0 || mPushDirY != 0)
+        if(mType == TerrainType.kBlockHole && !interferingObj.GetProperties().isPlayer)
         {
-            int forcedPushAmount = Math.Max(interferingObj.GetProperties().sticksInUpdateFor, 1);
-            mParentNavGrid.AddToUpdateList(interferingObj, mPushDirX, mPushDirY, forcedPushAmount);
+            mParentNavGrid.RemoveFromUpdateList(interferingObj);
+            interferingObj.PrepForRemoval();
+            mParentNavGrid.Delete(interferingObj.GetConnectedObject());
+        }
+        else
+        {
+            interferingObj.SetAsOwningTile(this);
+            LockToPosition(interferingObj);
+
+            if (mPushDirX != 0 || mPushDirY != 0)
+            {
+                int forcedPushAmount = Math.Max(interferingObj.GetProperties().sticksInUpdateFor, 1);
+                mParentNavGrid.AddToUpdateList(interferingObj, mPushDirX, mPushDirY, forcedPushAmount);
+            }
         }
     }
 

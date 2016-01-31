@@ -152,6 +152,11 @@ public class Block : ITilePlaceable {
 
     public bool CanMove(int dirX, int dirY)
     {
+        if(mOwningTile == null)
+        {
+            return false;
+        }
+
         ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
         if (siblingTile == null)
         {
@@ -265,6 +270,20 @@ public class Block : ITilePlaceable {
         tile.Subscribe(this);
 
         mOwningTile = (Tile)tile;
+    }
+
+    public void PrepForRemoval()
+    {
+        if(mOwningTile != null)
+        {
+            mOwningTile.Unsubscribe(this);
+        }
+        mOwningTile = null;
+    }
+
+    public GameObject GetConnectedObject()
+    {
+        return mBlockObject;
     }
     
     public PlaceableProperties GetProperties()

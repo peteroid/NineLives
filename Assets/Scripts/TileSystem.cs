@@ -12,6 +12,7 @@ public class TileSystem : MonoBehaviour {
     public GameObject PassableTile;
     public GameObject WallTile;
     public GameObject DoorTile;
+    public GameObject EmptyTile;
     public GameObject PressureTile;
     public GameObject OmenDoor;
     public GameObject PushUpTile;
@@ -184,15 +185,14 @@ public class TileSystem : MonoBehaviour {
         public float delayUntilNextMove;
     }
 
-    public void AddToUpdateList(ITilePlaceable placeable, int dirX, int dirY, int duration)
+    public void RemoveFromUpdateList(ITilePlaceable placeable)
     {
-        // Don't duplicate
-        if(placeable.GetProperties().inUpdateSequenceFor > 0)
+        if (placeable.GetProperties().inUpdateSequenceFor > 0)
         {
             ArrayList removeUpdates = new ArrayList();
             foreach (PlaceableUpdate rUpdate in mPlaceableUpdates)
             {
-                if(rUpdate.placeable == placeable)
+                if (rUpdate.placeable == placeable)
                 {
                     removeUpdates.Add(rUpdate);
                 }
@@ -202,6 +202,17 @@ public class TileSystem : MonoBehaviour {
                 mPlaceableUpdates.Remove(rUpdate);
             }
         }
+    }
+
+    public void Delete(GameObject obj)
+    {
+        Destroy(obj);
+    }
+
+    public void AddToUpdateList(ITilePlaceable placeable, int dirX, int dirY, int duration)
+    {
+        // Don't duplicate
+        RemoveFromUpdateList(placeable);
 
         PlaceableUpdate update = new PlaceableUpdate();
         update.placeable = placeable;

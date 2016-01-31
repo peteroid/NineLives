@@ -14,6 +14,8 @@ public interface ITilePlaceable
     void TryMove(int dirX, int dirY);
 
     void SetAsOwningTile(ITile tile);
+    void PrepForRemoval();
+    GameObject GetConnectedObject();
 
     void SetVisualPosition(Vector3 position);
 
