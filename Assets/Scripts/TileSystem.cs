@@ -166,6 +166,14 @@ public class TileSystem : MonoBehaviour {
         float delta = now - mLastUpdate;
         mLastUpdate = now;
 
+        foreach(BlockUpdate update in mBlocksOnMoveLoop)
+        {
+            update.delayUntilNextMove -= delta;
+            if(update.delayUntilNextMove < 0.0f)
+            {
+                update.delayUntilNextMove += kDelays;
 
+            }
+        }
 	}
 }

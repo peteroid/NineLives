@@ -65,6 +65,15 @@ public class Block : ITilePlaceable {
         }
     }
 
+    public void TryMove(int dirX, int dirY)
+    {
+        if (mOwningTile.AllowIncomingMove(this, dirX, dirY))
+        {
+            ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
+            siblingTile.TryIncomingMove(this, dirX, dirY);
+        }
+    }
+
     public int GetX()
     {
         return mX;
