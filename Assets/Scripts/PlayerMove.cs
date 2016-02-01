@@ -88,7 +88,15 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
 		Init ();
 		navGrid.PreNextLevel ();
 		yield return new WaitForSeconds(2f / speedFactor);
-		SceneManager.LoadScene ("DialogueScene");
+//		sharedDataObject.levelIndex = 10;
+		if (sharedDataObject.levelIndex == 10) {
+			if (sharedDataObject.type == Tile.TerrainType.kExit)
+				SceneManager.LoadScene ("CatEndingScene");	
+			else
+				SceneManager.LoadScene ("HumanEndingScene");
+		} else {
+			SceneManager.LoadScene ("DialogueScene");
+		}
 //		navGrid.NextLevel ();
 //		StartCoroutine(PostStart());
 	}

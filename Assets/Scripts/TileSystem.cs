@@ -279,6 +279,7 @@ public class TileSystem : MonoBehaviour {
     void Start ()
     {
 		LoadLevels ();
+//		mLevelIndex = (sharedDdataObject.levelIndex > mLevelIndex? sharedDdataObject.levelIndex : mLevelIndex);
 		mLevelIndex = sharedDdataObject.levelIndex;
 		Debug.Log (sharedDdataObject.levelIndex);
 		LoadCurrentLevel ();
@@ -300,7 +301,7 @@ public class TileSystem : MonoBehaviour {
 	public void PreNextLevel ()
 	{
 		sharedDdataObject.levelIndex = ++mLevelIndex;
-//		Debug.Log (mLevelIndex);
+		Debug.Log (mLevelIndex);
 		foreach (GameObject placeable in mPlaceables)
 		{
 			Delete (placeable);

@@ -829,7 +829,7 @@ MonoBehaviour:
   mPlayerStartX: 0
   mPlayerStartY: 0
   mHasCatEndings: 0
-  mLevelIndex: -1
+  mLevelIndex: 10
 --- !u!4 &1637684002
 Transform:
   m_ObjectHideFlags: 0
