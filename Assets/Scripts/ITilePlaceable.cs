@@ -14,4 +14,6 @@ public interface ITilePlaceable
     void SetAsOwningTile(ITile tile);
 
     void SetVisualPosition(Vector3 position);
+
+    PlaceableProperties GetProperties();
 }

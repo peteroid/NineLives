@@ -13,51 +13,43 @@ public class TileSystem : MonoBehaviour {
     public GameObject WallTile;
     public GameObject DoorTile;
 
+    public GameObject SimpleBlock;
+
     public Vector3 mDisplayOffset = new Vector3(0.0f, 0.0f, 0.0f);
 
     public int mPlayerStartX;
     public int mPlayerStartY;
     
-    public Tile[][] navGrid;
+    public Tile[][] mNavGrid;
 
-    public void GenerateTileMap()
+    public Tile GetTile(int x, int y)
     {
-        // Instantiate the tile types onto the game world, or placing them - KTZ
-        for (int x = 0; x < mWidth; ++x)
+        if (x >= mWidth || x < 0 ||
+            y >= mHeight || y < 0)
         {
-            for (int y = 0; y < mHeight; ++y)
-            {
-                Vector3 tilePos = new Vector3(y, x, 0.0f);
-                tilePos += mDisplayOffset;
-                Quaternion tileRot = Quaternion.identity;
-                tilePos += navGrid[x][y].mDisplayOffsets;
-                tilePos.y *= -1;
-                tilePos.y--;
-                GameObject newTile = (GameObject)Instantiate(navGrid[x][y].mTileBaseObject, tilePos, tileRot);
-                newTile.transform.parent = gameObject.transform;
-
-                navGrid[x][y].SetTileGameObject(newTile);
-            }
-        }
-	}
-
-    public void TryMove(ITilePlaceable objectToMove, int dirX, int dirY)
-    {
-        int destX = objectToMove.GetX() + dirX;
-        int destY = objectToMove.GetY() + dirY;
-
-        if(destX >= mWidth || destX < 0 ||
-            destY >= mHeight || destY < 0)
-        {
-            return;
+            return null;
         }
 
-        Tile dest = navGrid[destX][destY];
-        Tile src = navGrid[objectToMove.GetX()][objectToMove.GetY()];
-        
-        if (dest.AllowIncomingMove(objectToMove, dirX, dirY))
+        return mNavGrid[x][y];
+    }
+
+    public bool CanMove(ITilePlaceable obj, int dirX, int dirY)
+    {
+        Tile dest = GetTile(obj.GetX() + dirX, obj.GetY() + dirY);
+        if (dest != null && dest.AllowIncomingMove(obj, dirX, dirY))
         {
-            dest.TryIncomingMove(objectToMove, dirX, dirY);
+            return true;
+        }
+
+        return false;
+    }
+
+    public void TryMove(ITilePlaceable obj, int dirX, int dirY)
+    {
+        Tile dest = GetTile(obj.GetX() + dirX, obj.GetY() + dirY);
+        if(dest != null)
+        {
+            dest.TryIncomingMove(obj, dirX, dirY);
         }
     }
 
@@ -72,27 +64,75 @@ public class TileSystem : MonoBehaviour {
         mDisplayOffset.x = (float)(-mWidth) / 2;
         mDisplayOffset.y = (float)(-mHeight) / 2;
 
-        navGrid = new Tile[mWidth][];
+        mNavGrid = new Tile[mWidth][];
         for (int x = 0; x < mWidth; ++x)
         {
-            navGrid[x] = new Tile[mHeight];
+            mNavGrid[x] = new Tile[mHeight];
             for (int y = 0; y < mHeight; ++y)
             {
                 int tileCode = jsonObj["data"][x][y].AsInt;
-                if(tileCode == -1)
+                if(tileCode < 0)
                 {
-                    // Extract as player data, then set the tile type to default
-                    mPlayerStartX = x;
-                    mPlayerStartY = y;
-                    tileCode = 0;
+                    mNavGrid[x][y] = new Tile(this, Tile.TerrainType.kPass, x, y);
+                    LoadSpecializedItem(mNavGrid[x][y], tileCode);
                 }
-                navGrid[x][y] = new Tile(this, (Tile.TerrainType)tileCode, x, y);
+                else
+                {
+                    mNavGrid[x][y] = new Tile(this, (Tile.TerrainType)tileCode, x, y);
+                }
             }
         }
     }
 
-	// Use this for initialization
-	void Start ()
+    public void GenerateTileMap()
+    {
+        // Instantiate the tile types onto the game world, or placing them - KTZ
+        for (int x = 0; x < mWidth; ++x)
+        {
+            for (int y = 0; y < mHeight; ++y)
+            {
+                Vector3 tilePos = new Vector3(y, x, 0.0f);
+                tilePos += mDisplayOffset;
+                Quaternion tileRot = Quaternion.identity;
+                tilePos += mNavGrid[x][y].mDisplayOffsets;
+                tilePos.y *= -1;
+                tilePos.y--;
+                GameObject newTile = (GameObject)Instantiate(mNavGrid[x][y].mTileBaseObject, tilePos, tileRot);
+                newTile.transform.parent = gameObject.transform;
+
+                mNavGrid[x][y].SetTileGameObject(newTile);
+
+                foreach(Block block in mNavGrid[x][y].mPlaceables)
+                {
+                    if (block != null)
+                    {
+                        GameObject blockObj = (GameObject)Instantiate(block.mBlockBaseObject, Vector3.zero, Quaternion.identity);
+                        block.SetBlockGameObject(blockObj);
+                    }
+                }
+            }
+        }
+    }
+
+    private void LoadSpecializedItem(Tile tile, int tileCode)
+    {
+        switch(tileCode)
+        {
+            case -1: // Simple block
+                new Block((Block.BlockType)(tileCode * -1), tile);
+                break;
+
+            case -9: // Player position
+                mPlayerStartX = tile.mX;
+                mPlayerStartY = tile.mY;
+                break;
+
+            default: break;
+        }
+    }
+
+    // Use this for initialization
+    void Start ()
     {
         LoadMap("1");
         GenerateTileMap();

@@ -15,42 +15,47 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 
     private ITile mOwningTile = null;
 
-    private void TryMove(int x, int y)
+    private void Move(int x, int y)
     {
-        navGrid.TryMove(this, x, y);
+        if(navGrid.CanMove(this, x, y))
+        {
+            navGrid.TryMove(this, x, y);
+        }
     }
 
 	// the shorthands are messed up due to the rotation of camera
 	public void Up () {
-        TryMove(0, 1);
+        Move(0, 1);
 	}
 
 	public void Left ()
     {
-        TryMove(-1, 0);
+        Move(-1, 0);
 	}
 
 	public void Right ()
     {
-        TryMove(1, 0);
+        Move(1, 0);
 	}
 
 	public void Down ()
     {
-        TryMove(0, -1);
+        Move(0, -1);
 	}
 
 	// Use this for initialization
 	void Start () {
         mX = 0;
         mY = 0;
+        mProperties.isPlayer = true;
 
-		input.GetComponent<InputScript> ().SetInputInterface (this);
+
+        input.GetComponent<InputScript> ().SetInputInterface (this);
 	}
 
     void PostStart()
     {
-        TryMove(navGrid.mPlayerStartX, navGrid.mPlayerStartY);
+        Move(navGrid.mPlayerStartX, navGrid.mPlayerStartY);
     }
 	
 	// Update is called once per frame
@@ -106,5 +111,11 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
     public void SetVisualPosition(Vector3 position)
     {
         transform.position = new Vector3(position.x, position.y, transform.position.z);
+    }
+
+    private PlaceableProperties mProperties = new PlaceableProperties();
+    public PlaceableProperties GetProperties()
+    {
+        return mProperties;
     }
 }

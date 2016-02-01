@@ -23,6 +23,8 @@ public class Tile : ITile
     public GameObject mTileBaseObject;
     public GameObject mTileObject;
 
+    public TileSystem mParentNavGrid;
+
     public Tile(TileSystem parent, TerrainType type, int x, int y)
     {
         mType = type;
@@ -30,6 +32,7 @@ public class Tile : ITile
         mY = y;
         mPlaceables = new ArrayList();
         mPassable = true;
+        mParentNavGrid = parent;
 
         switch (mType)
         {
@@ -56,6 +59,11 @@ public class Tile : ITile
         mTileObject = tileGameObject;
     }
 
+    public ITile GetSiblingTile(int dirX, int dirY)
+    {
+        return mParentNavGrid.GetTile(mX + dirX, mY + dirY);
+    }
+
     public bool AllowIncomingMove(ITilePlaceable interferingObj, int dirX, int dirY)
     {
         if (!mPassable)
@@ -76,9 +84,23 @@ public class Tile : ITile
 
     public void TryIncomingMove(ITilePlaceable interferingObj, int dirX, int dirY)
     {
+        ArrayList moveList = new ArrayList();
         foreach (ITilePlaceable obj in mPlaceables)
         {
-            obj.TryIncomingMove(interferingObj, dirX, dirY);
+            moveList.Add(obj);
+        }
+
+        if(moveList.Count > 0)
+        {
+            foreach (ITilePlaceable obj in moveList)
+            {
+                obj.TryIncomingMove(interferingObj, dirX, dirY);
+            }
+
+            if(interferingObj.GetProperties().isPlayer)
+            {
+                return;
+            }
         }
 
         interferingObj.SetAsOwningTile(this);
