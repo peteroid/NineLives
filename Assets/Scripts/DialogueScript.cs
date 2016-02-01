@@ -29,8 +29,11 @@ public class DialogueScript : MonoBehaviour {
 		JSONNode jsonObj = JSON.Parse(levelFile.text);
 
 		JSONArray data = jsonObj["catStory"].AsArray;
-		if (lastType == Tile.TerrainType.kHumanExit)
-			data = jsonObj["humanStory"].AsArray;
+		Debug.Log (sharedDataObject.type);
+		if (sharedDataObject.type == Tile.TerrainType.kHumanExit) {
+			Debug.Log ("human");
+			data = jsonObj ["human"].AsArray;
+		}
 
 		JSONArray order = data[sharedDataObject.levelIndex]["order"].AsArray;
 		if (order.Count > 0) {
