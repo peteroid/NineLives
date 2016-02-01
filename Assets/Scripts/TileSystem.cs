@@ -2,16 +2,10 @@
 using SimpleJSON;
 using System.Collections;
 using System.IO;
+using System;
 
 public class TileSystem : MonoBehaviour {
     
-    public enum TerrainType
-    {
-        kPass = 0,
-        kWall = 1,
-        kDoor = 2
-    }
-
 	private int mWidth = 0;
 	private int mHeight = 0;
 
@@ -23,46 +17,7 @@ public class TileSystem : MonoBehaviour {
 
     public int mPlayerStartX;
     public int mPlayerStartY;
-
-    public class Tile
-    {
-        public TerrainType mType;
-        public int mX;
-        public int mY;
-        public bool mPassable;
-        
-        // Display Information
-        public Vector3 mDisplayOffsets = new Vector3(0.0f, 0.0f, 0.0f);
-        public GameObject mTileBaseObject;
-
-        public Tile(TileSystem parent, TerrainType type, int x, int y)
-        {
-            mType = type;
-            mX = x;
-            mY = y;
-            mPassable = true;
-
-            switch (mType)
-            {
-                case TerrainType.kPass:
-                    mTileBaseObject = parent.PassableTile;
-                    break;
-
-                case TerrainType.kWall:
-                    mPassable = false;
-                    mTileBaseObject = parent.WallTile;
-                    break;
-
-                case TerrainType.kDoor:
-                    mTileBaseObject = parent.DoorTile;
-                    mDisplayOffsets.z += 0.25f;
-                    break;
-
-                default: break;
-            }
-        }
-    }
-
+    
     public Tile[][] navGrid;
 
     public void GenerateTileMap()
@@ -96,8 +51,12 @@ public class TileSystem : MonoBehaviour {
             return false;
         }
 
-        if(navGrid[destX][destY].mPassable == true)
+        Tile dest = navGrid[destX][destY];
+        Tile src = navGrid[objectToMove.GetX()][objectToMove.GetY()];
+        
+        if (dest.mPassable == true)
         {
+
             objectToMove.SetX(destX);
             objectToMove.SetY(destY);
 
@@ -132,7 +91,7 @@ public class TileSystem : MonoBehaviour {
                     mPlayerStartY = y;
                     tileCode = 0;
                 }
-                navGrid[x][y] = new Tile(this, (TerrainType)tileCode, x, y);
+                navGrid[x][y] = new Tile(this, (Tile.TerrainType)tileCode, x, y);
             }
         }
     }

@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 
     private bool mInitialized = false;
 
+    private ITile mOwningTile = null;
+
     private void TryMove(int x, int y)
     {
         int oldX = mX;
@@ -97,5 +99,16 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
     public void TryIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY)
     {
         // Should never occur
+    }
+
+    public void SetAsOwningTile(ITile tile)
+    {
+        if(mOwningTile != null)
+        {
+            mOwningTile.Unsubscribe(this);
+        }
+        tile.Subscribe(this);
+
+        mOwningTile = tile;
     }
 }

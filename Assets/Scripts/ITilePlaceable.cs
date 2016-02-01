@@ -10,4 +10,6 @@ public interface ITilePlaceable
 
     bool AllowIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY);
     void TryIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY);
+
+    void SetAsOwningTile(ITile tile);
 }
