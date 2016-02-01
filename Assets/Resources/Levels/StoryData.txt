@@ -51,7 +51,7 @@
     },
     {
       "order": ["cat"],
-      "cat": "Mrowr. What is this thing"
+      "cat": "That was exhausting. A nap sounds nice"
     },
     {
       "order": ["cat", "other"],

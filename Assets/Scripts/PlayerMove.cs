@@ -87,7 +87,7 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
 		Debug.Log ("Next");
 		Init ();
 		navGrid.PreNextLevel ();
-		yield return new WaitForSeconds(3 / speedFactor);
+		yield return new WaitForSeconds(2f / speedFactor);
 		SceneManager.LoadScene ("DialogueScene");
 //		navGrid.NextLevel ();
 //		StartCoroutine(PostStart());
@@ -161,7 +161,7 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
 
 	IEnumerator PostStart()
     {
-		yield return new WaitForSeconds(3 / speedFactor);
+		yield return new WaitForSeconds(2f / speedFactor);
         Move(navGrid.mPlayerStartX, navGrid.mPlayerStartY);
 		navGrid.PostGenerateTileMap ();
 		SetEnable (true);
