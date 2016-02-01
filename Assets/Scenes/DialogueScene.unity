@@ -116,7 +116,7 @@ MonoBehaviour:
   alpha: 1
   step: 0.25
   startDelay: 0
-  endDelay: 7
+  endDelay: 4
   fadeDirection: -1
   isFading: 0
 --- !u!4 &425681921
@@ -483,7 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ba1e81673ca4d64ab2edab469c96d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 9
+  delay: 6
   lastType: 0
   dialogue1: {fileID: 972135413}
   dialogue2: {fileID: 491399301}
