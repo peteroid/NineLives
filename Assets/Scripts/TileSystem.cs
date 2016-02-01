@@ -134,7 +134,7 @@ public class TileSystem : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        LoadMap("1");
+        LoadMap("3");
         GenerateTileMap();
 	}
 	

@@ -56,6 +56,70 @@ public class InputScript : MonoBehaviour {
 		}
 	}
 
+    void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (input == null)
+            {
+                Debug.Log(errorObjectNotFound);
+            }
+            else if (!(input is InputInterface))
+            {
+                Debug.Log(errorInterfaceNotImplemented);
+            }
+            else
+            {
+                ((InputInterface)input).Up();
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (input == null)
+            {
+                Debug.Log(errorObjectNotFound);
+            }
+            else if (!(input is InputInterface))
+            {
+                Debug.Log(errorInterfaceNotImplemented);
+            }
+            else
+            {
+                ((InputInterface)input).Down();
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (input == null)
+            {
+                Debug.Log(errorObjectNotFound);
+            }
+            else if (!(input is InputInterface))
+            {
+                Debug.Log(errorInterfaceNotImplemented);
+            }
+            else
+            {
+                ((InputInterface)input).Left();
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if (input == null)
+            {
+                Debug.Log(errorObjectNotFound);
+            }
+            else if (!(input is InputInterface))
+            {
+                Debug.Log(errorInterfaceNotImplemented);
+            }
+            else
+            {
+                ((InputInterface)input).Right();
+            }
+        }
+    }
+
 	public void SetInputInterface (InputInterface input) {
 		this.input = input;
 	}
