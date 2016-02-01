@@ -281,6 +281,7 @@ public class Tile : ITile
     {
         placeable.SetX(mX);
         placeable.SetY(mY);
-        placeable.SetVisualPosition(mTileObject.transform.position);
+        if(mTileObject != null)
+            placeable.SetVisualPosition(mTileObject.transform.position);
     }
 }
