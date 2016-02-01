@@ -11,7 +11,7 @@ public class Block : ITilePlaceable {
 
     private int mX = 0;
     private int mY = 0;
-    private ITile mOwningTile = null;
+    private Tile mOwningTile = null;
     private BlockType mType;
 
     public GameObject mBlockBaseObject;
@@ -57,21 +57,19 @@ public class Block : ITilePlaceable {
 
         if(mProperties.keepsMoving)
         {
-            while(mOwningTile.AllowIncomingMove(this, dirX, dirY))
-            {
-                siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
-                siblingTile.TryIncomingMove(this, dirX, dirY);
-            }
+            mOwningTile.mParentNavGrid.AddBlockToUpdateList(this, dirX, dirY);
         }
+    }
+
+    public bool CanMove(int dirX, int dirY)
+    {
+        return mOwningTile.AllowIncomingMove(this, dirX, dirY);
     }
 
     public void TryMove(int dirX, int dirY)
     {
-        if (mOwningTile.AllowIncomingMove(this, dirX, dirY))
-        {
-            ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
-            siblingTile.TryIncomingMove(this, dirX, dirY);
-        }
+        ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
+        siblingTile.TryIncomingMove(this, dirX, dirY);
     }
 
     public int GetX()
@@ -102,7 +100,7 @@ public class Block : ITilePlaceable {
         }
         tile.Subscribe(this);
 
-        mOwningTile = tile;
+        mOwningTile = (Tile)tile;
     }
 
     public void SetVisualPosition(Vector3 position)

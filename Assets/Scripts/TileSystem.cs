@@ -131,7 +131,7 @@ public class TileSystem : MonoBehaviour {
         }
     }
 
-    const float kDelays = 0.5f;
+    const float kDelays = 0.15f;
 
     private class BlockUpdate
     {
@@ -166,14 +166,28 @@ public class TileSystem : MonoBehaviour {
         float delta = now - mLastUpdate;
         mLastUpdate = now;
 
+        ArrayList removeUpdates = new ArrayList();
+
         foreach(BlockUpdate update in mBlocksOnMoveLoop)
         {
             update.delayUntilNextMove -= delta;
             if(update.delayUntilNextMove < 0.0f)
             {
                 update.delayUntilNextMove += kDelays;
-
+                if(update.block.CanMove(update.dirX, update.dirY))
+                {
+                    update.block.TryMove(update.dirX, update.dirY);
+                }
+                else
+                {
+                    removeUpdates.Add(update);
+                }
             }
+        }
+
+        foreach(BlockUpdate update in removeUpdates)
+        {
+            mBlocksOnMoveLoop.Remove(update);
         }
 	}
 }
