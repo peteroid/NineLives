@@ -5,7 +5,8 @@ using System;
 public class Block : ITilePlaceable {
     public enum BlockType
     {
-        kSimple = 1
+        kSimple = 1,
+        kRolling = 2
     }
 
     private int mX = 0;
@@ -28,6 +29,11 @@ public class Block : ITilePlaceable {
                 mBlockBaseObject = tile.mParentNavGrid.SimpleBlock;
                 break;
 
+            case BlockType.kRolling:
+                mBlockBaseObject = tile.mParentNavGrid.RollingBlock;
+                mProperties.keepsMoving = true;
+                break;
+
             default: break;
         }
     }
@@ -48,6 +54,15 @@ public class Block : ITilePlaceable {
     {
         ITile siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
         siblingTile.TryIncomingMove(this, dirX, dirY);
+
+        if(mProperties.keepsMoving)
+        {
+            while(mOwningTile.AllowIncomingMove(this, dirX, dirY))
+            {
+                siblingTile = mOwningTile.GetSiblingTile(dirX, dirY);
+                siblingTile.TryIncomingMove(this, dirX, dirY);
+            }
+        }
     }
 
     public int GetX()

@@ -14,6 +14,7 @@ public class TileSystem : MonoBehaviour {
     public GameObject DoorTile;
 
     public GameObject SimpleBlock;
+    public GameObject RollingBlock;
 
     public Vector3 mDisplayOffset = new Vector3(0.0f, 0.0f, 0.0f);
 
@@ -21,6 +22,8 @@ public class TileSystem : MonoBehaviour {
     public int mPlayerStartY;
     
     public Tile[][] mNavGrid;
+
+    private ArrayList mBlocksOnMoveLoop = new ArrayList();
 
     public Tile GetTile(int x, int y)
     {
@@ -116,30 +119,53 @@ public class TileSystem : MonoBehaviour {
 
     private void LoadSpecializedItem(Tile tile, int tileCode)
     {
-        switch(tileCode)
+        if(tileCode == -9)
         {
-            case -1: // Simple block
-                new Block((Block.BlockType)(tileCode * -1), tile);
-                break;
-
-            case -9: // Player position
-                mPlayerStartX = tile.mX;
-                mPlayerStartY = tile.mY;
-                break;
-
-            default: break;
+            // Player position
+            mPlayerStartX = tile.mX;
+            mPlayerStartY = tile.mY;
         }
+        else
+        {
+            new Block((Block.BlockType)(tileCode * -1), tile);
+        }
+    }
+
+    const float kDelays = 0.5f;
+
+    private class BlockUpdate
+    {
+        public Block block;
+        public int dirX;
+        public int dirY;
+        public float delayUntilNextMove;
+    }
+
+    public void AddBlockToUpdateList(Block block, int dirX, int dirY)
+    {
+        BlockUpdate update = new BlockUpdate();
+        update.block = block;
+        update.dirX = dirX;
+        update.dirY = dirY;
+        update.delayUntilNextMove = kDelays;
+        mBlocksOnMoveLoop.Add(update);
     }
 
     // Use this for initialization
     void Start ()
     {
-        LoadMap("3");
+        LoadMap("1");
         GenerateTileMap();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+
+    private float mLastUpdate = 0.0f;
+    // Update is called once per frame
+    void Update () {
+        float now = Time.unscaledTime;
+        float delta = now - mLastUpdate;
+        mLastUpdate = now;
+
+
 	}
 }

@@ -56,7 +56,7 @@ public class InputScript : MonoBehaviour {
 		}
 	}
 
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
