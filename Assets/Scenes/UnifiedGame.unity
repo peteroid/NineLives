@@ -534,7 +534,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &1065404301
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,7 +955,7 @@ Transform:
   m_Children:
   - {fileID: 700486282}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &2005135638 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11474724, guid: 0bee6801c437641829b99ff17cdd89bb,
