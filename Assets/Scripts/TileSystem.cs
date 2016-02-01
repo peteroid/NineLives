@@ -37,7 +37,7 @@ public class TileSystem : MonoBehaviour {
     public Tile[][] mNavGrid;
 
 	private ArrayList mPlaceableUpdates = new ArrayList();
-	private ArrayList mTiles, mPlaceables;
+	private ArrayList mTileGameObjs, mPlaceableGameObjs;
 	private string[] mLevels;
 
     public bool mHasCatEndings = false;
@@ -47,8 +47,8 @@ public class TileSystem : MonoBehaviour {
 
 	public TileSystem ()
 	{
-		mTiles = new ArrayList ();
-		mPlaceables = new ArrayList ();
+		mTileGameObjs = new ArrayList ();
+		mPlaceableGameObjs = new ArrayList ();
 	}
 
     public Tile GetTile(int x, int y)
@@ -178,7 +178,7 @@ public class TileSystem : MonoBehaviour {
 				newTile.GetComponent<SlideBlock> ().SetStartPosition (tilePos, startFrom.magnitude / 1.2f * speedFactor);
 
                 newTile.transform.parent = gameObject.transform;
-				mTiles.Add (newTile);
+				mTileGameObjs.Add (newTile);
                 mNavGrid[x][y].SetTileGameObject(newTile);
             }
         }
@@ -198,7 +198,7 @@ public class TileSystem : MonoBehaviour {
 					{
 						GameObject blockObj = (GameObject)Instantiate(tryBlock.mBlockBaseObject, Vector3.zero, Quaternion.identity);
 						tryBlock.SetBlockGameObject(blockObj);
-						mPlaceables.Add (blockObj);
+						mPlaceableGameObjs.Add (blockObj);
 						Debug.Log ("block generated");
 					}
 				}
@@ -286,37 +286,42 @@ public class TileSystem : MonoBehaviour {
 	}
 
 	public void LoadCurrentLevel ()
-	{
-		foreach (GameObject placeable in mPlaceables)
+    {
+        if(DelegateHost.OnObliterateEvents != null)
+        {
+            DelegateHost.OnObliterateEvents.Invoke();
+        }
+
+        foreach (GameObject placeable in mPlaceableGameObjs)
 		{
 			Delete (placeable);
 		}
-		mPlaceables.Clear ();
+		mPlaceableGameObjs.Clear ();
 
 		// clean up the current tiles before generating
 		LoadMap(mLevels[mLevelIndex]);
-		foreach (GameObject tile in mTiles)
+		foreach (GameObject tile in mTileGameObjs)
 		{
 			Delete (tile);
 		}
-		mTiles.Clear ();
+		mTileGameObjs.Clear ();
 
 		GenerateTileMap ();
-	}
+    }
 
 	public void PreNextLevel ()
 	{
 		sharedDdataObject.levelIndex = ++mLevelIndex;
 		Debug.Log (mLevelIndex);
-		foreach (GameObject placeable in mPlaceables)
+		foreach (GameObject placeable in mPlaceableGameObjs)
 		{
 			Delete (placeable);
 		}
-		mPlaceables.Clear ();
+		mPlaceableGameObjs.Clear ();
 
 		UnityEngine.Random.seed = (int) Time.time;
 		Debug.Log (UnityEngine.Random.seed.ToString ());
-		foreach (GameObject tile in mTiles)
+		foreach (GameObject tile in mTileGameObjs)
 		{
 			Vector3 velocity = GetRandomVector3 (7f * speedFactor * 1.5f, 10f * speedFactor * 1.5f);
 			tile.GetComponent<SlideBlock> ().SetVelocity (velocity);

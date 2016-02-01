@@ -131,11 +131,19 @@ public class Tile : ITile
 
             default: break;
         }
+        DelegateHost.OnObliterateEvents += DisableEvents;
     }
 
     ~Tile()
     {
-        switch(mType)
+        DisableEvents();
+    }
+
+    public void DisableEvents()
+    {
+        DelegateHost.OnObliterateEvents -= DisableEvents;
+        mPlaceables.Clear();
+        switch (mType)
         {
             case TerrainType.kPressureDoor:
                 DelegateHost.OnPressureChange -= HandleOnPressureChange;
@@ -149,6 +157,7 @@ public class Tile : ITile
     {
         if(id == mSpecialCaseID)
         {
+            Debug.Log(String.Format("{0} {1}",state, id));
             mPlayerPassable = state;
             mBlockPassable = state;
             if(mTileObject != null)
@@ -282,6 +291,8 @@ public class Tile : ITile
         placeable.SetX(mX);
         placeable.SetY(mY);
         if(mTileObject != null)
+        {
             placeable.SetVisualPosition(mTileObject.transform.position);
+        }
     }
 }

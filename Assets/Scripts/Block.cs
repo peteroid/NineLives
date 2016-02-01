@@ -61,10 +61,17 @@ public class Block : ITilePlaceable {
         {
             DelegateHost.OnCommandMoveRespond += HandleOnCommandMoveRespond;
         }
+        DelegateHost.OnObliterateEvents += DisableEvents;
     }
 
     ~Block()
     {
+        DisableEvents();
+    }
+
+    public void DisableEvents()
+    {
+        DelegateHost.OnObliterateEvents -= DisableEvents;
         if (mType != BlockType.kCommand)
         {
             DelegateHost.OnCommandMove -= HandleOnCommandMove;

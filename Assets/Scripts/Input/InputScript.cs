@@ -17,7 +17,6 @@ public class InputScript : MonoBehaviour {
 	public void Up() {
 		if (!this.isEnable)
 			return;
-		Debug.Log ("Up");
 		if (input == null) {
 			Debug.Log (errorObjectNotFound);
 		} else if (! (input is InputInterface)) {
@@ -31,7 +30,6 @@ public class InputScript : MonoBehaviour {
 	public void Left() {
 		if (!this.isEnable)
 			return;
-		Debug.Log ("Left");
 		if (input == null) {
 			Debug.Log (errorObjectNotFound);
 		} else if (! (input is InputInterface)) {
@@ -45,7 +43,6 @@ public class InputScript : MonoBehaviour {
 	public void Down() {
 		if (!this.isEnable)
 			return;
-		Debug.Log ("Down");
 		if (input == null) {
 			Debug.Log (errorObjectNotFound);
 		} else if (! (input is InputInterface)) {
@@ -59,7 +56,6 @@ public class InputScript : MonoBehaviour {
 	public void Right() {
 		if (!this.isEnable)
 			return;
-		Debug.Log ("Right");
 		if (input == null) {
 			Debug.Log (errorObjectNotFound);
 		} else if (! (input is InputInterface)) {
