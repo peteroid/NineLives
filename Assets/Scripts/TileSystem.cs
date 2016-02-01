@@ -54,9 +54,9 @@ public class TileSystem : MonoBehaviour {
         Tile dest = navGrid[destX][destY];
         Tile src = navGrid[objectToMove.GetX()][objectToMove.GetY()];
         
-        if (dest.mPassable == true)
+        if (dest.AllowIncomingMove(objectToMove, dirX, dirY))
         {
-
+            dest.TryIncomingMove(objectToMove, dirX, dirY);
             objectToMove.SetX(destX);
             objectToMove.SetY(destY);
 
