@@ -532,7 +532,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 669316560}
-  m_LocalRotation: {x: 0.64085644, y: 0.29883626, z: -0.29883632, w: 0.6408563}
+  m_LocalRotation: {x: -0.000000028290886, y: -0.17364822, z: 0.9848078, w: -0.00000016044557}
   m_LocalPosition: {x: 5, y: -0.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -883,6 +883,8 @@ MonoBehaviour:
   WallTile: {fileID: 144898, guid: 65232a72ba718244c810d59f045caaf2, type: 2}
   DoorTile: {fileID: 116280, guid: 628e0ff9ce80b4f469527e3081f0bfe8, type: 2}
   mDisplayOffset: {x: 0, y: 0, z: 0}
+  mPlayerStartX: 0
+  mPlayerStartY: 0
 --- !u!1 &1271004129
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,10 +993,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffdac8a98a270a64ba6086c36e7ba800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Level: {fileID: 1289355673}
-  m_Message: {fileID: 1911737544}
-  m_Story: {fileID: 275474174}
-  m_DoorStatus: {fileID: 25687487}
+  m_Level: {fileID: 1289355675}
+  m_Message: {fileID: 1911737546}
+  m_Story: {fileID: 275474176}
+  m_DoorStatus: {fileID: 25687489}
 --- !u!1 &1289355673
 GameObject:
   m_ObjectHideFlags: 0
