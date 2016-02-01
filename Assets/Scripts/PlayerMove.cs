@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class PlayerMove : MonoBehaviour, InputInterface {
+public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 
 	// drag and drop the input to this GameObject
 	public GameObject input;
@@ -14,12 +15,12 @@ public class PlayerMove : MonoBehaviour, InputInterface {
 
     private void TryMove(int x, int y)
     {
-        if (navGrid.TryMove(mX, mY, mX + x, mY + y))
+        int oldX = mX;
+        int oldY = mY;
+        if (navGrid.TryMove(this, x, y))
         {
-            mX += x;
-            mY += y;
-
-            Vector3 transform = new Vector3(y, x * -1);
+            
+            Vector3 transform = new Vector3(mY - oldY, oldX - mX);
             this.transform.position += transform;
         }
     }
@@ -56,7 +57,7 @@ public class PlayerMove : MonoBehaviour, InputInterface {
     {
         // The nav grid has now loaded
         this.transform.position += navGrid.mDisplayOffset;
-        TryMove(2, 2);
+        TryMove(navGrid.mPlayerStartX, navGrid.mPlayerStartY);
     }
 	
 	// Update is called once per frame
@@ -67,4 +68,34 @@ public class PlayerMove : MonoBehaviour, InputInterface {
             PostStart();
         }
 	}
+
+    public int GetX()
+    {
+        return mX;
+    }
+
+    public int GetY()
+    {
+        return mY;
+    }
+
+    public void SetX(int x)
+    {
+        mX = x;
+    }
+
+    public void SetY(int y)
+    {
+        mY = y;
+    }
+
+    public bool AllowIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY)
+    {
+        return false;
+    }
+
+    public void TryIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY)
+    {
+        // Should never occur
+    }
 }

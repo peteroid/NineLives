@@ -1,16 +1,10 @@
 ﻿using UnityEngine;
+using SimpleJSON;
 using System.Collections;
 using System.IO;
 
 public class TileSystem : MonoBehaviour {
-
-    /*
-     * Tiles are as follows:
-     * 0 - passable
-     * 1 - wall (impassable)
-     * 2 - door (impassable -> passable)
-     * - KTZ
-     */
+    
     public enum TerrainType
     {
         kPass = 0,
@@ -18,14 +12,17 @@ public class TileSystem : MonoBehaviour {
         kDoor = 2
     }
 
-	static readonly int kNavGridWidth = 10;
-	static readonly int kNavGridHeight = 10;
+	private int mWidth = 0;
+	private int mHeight = 0;
 
     public GameObject PassableTile;
     public GameObject WallTile;
     public GameObject DoorTile;
 
     public Vector3 mDisplayOffset = new Vector3(0.0f, 0.0f, 0.0f);
+
+    public int mPlayerStartX;
+    public int mPlayerStartY;
 
     public class Tile
     {
@@ -66,25 +63,14 @@ public class TileSystem : MonoBehaviour {
         }
     }
 
-    public int[][] tileMapTest = new int[][]{ new int[]{1, 1, 1, 1, 2, 1, 1, 1, 1, 1},
-                                              new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                                              new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                                              new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                                              new int[]{1, 0, 0, 1, 0, 1, 0, 0, 0, 1},
-                                              new int[]{1, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-                                              new int[]{1, 0, 0, 1, 1, 1, 0, 0, 0, 1},
-                                              new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                                              new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                                              new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1} };
-
     public Tile[][] navGrid;
 
     public void GenerateTileMap()
     {
         // Instantiate the tile types onto the game world, or placing them - KTZ
-        for (int x = 0; x < kNavGridWidth; ++x)
+        for (int x = 0; x < mWidth; ++x)
         {
-            for (int y = 0; y < kNavGridHeight; ++y)
+            for (int y = 0; y < mHeight; ++y)
             {
                 Vector3 tilePos = new Vector3(y, x, 0.0f);
                 tilePos += mDisplayOffset;
@@ -99,17 +85,22 @@ public class TileSystem : MonoBehaviour {
         //transform.Rotate(35.0f, 315.0f, 345.0f);
 	}
 
-    public bool TryMove(int originX, int originY, int dirX, int dirY)
+    public bool TryMove(ITilePlaceable objectToMove, int dirX, int dirY)
     {
-        Debug.Log(string.Format("{0} {1} {2} {3}", originX, originY, dirX, dirY));
-        if( dirX >= kNavGridWidth || dirX < 0 ||
-            dirY >= kNavGridHeight || dirY < 0)
+        int destX = objectToMove.GetX() + dirX;
+        int destY = objectToMove.GetY() + dirY;
+
+        if(destX >= mWidth || destX < 0 ||
+            destY >= mHeight || destY < 0)
         {
             return false;
         }
 
-        if(navGrid[dirX][dirY].mPassable == true)
+        if(navGrid[destX][destY].mPassable == true)
         {
+            objectToMove.SetX(destX);
+            objectToMove.SetY(destY);
+
             return true;
         }
 
@@ -118,92 +109,38 @@ public class TileSystem : MonoBehaviour {
 
     public void LoadMap(string lvlNum)
     {
-        //TextAsset relativePath = Resources.Load("Levels\\level" + lvlNum + ".txt") as TextAsset; 
-        // Load data into the mapTile array - KTZ
-        System.IO.StreamReader file = new System.IO.StreamReader
-            ("C:\\Users\\Todandict\\Documents\\GitHub\\HumanWannabe\\Assets\\MapData\\level" + lvlNum + ".txt");
+        TextAsset levelFile = Resources.Load<TextAsset>("Levels/" + lvlNum);
+        JSONNode jsonObj = JSON.Parse(levelFile.text);
+        
+        mWidth = jsonObj["data"].AsArray.Count;
+        mHeight = jsonObj["data"][0].AsArray.Count;
+        
+        mDisplayOffset.x = (float)(-mWidth) / 2;
+        mDisplayOffset.y = (float)(-mHeight) / 2;
 
-        string parser = "";
-        StringBuilder number = new StringBuilder("");
-
-        // First line in text file are the dimensions of the map tile - KTZ
-        int counter = 0;
-        int[] dimensions = new int[2];
-        parser = file.ReadLine();
-        for (int i = 0; i < parser.Length; i++)
+        navGrid = new Tile[mWidth][];
+        for (int x = 0; x < mWidth; ++x)
         {
-            //Debug.Log(parser[i]);
-            if (parser[i] != ',' && parser[i] != ' ')
+            navGrid[x] = new Tile[mHeight];
+            for (int y = 0; y < mHeight; ++y)
             {
-                number.Append(parser[i]);
-                //Debug.Log(number.ToString());
-            }
-            else if (parser[i] == ',')
-            {
-                dimensions[counter] = int.Parse(number.ToString());
-                //Debug.Log(dimensions[counter]);
-                number.Length = 0;
-                counter++;
+                int tileCode = jsonObj["data"][x][y].AsInt;
+                if(tileCode == -1)
+                {
+                    // Extract as player data, then set the tile type to default
+                    mPlayerStartX = x;
+                    mPlayerStartY = y;
+                    tileCode = 0;
+                }
+                navGrid[x][y] = new Tile(this, (TerrainType)tileCode, x, y);
             }
         }
-
-        tileMap = new int[dimensions[0]][];
-        for (int i = 0; i < dimensions[0]; i++)
-            tileMap[i] = new int[dimensions[1]];
-        //Debug.Log(dimensions[0] + " " + dimensions[1]);
-
-        int x = 0;
-        int y = 0;
-        // The rest of the lines are the tile types separated by commas - KTZ
-        while (file.Peek() >= 0)
-        {
-            y = 0;
-            parser = file.ReadLine();
-
-            for (int i = 0; i < parser.Length; i++)
-            {
-                if (parser[i] != ',' && parser[i] != ' ')
-                {
-                    number.Append(parser[i]);
-                }
-                else if (parser[i] == ',')
-                {
-                    tileMap[x][y] = int.Parse(number.ToString());
-                    number.Length = 0;
-                    y++;
-                    Debug.Log("x :" + x + "  y: " + y + "\n");
-                }
-            }
-            x++;
-        }
-
-
-        // When the file is completely parsed, close it - KTZ
-        file.Close();
-
     }
-
-    public void GenerateCollision()
-    { 
-        // Put collision on any tiles that are impassible - KTZ
-    }
-
 
 	// Use this for initialization
 	void Start ()
     {
-        mDisplayOffset.x = (float)(-kNavGridWidth) / 2;
-        mDisplayOffset.y = (float)(-kNavGridHeight) / 2;
-
-        navGrid = new Tile[kNavGridWidth][];
-        for (int x = 0; x < kNavGridWidth; ++x)
-        {
-            navGrid[x] = new Tile[kNavGridHeight];
-            for (int y = 0; y < kNavGridHeight; ++y)
-            {
-                navGrid[x][y] = new Tile(this, (TerrainType)tileMapTest[x][y], x, y);
-            }
-        }
+        LoadMap("1");
         GenerateTileMap();
 	}
 	
