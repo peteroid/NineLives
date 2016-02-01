@@ -17,14 +17,7 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 
     private void TryMove(int x, int y)
     {
-        int oldX = mX;
-        int oldY = mY;
-        if (navGrid.TryMove(this, x, y))
-        {
-            
-            Vector3 transform = new Vector3(mY - oldY, oldX - mX);
-            this.transform.position += transform;
-        }
+        navGrid.TryMove(this, x, y);
     }
 
 	// the shorthands are messed up due to the rotation of camera
@@ -57,8 +50,6 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
 
     void PostStart()
     {
-        // The nav grid has now loaded
-        this.transform.position += navGrid.mDisplayOffset;
         TryMove(navGrid.mPlayerStartX, navGrid.mPlayerStartY);
     }
 	
@@ -110,5 +101,10 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable {
         tile.Subscribe(this);
 
         mOwningTile = tile;
+    }
+
+    public void SetVisualPosition(Vector3 position)
+    {
+        transform.position = new Vector3(position.x, position.y, transform.position.z);
     }
 }

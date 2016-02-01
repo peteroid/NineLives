@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Tile : ITile
 {
@@ -20,6 +21,7 @@ public class Tile : ITile
     // Display Information
     public Vector3 mDisplayOffsets = new Vector3(0.0f, 0.0f, 0.0f);
     public GameObject mTileBaseObject;
+    public GameObject mTileObject;
 
     public Tile(TileSystem parent, TerrainType type, int x, int y)
     {
@@ -49,6 +51,11 @@ public class Tile : ITile
         }
     }
 
+    public void SetTileGameObject(GameObject tileGameObject)
+    {
+        mTileObject = tileGameObject;
+    }
+
     public bool AllowIncomingMove(ITilePlaceable interferingObj, int dirX, int dirY)
     {
         if (!mPassable)
@@ -75,6 +82,7 @@ public class Tile : ITile
         }
 
         interferingObj.SetAsOwningTile(this);
+        LockToPosition(interferingObj);
     }
 
     public void Subscribe(ITilePlaceable placeable)
@@ -85,5 +93,17 @@ public class Tile : ITile
     public void Unsubscribe(ITilePlaceable placeable)
     {
         mPlaceables.Remove(placeable);
+    }
+
+    public Vector3 GetVisualPosition()
+    {
+        return mTileObject.transform.position;
+    }
+
+    public void LockToPosition(ITilePlaceable placeable)
+    {
+        placeable.SetX(mX);
+        placeable.SetY(mY);
+        placeable.SetVisualPosition(mTileObject.transform.position);
     }
 }

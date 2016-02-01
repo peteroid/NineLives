@@ -6,8 +6,8 @@ using System;
 
 public class TileSystem : MonoBehaviour {
     
-	private int mWidth = 0;
-	private int mHeight = 0;
+	public int mWidth = 0;
+	public int mHeight = 0;
 
     public GameObject PassableTile;
     public GameObject WallTile;
@@ -35,11 +35,13 @@ public class TileSystem : MonoBehaviour {
                 tilePos.y--;
                 GameObject newTile = (GameObject)Instantiate(navGrid[x][y].mTileBaseObject, tilePos, tileRot);
                 newTile.transform.parent = gameObject.transform;
+
+                navGrid[x][y].SetTileGameObject(newTile);
             }
         }
 	}
 
-    public bool TryMove(ITilePlaceable objectToMove, int dirX, int dirY)
+    public void TryMove(ITilePlaceable objectToMove, int dirX, int dirY)
     {
         int destX = objectToMove.GetX() + dirX;
         int destY = objectToMove.GetY() + dirY;
@@ -47,7 +49,7 @@ public class TileSystem : MonoBehaviour {
         if(destX >= mWidth || destX < 0 ||
             destY >= mHeight || destY < 0)
         {
-            return false;
+            return;
         }
 
         Tile dest = navGrid[destX][destY];
@@ -56,13 +58,7 @@ public class TileSystem : MonoBehaviour {
         if (dest.AllowIncomingMove(objectToMove, dirX, dirY))
         {
             dest.TryIncomingMove(objectToMove, dirX, dirY);
-            objectToMove.SetX(destX);
-            objectToMove.SetY(destY);
-
-            return true;
         }
-
-        return false;
     }
 
     public void LoadMap(string lvlNum)

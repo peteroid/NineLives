@@ -12,4 +12,6 @@ public interface ITilePlaceable
     void TryIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY);
 
     void SetAsOwningTile(ITile tile);
+
+    void SetVisualPosition(Vector3 position);
 }

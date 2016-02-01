@@ -152,7 +152,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 720548728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.05, z: -0.26}
+  m_LocalPosition: {x: 0, y: 0.05, z: -0.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -370,6 +370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18b6035bcf05fe46bbcfbe4da57a1ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mWidth: 0
+  mHeight: 0
   PassableTile: {fileID: 135934, guid: 4a6af835cc01eec4c82c43ddb2dfd524, type: 2}
   WallTile: {fileID: 144898, guid: 65232a72ba718244c810d59f045caaf2, type: 2}
   DoorTile: {fileID: 116280, guid: 628e0ff9ce80b4f469527e3081f0bfe8, type: 2}
