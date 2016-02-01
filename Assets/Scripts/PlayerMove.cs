@@ -105,6 +105,7 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
 	{
 		Init ();
 		navGrid.LoadCurrentLevel ();
+		mInitialized = false;
 	}
 
 	// the shorthands are messed up due to the rotation of camera

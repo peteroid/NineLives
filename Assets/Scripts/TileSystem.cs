@@ -287,6 +287,12 @@ public class TileSystem : MonoBehaviour {
 
 	public void LoadCurrentLevel ()
 	{
+		foreach (GameObject placeable in mPlaceables)
+		{
+			Delete (placeable);
+		}
+		mPlaceables.Clear ();
+
 		// clean up the current tiles before generating
 		LoadMap(mLevels[mLevelIndex]);
 		foreach (GameObject tile in mTiles)
