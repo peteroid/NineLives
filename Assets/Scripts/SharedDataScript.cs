@@ -15,6 +15,13 @@ public class SharedDataScript : MonoBehaviour {
 		set { _type = value; }
 	}
 
+    static int _trivialEndings = 0;
+    public int trivialEndings
+    {
+        get { return _trivialEndings; }
+        set { _trivialEndings = value; }
+    }
+
 	// Use this for initialization
 	void Start () {
 	

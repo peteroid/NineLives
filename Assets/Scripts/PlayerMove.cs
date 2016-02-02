@@ -24,8 +24,6 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
     private bool mInitialized = false;
 
 	private float speedFactor = 1f;
-    private int mMeowCount = 0;
-    private int mHumanCount = 0;
 
 	protected int mX = 0;
 	protected int mY = 0;
@@ -44,31 +42,6 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
             MoveFollowers(dirX, dirY);
 
             navGrid.TryMove(this, dirX, dirY);
-            
-
-            bool moveToNext = true;
-            // check for win conditions
-            switch (((Tile) mOwningTile).mType)
-            {
-			case Tile.TerrainType.kExit:
-					mMeowCount++;
-					if (mMeowCount > 1) { // First exit is always a cat
-						navGrid.mHasCatEndings = true;
-					}
-					sharedDataObject.type = Tile.TerrainType.kExit;
-                    break;
-                case Tile.TerrainType.kHumanExit:
-                    mHumanCount++;
-					sharedDataObject.type = Tile.TerrainType.kHumanExit;
-                    break;
-                default:
-                    moveToNext = false;
-                    break;
-            }
-            if(moveToNext)
-            {
-                StartCoroutine (NextLevel());
-            }
         }
     }
 
@@ -80,6 +53,29 @@ public class PlayerMove : MonoBehaviour, InputInterface, ITilePlaceable
     public void TryMove(int dirX, int dirY)
     {
         navGrid.TryMove(this, dirX, dirY);
+    }
+
+    public void PostMove()
+    {
+        bool moveToNext = true;
+        // check for win conditions
+        switch (((Tile)mOwningTile).mType)
+        {
+            case Tile.TerrainType.kExit:
+                ++sharedDataObject.trivialEndings;
+                sharedDataObject.type = Tile.TerrainType.kExit;
+                break;
+            case Tile.TerrainType.kHumanExit:
+                sharedDataObject.type = Tile.TerrainType.kHumanExit;
+                break;
+            default:
+                moveToNext = false;
+                break;
+        }
+        if (moveToNext)
+        {
+            StartCoroutine(NextLevel());
+        }
     }
 
 	private IEnumerator NextLevel ()

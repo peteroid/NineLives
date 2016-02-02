@@ -54,14 +54,13 @@ public class Block : ITilePlaceable {
 
         if(mType != BlockType.kCommand)
         {
-            DelegateHost.OnCommandMove += HandleOnCommandMove;
-            DelegateHost.OnCommandMoveClear += HandleOnCommandMoveClear;
+            DelegateHost.GetInstance().OnCommandMove += HandleOnCommandMove;
+            DelegateHost.GetInstance().OnCommandMoveClear += HandleOnCommandMoveClear;
         }
         else
         {
-            DelegateHost.OnCommandMoveRespond += HandleOnCommandMoveRespond;
+            DelegateHost.GetInstance().OnCommandMoveRespond += HandleOnCommandMoveRespond;
         }
-        DelegateHost.OnObliterateEvents += DisableEvents;
     }
 
     ~Block()
@@ -71,15 +70,14 @@ public class Block : ITilePlaceable {
 
     public void DisableEvents()
     {
-        DelegateHost.OnObliterateEvents -= DisableEvents;
         if (mType != BlockType.kCommand)
         {
-            DelegateHost.OnCommandMove -= HandleOnCommandMove;
-            DelegateHost.OnCommandMoveClear -= HandleOnCommandMoveClear;
+            DelegateHost.GetInstance().OnCommandMove -= HandleOnCommandMove;
+            DelegateHost.GetInstance().OnCommandMoveClear -= HandleOnCommandMoveClear;
         }
         else
         {
-            DelegateHost.OnCommandMoveRespond -= HandleOnCommandMoveRespond;
+            DelegateHost.GetInstance().OnCommandMoveRespond -= HandleOnCommandMoveRespond;
         }
     }
 
@@ -147,7 +145,7 @@ public class Block : ITilePlaceable {
         }
         else
         {
-            DelegateHost.OnCommandMoveRespond.Invoke();
+            DelegateHost.CommandMoveRespond();
         }
     }
 
@@ -186,19 +184,24 @@ public class Block : ITilePlaceable {
 
         if(mType == BlockType.kCommand)
         {
-            DelegateHost.OnCommandMove.Invoke(dirX, dirY);
+            DelegateHost.CommandMove(dirX, dirY);
 
             int lastKnownResponses = 0;
             while(mCommandMoveNegativeResponses > lastKnownResponses)
             {
                 lastKnownResponses = mCommandMoveNegativeResponses;
                 mCommandMoveNegativeResponses = 0;
-                DelegateHost.OnCommandMove.Invoke(dirX, dirY);
+                DelegateHost.CommandMove(dirX, dirY);
             }
             mCommandMoveNegativeResponses = 0;
 
-            DelegateHost.OnCommandMoveClear.Invoke();
+            DelegateHost.CommandMoveClear();
         }
+    }
+
+    public void PostMove()
+    {
+        // No behavior
     }
 
     public void SetVisualPosition(Vector3 position)

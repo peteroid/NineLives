@@ -40,8 +40,6 @@ public class TileSystem : MonoBehaviour {
 	private ArrayList mTileGameObjs, mPlaceableGameObjs;
 	private string[] mLevels;
 
-    public bool mHasCatEndings = false;
-
 	public int mLevelIndex = -1;
 	private float speedFactor = 1f;
 
@@ -104,7 +102,8 @@ public class TileSystem : MonoBehaviour {
     {
         if(lvlNum == "8")
         {
-            if(mHasCatEndings)
+            // First level is guaranteed cat
+            if(sharedDdataObject.trivialEndings > 1)
             {
                 lvlNum = "8cat";
             }
@@ -113,7 +112,8 @@ public class TileSystem : MonoBehaviour {
                 lvlNum = "8human";
             }
         }
-		TextAsset levelFile = Resources.Load<TextAsset>("Levels/" + lvlNum);
+        Debug.Log(String.Format("LoadMap: {0}, Trivial Endings: {1}", lvlNum, sharedDdataObject.trivialEndings));
+        TextAsset levelFile = Resources.Load<TextAsset>("Levels/" + lvlNum);
         JSONNode jsonObj = JSON.Parse(levelFile.text);
         
         mWidth = jsonObj["data"].AsArray.Count;
@@ -287,26 +287,22 @@ public class TileSystem : MonoBehaviour {
 
 	public void LoadCurrentLevel ()
     {
-        if(DelegateHost.OnObliterateEvents != null)
-        {
-            DelegateHost.OnObliterateEvents.Invoke();
-        }
-
         foreach (GameObject placeable in mPlaceableGameObjs)
 		{
 			Delete (placeable);
 		}
 		mPlaceableGameObjs.Clear ();
 
-		// clean up the current tiles before generating
-		LoadMap(mLevels[mLevelIndex]);
 		foreach (GameObject tile in mTileGameObjs)
 		{
 			Delete (tile);
 		}
 		mTileGameObjs.Clear ();
 
-		GenerateTileMap ();
+        // clean up the current tiles before generating
+        DelegateHost.Recreate();
+        LoadMap(mLevels[mLevelIndex]);
+        GenerateTileMap ();
     }
 
 	public void PreNextLevel ()

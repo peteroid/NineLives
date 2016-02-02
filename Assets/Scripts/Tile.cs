@@ -126,12 +126,11 @@ public class Tile : ITile
                 mIsDoor = true;
                 mPlayerPassable = false;
                 mBlockPassable = false;
-                DelegateHost.OnPressureChange += HandleOnPressureChange;
+                DelegateHost.GetInstance().OnPressureChange += HandleOnPressureChange;
                 break;
 
             default: break;
         }
-        DelegateHost.OnObliterateEvents += DisableEvents;
     }
 
     ~Tile()
@@ -141,12 +140,11 @@ public class Tile : ITile
 
     public void DisableEvents()
     {
-        DelegateHost.OnObliterateEvents -= DisableEvents;
         mPlaceables.Clear();
         switch (mType)
         {
             case TerrainType.kPressureDoor:
-                DelegateHost.OnPressureChange -= HandleOnPressureChange;
+                DelegateHost.GetInstance().OnPressureChange -= HandleOnPressureChange;
                 break;
 
             default: break;
@@ -239,6 +237,7 @@ public class Tile : ITile
         }
 
         TriggerSpecialMoveConditions(interferingObj);
+        interferingObj.PostMove();
     }
 
     public void TriggerSpecialMoveConditions(ITilePlaceable interferingObj)
@@ -268,7 +267,7 @@ public class Tile : ITile
         mPlaceables.Add(placeable);
         if(mType == TerrainType.kPressure && mPlaceables.Count == 1)
         {
-            DelegateHost.OnPressureChange.Invoke(true, mSpecialCaseID);
+            DelegateHost.PressureChange(true, mSpecialCaseID);
         }
     }
 
@@ -277,7 +276,7 @@ public class Tile : ITile
         mPlaceables.Remove(placeable);
         if (mType == TerrainType.kPressure && mPlaceables.Count == 0)
         {
-            DelegateHost.OnPressureChange.Invoke(false, mSpecialCaseID);
+            DelegateHost.PressureChange(false, mSpecialCaseID);
         }
     }
 

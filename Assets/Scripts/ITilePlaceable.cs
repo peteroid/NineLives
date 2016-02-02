@@ -14,6 +14,7 @@ public interface ITilePlaceable
     void TryIncomingMove(ITilePlaceable incomingPlaceable, int dirX, int dirY);
     bool CanMove(int dirX, int dirY);
     void TryMove(int dirX, int dirY);
+    void PostMove();
 
     void SetAsOwningTile(ITile tile);
     void PrepForRemoval();
