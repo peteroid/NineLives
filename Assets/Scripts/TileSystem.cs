@@ -287,6 +287,7 @@ public class TileSystem : MonoBehaviour {
 
 	public void LoadCurrentLevel ()
     {
+        mPlaceableUpdates.Clear();
         foreach (GameObject placeable in mPlaceableGameObjs)
 		{
 			Delete (placeable);
