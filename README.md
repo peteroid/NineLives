@@ -1,4 +1,4 @@
-# HumanWannabe
+# Nine Lives
 
 ## Introduction
 A game that examines a difficult choice through the dream world of a feline persona.
