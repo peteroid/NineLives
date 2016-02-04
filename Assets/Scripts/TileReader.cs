@@ -5,7 +5,7 @@ public class TileReader : MonoBehaviour {
     public GameObject[] tileMapSave;
     public GameObject[] toyMapSave;
     // Use this for initialization
-    public void GetObjecID(GameObject obj);
+    public void GetTileID(GameObject obj);
         {
             
         }
@@ -13,7 +13,8 @@ public class TileReader : MonoBehaviour {
     {
        tileMapSave = GameObject.FindGameObjectsWithTag("Tile");
        toyMapSave = GameObject.FindGameObjectsWithTag("Placeable");
-       
+
+        foreach (GameObject in tileMapSave) ; 
 	}
 	
 	// Update is called once per frame
