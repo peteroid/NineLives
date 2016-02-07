@@ -8,19 +8,35 @@ using System;
     int[] toys;
     int triggerId;
 
-    public int getId()
+
+
+
+    public Tile(int Id, int[] toysOnTile, int trigger)
     {
-        return tileId;
+        tileId = Id;
+        toys = toysOnTile;
+        triggerId = trigger;
     }
 
-    public int[] getToys()
+
+
+
+    public int Id
     {
-        return toys;
+        get { return tileId; }
+        set { tileId = Id; }
     }
 
-    public int getTrigger()
+    public int[] toyList
     {
-        return triggerId;
+        get { return toys; }
+        set { toys = toyList; }
     }
+
+    public int trigger
+    {
+        get { return triggerId; }
+        set { triggerId = trigger; }
+    } 
   
 }
