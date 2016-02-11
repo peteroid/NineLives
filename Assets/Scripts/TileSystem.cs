@@ -22,12 +22,27 @@ public class TileSystem : MonoBehaviour
     public GameObject PushLeftTile;
     public GameObject PushRightTile;
     public GameObject PushDownTile;
-
     public GameObject SimpleBlock;
     public GameObject RollingBlock;
     public GameObject AttachableBlock;
     public GameObject CommandBlock;
 
+
+
+    public class Target : Tile
+    {
+        int targetId;
+        int[] targetToys;
+        int targetTriggerId;
+
+        public Target(int id, int[] toys, int trigger)
+            : base(id, toys, trigger)
+        {
+
+        }
+
+      
+    }
 	
 	
 }
