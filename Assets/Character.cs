@@ -11,7 +11,8 @@ public class Character : MonoBehaviour
     public enum CharacterType
     {
         player,
-        NPC
+        npc,
+        toy
     };
 
     public Vector2 startingPosition;
@@ -22,6 +23,21 @@ public class Character : MonoBehaviour
     protected int moveSpeed { get; set; }
     protected StatusEffect status { get; set; }
 
+    protected void Move(Vector2 direction, Vector2 source)
+    {
+        Vector2 target = (source + direction);
+
+
+        if (Tile.canEnter(target, direction))
+        {
+            Tile.UpdateToys(target);
+            currentPosition = target;
+            ScreenCast.UpdateDisplay(this, currentPosition);
+        }
+        else return;
+
+
+    }
 
 
 
@@ -30,12 +46,26 @@ public class Character : MonoBehaviour
 public class Player : Character
 {
 
-  public Player()
+    public Player()
 
     {
         character = CharacterType.player;
         currentPosition = startingPosition;
+        moveSpeed = 1;
     }    
+
+    
+     public void Start()
+    {
+
+    }
+
+    public void Update()
+    {
+
+    }
+
+  
 }
 
 public class NPC : Character

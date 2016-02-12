@@ -7,8 +7,8 @@ using System;
 public class TileSystem : MonoBehaviour
 {
     
-	public int mWidth = 0;
-	public int mHeight = 0;
+	public static int mWidth = 0;
+	public static int mHeight = 0;
 
     public GameObject PassableTile;
     public GameObject WallTile;
@@ -26,7 +26,7 @@ public class TileSystem : MonoBehaviour
     public GameObject RollingBlock;
     public GameObject AttachableBlock;
     public GameObject CommandBlock;
-
+    public Tile[ , ] TileMap = new Tile[mWidth, mHeight];
 
 
     public class Target : Tile
@@ -43,6 +43,8 @@ public class TileSystem : MonoBehaviour
 
       
     }
-	
-	
+
+
+
+
 }
