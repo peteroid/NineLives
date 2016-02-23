@@ -16,5 +16,6 @@
 	],
 	"extraSpawns": [
 		
-	]
+	],
+	"dialogue": "story_name"
 }

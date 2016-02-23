@@ -22,13 +22,10 @@ public class SharedDataScript : MonoBehaviour {
         set { _trivialEndings = value; }
     }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	static string _nextDialogue = "";
+	public string nextDialogue
+	{
+		get { return _nextDialogue; }
+		set { _nextDialogue = value; }
 	}
 }

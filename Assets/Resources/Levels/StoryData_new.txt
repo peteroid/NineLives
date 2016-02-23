@@ -1,0 +1,54 @@
+{
+  "story_name": {
+    "storyline": [
+      {
+        "image": "cat",
+        "sentence": "My bed! I'm pooped"
+      }
+    ]
+  },
+  "EveryKindOfNameWillBeFine": {
+    "storyline": [
+      {
+        "image": "cat",
+        "sentence": "That was exhausting. A nap sounds nice"
+      }
+    ]
+  },
+  "as_long_as_a_literal_string": {
+    "storyline": [
+      {
+        "image": "cat",
+        "sentence": "That was exhausting. A nap sounds nice"
+      },
+      {
+        "image": "doctor",
+        "sentence": "Don't sleep! You're still needed"
+      }
+    ]
+  },
+  "even...": {
+    "storyline": [
+      {
+        "image": "cat",
+        "sentence": "That was exhausting. A nap sounds nice"
+      },
+      {
+        "image": "doctor",
+        "sentence": "Don't sleep! You're still needed"
+      }
+    ]
+  },
+  "!@#$%": {
+    "storyline": [
+      {
+        "image": "cat",
+        "sentence": "That was exhausting. A nap sounds nice"
+      },
+      {
+        "image": "doctor",
+        "sentence": "Don't sleep! You're still needed"
+      }
+    ]
+  }
+}

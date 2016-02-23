@@ -485,12 +485,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 6
   lastType: 0
-  dialogue1: {fileID: 972135413}
-  dialogue2: {fileID: 491399301}
-  image1: {fileID: 1904823216}
-  image2: {fileID: 1965444203}
-  spriteCat: {fileID: 21300014, guid: bddb908bb067459479e429fe209d6b8b, type: 3}
-  spriteOther: {fileID: 21300000, guid: 42696d6107f32034d92c71cc4db84d5d, type: 3}
+  dialogues:
+  - {fileID: 972135413}
+  - {fileID: 491399301}
+  images:
+  - {fileID: 1904823216}
+  - {fileID: 1965444203}
+  sprites:
+  - {fileID: 21300014, guid: bddb908bb067459479e429fe209d6b8b, type: 3}
+  - {fileID: 21300000, guid: 932cb5aeab84f84449bb5b6c57292f94, type: 3}
   sharedDataObject: {fileID: 1295563900}
 --- !u!1 &1776074215
 GameObject:

@@ -93,7 +93,7 @@ public class TileSystem : MonoBehaviour {
 			for (int i = 0; i < levelCount; i++)
 			{
 				mLevels[i] = jsonObj["data"][i];
-				Debug.Log (mLevels[i].ToString ());
+//				Debug.Log (mLevels[i].ToString ());
 			}
 		}
 	}
@@ -112,10 +112,12 @@ public class TileSystem : MonoBehaviour {
                 lvlNum = "8human";
             }
         }
-        Debug.Log(String.Format("LoadMap: {0}, Trivial Endings: {1}", lvlNum, sharedDdataObject.trivialEndings));
         TextAsset levelFile = Resources.Load<TextAsset>("Levels/" + lvlNum);
         JSONNode jsonObj = JSON.Parse(levelFile.text);
         
+		// record the next dialogue scene for the current map
+		sharedDdataObject.nextDialogue = jsonObj["dialogue"];
+
         mWidth = jsonObj["data"].AsArray.Count;
         mHeight = jsonObj["data"][0].AsArray.Count;
         
@@ -156,6 +158,9 @@ public class TileSystem : MonoBehaviour {
             int y = node["y"].AsInt;
             LoadSpecializedItem(mNavGrid[x][y], node["id"].AsInt);
         }
+
+		Debug.Log(String.Format("LoadMap: {0}, Trivial Endings: {1}, Dialog: {2}",
+			lvlNum, sharedDdataObject.trivialEndings, sharedDdataObject.nextDialogue));
     }
 
 	public void GenerateTileMap()
@@ -317,7 +322,7 @@ public class TileSystem : MonoBehaviour {
 		mPlaceableGameObjs.Clear ();
 
 		UnityEngine.Random.seed = (int) Time.time;
-		Debug.Log (UnityEngine.Random.seed.ToString ());
+//		Debug.Log (UnityEngine.Random.seed.ToString ());
 		foreach (GameObject tile in mTileGameObjs)
 		{
 			Vector3 velocity = GetRandomVector3 (7f * speedFactor * 1.5f, 10f * speedFactor * 1.5f);
