@@ -7,7 +7,7 @@ public class JsonIO : MonoBehaviour
 
         
 
-    public void WriteLevel (string level, string levelOutput)
+    public void WriteLevel (string level, string outputType, string levelOutput)
     {
        
         string subDirectory = System.IO.Path.Combine(exeRuntimeDirectory, "Levels");
@@ -23,6 +23,7 @@ public class JsonIO : MonoBehaviour
         System.IO.File.WriteAllText(fileName, levelOutput);
 
     }
+    
 
     public string ReadLevel (string level)
     {
